@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Estoque
@@ -14,7 +15,8 @@ namespace Estoque
         public string Descricao { get; set; }
         public int QuantidadeEmEstoque { get; set; }
         public int FornecedorId { get; set; }
-        public virtual Fornecedor fornecedor { get; set; }
+        [JsonIgnore]
+        public virtual Fornecedor? fornecedor { get; set; }
 
     }
 }
