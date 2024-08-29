@@ -25,7 +25,7 @@ namespace CRUD._02___Repositorios.Data
                     Preco REAL NOT NULL,
                     Descricao TEXT NOT NULL,
                     QuantidadeEmEstoque INTEGER NOT NULL,
-                    FornecedorId INTEGER NOT NULL
+                    FornecedorId INTEGER FOREIGN KEY NOT NULL
 
                 );
                 CREATE TABLE IF NOT EXISTS Fornecedores(
