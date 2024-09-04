@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
@@ -9,12 +10,15 @@ namespace Estoque._02_Repository
 {
     public class ProdutoRepository
     {
-        private const string ConnectionString = "Data Source=ESTOQUE.db"; // ConnectionString (Parâmetros necessários para criar um banco de dados)
-        // Caso não exista o banco de dados, a var connection cria um database automaticamente
+        public readonly string _ConnectionString; //Variável de connection string a ser preenchida
 
+        public ProdutoRepository(IConfiguration configuration) //Responsavel por preencher a connection string
+        {
+            _ConnectionString = configuration.GetConnectionString("DefaultConnection");
+        }
         public void Adicionar(Produto produto)
         {
-            using (var connection = new SQLiteConnection(ConnectionString)) // Criando a conexão
+            using (var connection = new SQLiteConnection(_ConnectionString)) // Criando a conexão
             {
                 connection.Open();
 
@@ -38,7 +42,7 @@ namespace Estoque._02_Repository
 
         public void Remover(int id)
         {
-            using (var connection = new SQLiteConnection(ConnectionString)) // Criando a conexão
+            using (var connection = new SQLiteConnection(_ConnectionString)) // Criando a conexão
             {
                 connection.Open();
 
@@ -57,7 +61,7 @@ namespace Estoque._02_Repository
 
         public void Editar(int id, Produto editProduto)
         {
-            using (var connection = new SQLiteConnection(ConnectionString)) // Criando a conexão
+            using (var connection = new SQLiteConnection(_ConnectionString)) // Criando a conexão
             {
                 connection.Open();
 
@@ -85,7 +89,7 @@ namespace Estoque._02_Repository
         {
             List<Produto> listAux = new List<Produto>();
 
-            using (var connection = new SQLiteConnection(ConnectionString)) // Criando a conexão
+            using (var connection = new SQLiteConnection(_ConnectionString)) // Criando a conexão
             {
                 connection.Open();
 
@@ -118,7 +122,7 @@ namespace Estoque._02_Repository
 
         public Produto BuscarProdutoPorId(int id)
         {
-            using (var connection = new SQLiteConnection(ConnectionString)) // Criando a conexão
+            using (var connection = new SQLiteConnection(_ConnectionString)) // Criando a conexão
             {
                 connection.Open();
 

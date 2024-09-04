@@ -9,9 +9,9 @@ namespace EstoqueAPI.Controllers
     public class ProdutoController : ControllerBase
     {
         private ProdutoService _service;
-        public ProdutoController()
+        public ProdutoController(IConfiguration configuration)
         {
-            _service = new ProdutoService();
+            _service = new ProdutoService(configuration);
         }
 
         [HttpPost("AdicionarProduto")] // Rota (EndPoint)

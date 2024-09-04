@@ -1,6 +1,7 @@
 ﻿using Estoque._01_Services;
 using Estoque;
 using Microsoft.AspNetCore.Mvc;
+using System.Configuration;
 
 namespace EstoqueAPI.Controllers
 {
@@ -9,9 +10,9 @@ namespace EstoqueAPI.Controllers
     public class FornecedorController : ControllerBase
     {
         private FornecedorService _service;
-        public FornecedorController()
+        public FornecedorController(IConfiguration configuration)
         {
-            _service = new FornecedorService();
+            _service = new FornecedorService(configuration);
         }
 
         [HttpPost("AdicionarFornecedor")] // Rota (EndPoint)
