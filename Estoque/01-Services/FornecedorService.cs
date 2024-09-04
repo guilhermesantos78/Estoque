@@ -1,5 +1,4 @@
 ﻿using Estoque._02_Repository;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +11,9 @@ namespace Estoque._01_Services
     {
         public FornecedorRepository repository { get; set; }
 
-        public FornecedorService(IConfiguration configuration)
+        public FornecedorService(string ConnectionString)
         {
-            repository = new FornecedorRepository(configuration);
+            repository = new FornecedorRepository(ConnectionString);
         }
 
         public void Adicionar(Fornecedor fornecedor)

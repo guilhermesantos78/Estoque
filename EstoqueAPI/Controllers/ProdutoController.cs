@@ -11,7 +11,8 @@ namespace EstoqueAPI.Controllers
         private ProdutoService _service;
         public ProdutoController(IConfiguration configuration)
         {
-            _service = new ProdutoService(configuration);
+
+            _service = new ProdutoService(configuration.GetConnectionString("DefaultConnection"));
         }
 
         [HttpPost("AdicionarProduto")] // Rota (EndPoint)

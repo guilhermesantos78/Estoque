@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
@@ -12,9 +11,9 @@ namespace Estoque._02_Repository
     {
         public readonly string _ConnectionString; //Variável de connection string a ser preenchida
 
-        public FornecedorRepository(IConfiguration configuration) //Responsavel por preencher a connection string
+        public FornecedorRepository(string ConnectionString) //Responsavel por preencher a connection string
         {
-            _ConnectionString = configuration.GetConnectionString("DefaultConnection");
+            _ConnectionString = ConnectionString;
         }
         public void Adicionar(Fornecedor fornecedor)
         {

@@ -1,5 +1,4 @@
 ﻿using Estoque._02_Repository;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +11,9 @@ namespace Estoque._01_Services
     {
         public ProdutoRepository repository { get; set; }
 
-        public ProdutoService(IConfiguration configuration)
+        public ProdutoService(string Connection)
         {
-            repository = new ProdutoRepository(configuration);
+            repository = new ProdutoRepository(Connection);
         }
 
         public void Adicionar(Produto produto)

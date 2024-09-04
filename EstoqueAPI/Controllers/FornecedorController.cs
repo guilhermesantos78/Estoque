@@ -12,7 +12,7 @@ namespace EstoqueAPI.Controllers
         private FornecedorService _service;
         public FornecedorController(IConfiguration configuration)
         {
-            _service = new FornecedorService(configuration);
+            _service = new FornecedorService(configuration.GetConnectionString("DefaultConnection"));
         }
 
         [HttpPost("AdicionarFornecedor")] // Rota (EndPoint)
