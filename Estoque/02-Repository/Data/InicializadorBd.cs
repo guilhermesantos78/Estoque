@@ -1,29 +1,16 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Data.SQLite;
 
 namespace CRUD._02___Repositorios.Data
 {
     public static class InicializadorBd
     {
-        private const string ConnectionString = "Data Source=ESTOQUE.db";
-
         public static void Inicializar()
         {
-            using (var connection = new SQLiteConnection(ConnectionString))
-            {
-                connection.Open();
+            using var connection = new SQLiteConnection("Data Source=ESTOQUE.db"); // Criando a conexão
 
-                // Comando SQL para criar as tabelas
-                string commandCREATE = @"
-                CREATE TABLE IF NOT EXISTS Fornecedores (
-                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Nome TEXT NOT NULL,
-                    Contato TEXT NOT NULL,
-                    Endereco TEXT NOT NULL,
-                    CNPJ TEXT NOT NULL
-                );";
-
-                commandCREATE += @"
+            string criarTabela = @"
                 CREATE TABLE IF NOT EXISTS Produtos (
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
                     Nome TEXT NOT NULL,
@@ -32,14 +19,16 @@ namespace CRUD._02___Repositorios.Data
                     QuantidadeEmEstoque INTEGER NOT NULL,
                     FornecedorId INTEGER,
                     FOREIGN KEY (FornecedorId) REFERENCES Fornecedores(Id)
+                );
+                CREATE TABLE IF NOT EXISTS Fornecedores (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Nome TEXT NOT NULL,
+                    Contato TEXT NOT NULL,
+                    Endereco TEXT NOT NULL,
+                    CNPJ TEXT NOT NULL
                 );";
 
-                // Executa o comando para criar as tabelas
-                using (var command = new SQLiteCommand(commandCREATE, connection))
-                {
-                    command.ExecuteNonQuery();
-                }
-            }
+            connection.Execute(criarTabela); //Método que Executa qualquer comando SQL (Dapper)
         }
     }
 }
