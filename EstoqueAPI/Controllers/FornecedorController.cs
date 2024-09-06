@@ -35,9 +35,9 @@ namespace EstoqueAPI.Controllers
         }
 
         [HttpPut("EditarFornecedor")] // Rota (EndPoint)
-        public void EditarFornecedor(int id, Fornecedor fornecedor)
+        public void EditarFornecedor(Fornecedor fornecedor)
         {
-            _service.Editar(id, fornecedor);
+            _service.Editar(fornecedor);
         }
 
         [HttpDelete("RemoverFornecedor")] // Rota (EndPoint)

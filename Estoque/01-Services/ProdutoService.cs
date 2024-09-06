@@ -21,9 +21,9 @@ namespace Estoque._01_Services
             repository.Adicionar(produto);
         }
 
-        public void Editar(int id, Produto ProdutoEdit)
+        public void Editar(Produto ProdutoEdit)
         {
-            repository.Editar(id, ProdutoEdit);
+            repository.Editar(ProdutoEdit);
         }
 
         public void Remover(int id)

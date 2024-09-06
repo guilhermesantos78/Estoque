@@ -34,9 +34,9 @@ namespace EstoqueAPI.Controllers
         }
 
         [HttpPut("Editarproduto")] // Rota (EndPoint)
-        public void Editarproduto(int id, Produto produto)
+        public void Editarproduto(Produto produto)
         {
-            _service.Editar(id, produto);
+            _service.Editar(produto);
         }
 
         [HttpDelete("Removerproduto")] // Rota (EndPoint)
