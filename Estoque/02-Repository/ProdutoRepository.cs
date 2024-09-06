@@ -39,10 +39,9 @@ namespace Estoque._02_Repository
 
         public void Editar(Produto editProduto)
         {
-            using var connection = new SQLiteConnection(_connectionString); // conexão
-            connection.Update(editProduto); // Supondo que a tabela Produto tenha um campo FornecedorId
+            using var connection = new SQLiteConnection(_connectionString); // conexao
+            connection.Update<Produto>(editProduto);
         }
-
 
         public List<Produto> Listar()
         {
