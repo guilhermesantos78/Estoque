@@ -26,7 +26,13 @@ namespace CRUD._02___Repositorios.Data
                     Contato TEXT NOT NULL,
                     Endereco TEXT NOT NULL,
                     CNPJ TEXT NOT NULL
-                );";
+                );
+                CREATE TABLE IF NOT EXISTS FuncionariosLogin(
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Nome TEXT NOT NULL,
+                    Email TEXT NOT NULL,
+                    Senha TEXT NOT NULL
+                ); ";
 
             connection.Execute(criarTabela); //Método que Executa qualquer comando SQL (Dapper)
         }
