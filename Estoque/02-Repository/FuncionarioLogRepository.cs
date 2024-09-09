@@ -27,14 +27,12 @@ namespace Estoque._02_Repository
             connection.Execute(commandInsert, funcionario);
         }
 
+
         public void Remover(int id)
         {
-            using var connection = new SQLiteConnection(_connectionString);
-            var funcionario = BuscarFuncionarioLogPorId(id);
-            if (funcionario != null)
-            {
-                connection.Delete(funcionario);
-            }
+            using var connection = new SQLiteConnection(_connectionString); // conexao
+            FuncionarioLog novofuncionario = BuscarFuncionarioLogPorId(id);
+            connection.Delete<FuncionarioLog>(novofuncionario);
         }
 
         public void Editar(FuncionarioLog editFuncionarioLog)
