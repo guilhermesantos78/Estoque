@@ -33,6 +33,7 @@ namespace Estoque.Repository
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
             Produto novoproduto = BuscarProdutoPorId(id);
+
             connection.Delete<Produto>(novoproduto);
         }
 
@@ -40,19 +41,22 @@ namespace Estoque.Repository
         public void Editar(Produto editProduto)
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
+
             connection.Update<Produto>(editProduto);
         }
 
         public List<Produto> Listar()
         {
-            using var connection = new SQLiteConnection(_connectionString);// conexao
+            using var connection = new SQLiteConnection(_connectionString); // conexao
+
             return connection.GetAll<Produto>().ToList();
         }
 
 
         public Produto BuscarProdutoPorId(int id)
         {
-            using var connection = new SQLiteConnection(_connectionString);// conexao
+            using var connection = new SQLiteConnection(_connectionString); // conexao
+
             return connection.Get<Produto>(id);
         }
 

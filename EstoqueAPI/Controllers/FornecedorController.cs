@@ -24,6 +24,7 @@ namespace EstoqueAPI.Controllers
         public void AdicionarFornecedor(CreateFornecedorDTO f)
         {
             Fornecedor fornecedor = _mapper.Map<Fornecedor>(f);
+
             _service.Adicionar(fornecedor);
         }
 

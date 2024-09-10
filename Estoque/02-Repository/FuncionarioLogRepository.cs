@@ -31,24 +31,28 @@ namespace Estoque.Repository
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
             FuncionarioLog novofuncionario = BuscarFuncionarioLogPorId(id);
+
             connection.Delete<FuncionarioLog>(novofuncionario);
         }
 
         public void Editar(FuncionarioLog editFuncionarioLog)
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
+
             connection.Update<FuncionarioLog>(editFuncionarioLog);
         }
 
         public List<FuncionarioLog> Listar()
         {
             using var connection = new SQLiteConnection(_connectionString);
+
             return connection.GetAll<FuncionarioLog>().ToList();
         }
 
         public FuncionarioLog BuscarFuncionarioLogPorId(int id)
         {
             using var connection = new SQLiteConnection(_connectionString);
+
             return connection.Get<FuncionarioLog>(id);
         }
     }

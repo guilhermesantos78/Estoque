@@ -24,6 +24,7 @@ namespace EstoqueAPI.Controllers
         public void AdicionarProduto(CreateProdutoDTO p)
         {
             Produto produto = _mapper.Map<Produto>(p);
+
             _service.Adicionar(produto);
         }
 

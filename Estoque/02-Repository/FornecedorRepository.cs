@@ -34,6 +34,7 @@ namespace Estoque.Repository
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
             Fornecedor novoFornecedor = BuscarFornecedorPorId(id);
+
             connection.Delete<Fornecedor>(novoFornecedor);
         }
 
@@ -41,6 +42,7 @@ namespace Estoque.Repository
         public void Editar(Fornecedor editFornecedor)
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
+
             connection.Update<Fornecedor>(editFornecedor);
         }
 
@@ -49,6 +51,7 @@ namespace Estoque.Repository
         {
 
             using var connection = new SQLiteConnection(_connectionString);// conexao
+
             return connection.GetAll<Fornecedor>().ToList();
         }
 

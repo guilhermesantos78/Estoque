@@ -22,6 +22,7 @@ namespace EstoqueAPI.Controllers
         public void AdicionarPedido(Pedido p)
         {
             Pedido pedido = _mapper.Map<Pedido>(p);
+
             _service.Adicionar(pedido);
         }
 

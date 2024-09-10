@@ -33,24 +33,28 @@ namespace Estoque.Repository
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
             Pedido novoPedido = BuscarPedidoPorId(id);
+
             connection.Delete<Pedido>(novoPedido);
         }
 
         public void Editar(Pedido editPedido)
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
+
             connection.Update<Pedido>(editPedido);
         }
 
         public List<Pedido> Listar()
         {
             using var connection = new SQLiteConnection(_connectionString);
+
             return connection.GetAll<Pedido>().ToList();
         }
 
         public Pedido BuscarPedidoPorId(int id)
         {
             using var connection = new SQLiteConnection(_connectionString);
+
             return connection.Get<Pedido>(id);
         }
     }

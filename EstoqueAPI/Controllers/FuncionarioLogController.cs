@@ -23,6 +23,7 @@ namespace EstoqueAPI.Controllers
         public void AdicionarFuncionarioLog(FuncionarioLog f)
         {
             FuncionarioLog funcionario = _mapper.Map<FuncionarioLog>(f);
+
             _service.Adicionar(funcionario);
         }
 
