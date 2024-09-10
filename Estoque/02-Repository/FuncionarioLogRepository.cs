@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
+using Estoque.Repository.Data.Script;
 using Estoque.Entidades;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,7 @@ namespace Estoque.Repository
         {
             using var connection = new SQLiteConnection(_connectionString);
 
-            string commandInsert = @"INSERT INTO FuncionariosLogin (Nome, Email, Senha)
-                                    VALUES (@Nome, @Email, @Senha)";
-
-            connection.Execute(commandInsert, funcionario);
+            connection.Execute(FornecedorLogScript.InsertFornecedorLog(), funcionario);
         }
 
         public void Remover(int id)
