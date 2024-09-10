@@ -28,7 +28,6 @@ namespace Estoque._02_Repository
             connection.Execute(commandInsert, produto);
         }
 
-
         public void Remover(int id)
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao

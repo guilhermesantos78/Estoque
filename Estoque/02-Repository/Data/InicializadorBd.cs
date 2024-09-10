@@ -32,7 +32,17 @@ namespace CRUD._02___Repositorios.Data
                     Nome TEXT NOT NULL,
                     Email TEXT NOT NULL,
                     Senha TEXT NOT NULL
-                ); ";
+                ); 
+                
+                CREATE TABLE IF NOT EXISTS Pedidos (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    DataPedido DATE NOT NULL,
+                    DataEntrega DATE NOT NULL,
+                    QuantidadeSolicitada INTEGER NOT NULL,
+                    ProdutoId INTEGER,
+                    FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
+                );
+                ";
 
             connection.Execute(criarTabela); //Método que Executa qualquer comando SQL (Dapper)
         }
