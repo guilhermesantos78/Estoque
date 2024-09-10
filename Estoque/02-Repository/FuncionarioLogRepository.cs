@@ -1,12 +1,12 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
-using Estoque._03_Entidades;
+using Estoque.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
 
-namespace Estoque._02_Repository
+namespace Estoque.Repository
 {
     public class FuncionarioLogRepository
     {

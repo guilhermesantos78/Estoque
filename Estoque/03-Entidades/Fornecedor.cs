@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Estoque
+namespace Estoque.Entidades
 {
     [Table("Fornecedores")]
     public class Fornecedor

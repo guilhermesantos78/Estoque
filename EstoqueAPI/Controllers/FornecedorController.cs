@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using Estoque;
-using Estoque._01_Services;
-using Estoque._03_Entidades.DTOs.Fornecedor;
+using Estoque.Services;
+using Estoque.Entidades.DTOs.Fornecedor;
 using Microsoft.AspNetCore.Mvc;
+using Estoque.Entidades;
 
 namespace EstoqueAPI.Controllers
 {

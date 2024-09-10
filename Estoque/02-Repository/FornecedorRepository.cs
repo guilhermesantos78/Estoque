@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
+using Estoque.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Estoque._02_Repository
+namespace Estoque.Repository
 {
     public class FornecedorRepository
     {

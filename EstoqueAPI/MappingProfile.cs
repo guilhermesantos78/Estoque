@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Estoque;
-using Estoque._03_Entidades;
-using Estoque._03_Entidades.DTOs.Fornecedor;
-using Estoque._03_Entidades.DTOs.FuncionarioLog;
-using Estoque._03_Entidades.DTOs.Pedido;
-using Estoque._03_Entidades.DTOs.Produto;
+using Estoque.Entidades;
+using Estoque.Entidades.DTOs.Fornecedor;
+using Estoque.Entidades.DTOs.FuncionarioLog;
+using Estoque.Entidades.DTOs.Pedido;
+using Estoque.Entidades.DTOs.Produto;
 
 namespace EstoqueAPI
 {

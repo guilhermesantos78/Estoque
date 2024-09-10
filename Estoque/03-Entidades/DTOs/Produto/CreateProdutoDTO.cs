@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Estoque._03_Entidades.DTOs.Produto
+namespace Estoque.Entidades.DTOs.Produto
 {
     public class CreateProdutoDTO
     {

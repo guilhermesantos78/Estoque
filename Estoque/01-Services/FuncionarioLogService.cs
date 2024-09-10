@@ -1,12 +1,12 @@
-﻿using Estoque._02_Repository;
-using Estoque._03_Entidades;
+﻿using Estoque.Repository;
+using Estoque.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Estoque._01_Services
+namespace Estoque.Services
 {
     public class FuncionarioLogService
     {

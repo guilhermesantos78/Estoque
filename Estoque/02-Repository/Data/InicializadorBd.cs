@@ -1,8 +1,9 @@
 ﻿using Dapper;
+using Estoque.Repository.Data.Script;
 using System;
 using System.Data.SQLite;
 
-namespace CRUD._02___Repositorios.Data
+namespace CRUD.Repositorios.Data
 {
     public static class InicializadorBd
     {
@@ -10,41 +11,7 @@ namespace CRUD._02___Repositorios.Data
         {
             using var connection = new SQLiteConnection("Data Source=ESTOQUE.db"); // Criando a conexão
 
-            string criarTabela = @"
-                CREATE TABLE IF NOT EXISTS Produtos (
-                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Nome TEXT NOT NULL,
-                    Preco REAL NOT NULL,
-                    Descricao TEXT NOT NULL,
-                    QuantidadeEmEstoque INTEGER NOT NULL,
-                    FornecedorId INTEGER,
-                    FOREIGN KEY (FornecedorId) REFERENCES Fornecedores(Id)
-                );
-                CREATE TABLE IF NOT EXISTS Fornecedores (
-                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Nome TEXT NOT NULL,
-                    Contato TEXT NOT NULL,
-                    Endereco TEXT NOT NULL,
-                    CNPJ TEXT NOT NULL
-                );
-                CREATE TABLE IF NOT EXISTS FuncionariosLogin(
-                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Nome TEXT NOT NULL,
-                    Email TEXT NOT NULL,
-                    Senha TEXT NOT NULL
-                ); 
-                
-                CREATE TABLE IF NOT EXISTS Pedidos (
-                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    DataPedido DATE NOT NULL,
-                    DataEntrega DATE NOT NULL,
-                    QuantidadeSolicitada INTEGER NOT NULL,
-                    ProdutoId INTEGER,
-                    FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
-                );
-                ";
-
-            connection.Execute(criarTabela); //Método que Executa qualquer comando SQL (Dapper)
+            connection.Execute(DataBaseScript.CreateTables()); //Método que Executa qualquer comando SQL (Dapper)
         }
     }
 }

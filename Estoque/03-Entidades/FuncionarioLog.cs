@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Estoque._03_Entidades
+namespace Estoque.Entidades
 {
     [Table("FuncionariosLogin")]
     public class FuncionarioLog

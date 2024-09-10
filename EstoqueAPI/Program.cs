@@ -1,4 +1,4 @@
-using CRUD._02___Repositorios.Data;
+using CRUD.Repositorios.Data;
 using EstoqueAPI;
 
 var builder = WebApplication.CreateBuilder(args);

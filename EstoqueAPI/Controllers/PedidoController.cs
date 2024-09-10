@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Estoque._01_Services;
-using Estoque._03_Entidades;
+using Estoque.Services;
+using Estoque.Entidades;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EstoqueAPI.Controllers
