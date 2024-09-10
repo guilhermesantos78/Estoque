@@ -1,19 +1,16 @@
-﻿using Dapper.Contrib.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Estoque._03_Entidades
+namespace Estoque._03_Entidades.DTOs.FuncionarioLog
 {
-    [Table("FuncionariosLogin")]
-    public class FuncionarioLog
+    public class CreateFuncionarioLogDTO
     {
-        [Key]
-        public int Id { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
+
     }
 }

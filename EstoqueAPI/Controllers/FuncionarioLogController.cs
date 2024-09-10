@@ -1,8 +1,8 @@
-﻿using Estoque._01_Services;
+﻿using AutoMapper;
 using Estoque;
-using Microsoft.AspNetCore.Mvc;
-using System.Configuration;
+using Estoque._01_Services;
 using Estoque._03_Entidades;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EstoqueAPI.Controllers
 {
@@ -11,15 +11,18 @@ namespace EstoqueAPI.Controllers
     public class FuncionarioLogController : ControllerBase
     {
         private FuncionarioLogService _service;
-        public FuncionarioLogController(IConfiguration configuration)
+        private readonly IMapper _mapper;
+        public FuncionarioLogController(IMapper mapper, IConfiguration configuration)
         {
             string ConnectionString = configuration.GetConnectionString("DefaultConnection");
             _service = new FuncionarioLogService(ConnectionString);
-            }
+            _mapper = mapper;
+        }
 
         [HttpPost("AdicionarFuncionarioLog")] // Rota (EndPoint)
-        public void AdicionarFuncionarioLog(FuncionarioLog funcionario)
+        public void AdicionarFuncionarioLog(FuncionarioLog f)
         {
+            FuncionarioLog funcionario = _mapper.Map<FuncionarioLog>(f);
             _service.Adicionar(funcionario);
         }
 

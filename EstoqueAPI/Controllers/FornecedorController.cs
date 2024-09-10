@@ -1,7 +1,8 @@
-﻿using Estoque._01_Services;
+﻿using AutoMapper;
 using Estoque;
+using Estoque._01_Services;
+using Estoque._03_Entidades.DTOs.Fornecedor;
 using Microsoft.AspNetCore.Mvc;
-using System.Configuration;
 
 namespace EstoqueAPI.Controllers
 {
@@ -10,15 +11,18 @@ namespace EstoqueAPI.Controllers
     public class FornecedorController : ControllerBase
     {
         private FornecedorService _service;
-        public FornecedorController(IConfiguration configuration)
+        private readonly IMapper _mapper;
+        public FornecedorController(IMapper mapper, IConfiguration configuration)
         {
             string ConnectionString = configuration.GetConnectionString("DefaultConnection");
             _service = new FornecedorService(ConnectionString);
+            _mapper = mapper;
         }
 
         [HttpPost("AdicionarFornecedor")] // Rota (EndPoint)
-        public void AdicionarFornecedor(Fornecedor fornecedor)
+        public void AdicionarFornecedor(CreateFornecedorDTO f)
         {
+            Fornecedor fornecedor = _mapper.Map<Fornecedor>(f);
             _service.Adicionar(fornecedor);
         }
 

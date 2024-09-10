@@ -1,5 +1,7 @@
-﻿using Estoque;
+﻿using AutoMapper;
+using Estoque;
 using Estoque._01_Services;
+using Estoque._03_Entidades.DTOs.Produto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EstoqueAPI.Controllers
@@ -9,15 +11,18 @@ namespace EstoqueAPI.Controllers
     public class ProdutoController : ControllerBase
     {
         private ProdutoService _service;
-        public ProdutoController(IConfiguration configuration)
+        private readonly IMapper _mapper;
+        public ProdutoController(IMapper mapper, IConfiguration configuration)
         {
             string ConnectionString = configuration.GetConnectionString("DefaultConnection");
             _service = new ProdutoService(ConnectionString);
+            _mapper = mapper;
         }
 
         [HttpPost("AdicionarProduto")] // Rota (EndPoint)
-        public void AdicionarProduto(Produto produto)
+        public void AdicionarProduto(CreateProdutoDTO p)
         {
+            Produto produto = _mapper.Map<Produto>(p);
             _service.Adicionar(produto);
         }
 

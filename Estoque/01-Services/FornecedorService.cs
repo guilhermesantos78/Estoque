@@ -1,4 +1,5 @@
 ﻿using Estoque._02_Repository;
+using Estoque._03_Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
