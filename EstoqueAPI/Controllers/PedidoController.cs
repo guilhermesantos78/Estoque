@@ -2,6 +2,7 @@
 using Estoque.Services;
 using Estoque.Entidades;
 using Microsoft.AspNetCore.Mvc;
+using Estoque.Entidades.DTOs.Pedido;
 
 namespace EstoqueAPI.Controllers
 {
@@ -19,7 +20,7 @@ namespace EstoqueAPI.Controllers
         }
 
         [HttpPost("AdicionarPedido")] // Rota (EndPoint)
-        public void AdicionarPedido(Pedido p)
+        public void AdicionarPedido(CreatePedidoDTO p)
         {
             Pedido pedido = _mapper.Map<Pedido>(p);
 
