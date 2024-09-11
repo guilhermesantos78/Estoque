@@ -36,6 +36,10 @@ namespace Estoque.Services
         {
             return repository.Listar();
         }
+        public List<Pedido> VisualizarPedidoInfoProduto()
+        {
+            return repository.ListarInfoProduto();
+        }
 
         public Pedido BuscarPedidoPorId(int id)
         {

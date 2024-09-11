@@ -22,6 +22,5 @@ namespace Estoque.Entidades.DTOs.Pedido
         [Required(ErrorMessage = "Compo Obrigatório 'ProdutoId' não preenchido")]
         [Range(1, 10000, ErrorMessage = "ProdutoId Inválido")]
         public int ProdutoId { get; set; }
-
     }
 }

@@ -49,6 +49,13 @@ namespace Estoque.Repository
             return connection.GetAll<Pedido>().ToList();
         }
 
+        public List<Pedido> ListarInfoProduto()
+        {
+            using var connection = new SQLiteConnection(_connectionString);
+
+            return connection.GetAll<Pedido>().ToList();
+        }
+
         public Pedido BuscarPedidoPorId(int id)
         {
             using var connection = new SQLiteConnection(_connectionString);

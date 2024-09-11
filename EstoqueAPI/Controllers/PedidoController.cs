@@ -3,6 +3,7 @@ using Estoque.Services;
 using Estoque.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Estoque.Entidades.DTOs.Pedido;
+using Estoque._03_Entidades.DTOs.Pedido;
 
 namespace EstoqueAPI.Controllers
 {
@@ -28,12 +29,20 @@ namespace EstoqueAPI.Controllers
         }
 
         [HttpGet("VisualizarPedido")] // Rota (EndPoint)
-        public List<Pedido> VisualizarPedido()
+        public List<Pedido> Listar()
         {
             return _service.Listar();
         }
 
-        [HttpGet("BuscarFuncionarioLogPorId")] // Rota (EndPoint)
+        [HttpGet("VisualizarPedidoInfoProduto")] // Rota (EndPoint)
+        public List<Pedido> VisualizarPedidoInfoProduto(CreatePedidoProdutoDTO pp)
+        {
+            Pedido pedido = _mapper.Map<Pedido>(pp);
+
+            return _service.VisualizarPedidoInfoProduto();
+        }
+
+        [HttpGet("BuscarPedidoPorId")] // Rota (EndPoint)
         public Pedido BuscarPedidoPorId(int id)
         {
             return _service.BuscarPedidoPorId(id);

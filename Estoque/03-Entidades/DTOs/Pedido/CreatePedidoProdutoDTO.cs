@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Estoque.Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Estoque.Entidades
+namespace Estoque._03_Entidades.DTOs.Pedido
 {
-    public class Pedido
+    public class CreatePedidoProdutoDTO
     {
-        public int Id { get; set; }
         [Required(ErrorMessage = "Compo Obrigatório 'DataPedido' não preenchido")]
         public DateTime DataPedido { get; set; }
         [Required(ErrorMessage = "Compo Obrigatório 'DataEntrega' não preenchido")]
@@ -23,6 +23,6 @@ namespace Estoque.Entidades
         [Required(ErrorMessage = "Compo Obrigatório 'ProdutoId' não preenchido")]
         [Range(1, 10000, ErrorMessage = "ProdutoId Inválido")]
         public int ProdutoId { get; set; }
-
+        public Produto produto { get; set; }
     }
 }
