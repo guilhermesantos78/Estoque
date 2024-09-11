@@ -6,7 +6,6 @@ using Estoque.Entidades;
 using Estoque.Entidades.DTOs.Fornecedor;
 using Estoque.Entidades.DTOs.FuncionarioLog;
 using Estoque.Entidades.DTOs.Pedido;
-using Estoque.Entidades.DTOs.Produto;
 
 namespace EstoqueAPI
 {
