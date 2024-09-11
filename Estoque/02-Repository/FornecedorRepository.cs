@@ -2,12 +2,7 @@
 using Dapper.Contrib.Extensions;
 using Estoque.Repository.Data.Script;
 using Estoque.Entidades;
-using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Estoque.Repository
 {
@@ -52,7 +47,6 @@ namespace Estoque.Repository
 
             return connection.GetAll<Fornecedor>().ToList();
         }
-
 
         public Fornecedor BuscarFornecedorPorId(int id)
         {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Estoque.Entidades.DTOs.Fornecedor
+namespace Estoque.Services
 {
     public class CreateFornecedorDTO
     {

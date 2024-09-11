@@ -2,15 +2,9 @@
 using Dapper.Contrib.Extensions;
 using Estoque.Repository.Data.Script;
 using Estoque.Entidades;
-using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
-using System.Reflection.Metadata;
-using Estoque._03_Entidades.DTOs.Pedido;
+using Estoque.Services;
 
 namespace Estoque.Repository
 {

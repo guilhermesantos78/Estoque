@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Estoque._03_Entidades.DTOs.Pedido;
+using Estoque.Entidades.DTOs.Pedido;
 using AutoMapper;
 
 namespace Estoque.Services

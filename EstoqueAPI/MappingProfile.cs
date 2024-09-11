@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using Estoque;
-using Estoque._03_Entidades.DTOs.Pedido;
+using Estoque.Entidades.DTOs.Pedido;
 using Estoque.Entidades.DTOs.Produto;
 using Estoque.Entidades;
-using Estoque.Entidades.DTOs.Fornecedor;
 using Estoque.Entidades.DTOs.FuncionarioLog;
-using Estoque.Entidades.DTOs.Pedido;
+using Estoque.Services;
 
 namespace EstoqueAPI
 {
@@ -14,6 +12,7 @@ namespace EstoqueAPI
         public MappingProfile()
         {
             CreateMap<CreateFornecedorDTO, Fornecedor>().ReverseMap();
+            CreateMap<ReadFornecedorDTO, Fornecedor>().ReverseMap();
             CreateMap<CreateProdutoDTO, Produto>().ReverseMap();
             CreateMap<ReadPedidoProdutoDTO, Pedido>().ReverseMap();
             CreateMap<CreatePedidoDTO, Pedido>().ReverseMap();

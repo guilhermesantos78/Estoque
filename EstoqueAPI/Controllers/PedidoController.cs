@@ -3,7 +3,7 @@ using Estoque.Services;
 using Estoque.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Estoque.Entidades.DTOs.Pedido;
-using Estoque._03_Entidades.DTOs.Pedido;
+using Estoque.Entidades.DTOs.Pedido;
 
 namespace EstoqueAPI.Controllers
 {

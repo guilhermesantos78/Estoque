@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using Estoque;
 using Estoque.Services;
-using Estoque.Entidades.DTOs.Fornecedor;
 using Microsoft.AspNetCore.Mvc;
 using Estoque.Entidades;
 

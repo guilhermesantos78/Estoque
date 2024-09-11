@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Estoque;
 using Estoque.Services;
 using Estoque.Entidades.DTOs.Produto;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +15,7 @@ namespace EstoqueAPI.Controllers
         public ProdutoController(IMapper mapper, IConfiguration configuration)
         {
             string ConnectionString = configuration.GetConnectionString("DefaultConnection");
-            _service = new ProdutoService(ConnectionString);
+            _service = new ProdutoService(mapper, ConnectionString);
             _mapper = mapper;
         }
 
@@ -34,6 +33,11 @@ namespace EstoqueAPI.Controllers
             return _service.Listar();
         }
 
+        [HttpGet("VisualizarProdutoComFornecedor")] // Rota (EndPoint)
+        public List<ReadFornecedorDTO> ListarFornecedorComId(int Id)
+        {
+            return _service.ListarFornecedorComId();
+        }
         [HttpGet("BuscarProdutoPorId")] // Rota (EndPoint)
         public Produto BuscarProdutoPorId(int id)
         {

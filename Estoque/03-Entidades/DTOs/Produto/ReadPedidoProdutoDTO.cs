@@ -1,12 +1,6 @@
 ﻿using Estoque.Entidades;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Estoque._03_Entidades.DTOs.Pedido
+namespace Estoque.Services
 {
     public class ReadPedidoProdutoDTO
     {

@@ -2,23 +2,23 @@
 using Dapper.Contrib.Extensions;
 using Estoque.Repository.Data.Script;
 using Estoque.Entidades;
-using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AutoMapper;
+using Estoque.Services;
 
 namespace Estoque.Repository
 {
     public class ProdutoRepository
     {
         public readonly string _connectionString; //Variável de connection string a ser preenchida
+        public readonly IMapper _mapper;
 
-        public ProdutoRepository(string ConnectionString) //Responsavel por preencher a connection string
+        public ProdutoRepository(IMapper mapper, string ConnectionString) //Responsavel por preencher a connection string
         {
             _connectionString = ConnectionString;
+            _mapper = mapper;
         }
+
         public void Adicionar(Produto produto)
         {
             using var connection = new SQLiteConnection(_connectionString);
@@ -41,12 +41,24 @@ namespace Estoque.Repository
 
             connection.Update<Produto>(editProduto);
         }
-
         public List<Produto> Listar()
         {
-            using var connection = new SQLiteConnection(_connectionString); // conexao
+            using var connection = new SQLiteConnection(_connectionString);
 
             return connection.GetAll<Produto>().ToList();
+        }
+        public List<ReadFornecedorDTO> ListarFornecedorComId()
+        {
+            using var connection = new SQLiteConnection(_connectionString); // conexao
+            List<Fornecedor> fornecedor = connection.GetAll<Fornecedor>().ToList();
+            List<ReadFornecedorDTO> lista = _mapper.Map<List<ReadFornecedorDTO>>(fornecedor);
+
+            foreach (ReadFornecedorDTO item in lista)
+            {
+                item.fornecedor = connection.Get<Fornecedor>(item.FornecedorId);
+            }
+
+            return lista;
         }
 
 

@@ -1,22 +1,18 @@
-﻿using Estoque.Entidades;
+﻿using AutoMapper;
+using Estoque.Entidades;
 using Estoque.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Estoque.Services
 {
     public class ProdutoService
     {
         public ProdutoRepository repository { get; set; }
+        public readonly IMapper _Mapper;
 
-        public ProdutoService(string Connection)
+        public ProdutoService(IMapper _mapper, string Connection)
         {
-            repository = new ProdutoRepository(Connection);
+            repository = new ProdutoRepository(_mapper, Connection);
         }
-
         public void Adicionar(Produto produto)
         {
             repository.Adicionar(produto);
@@ -35,6 +31,11 @@ namespace Estoque.Services
         public List<Produto> Listar()
         {
             return repository.Listar();
+        }
+
+        public List<ReadFornecedorDTO> ListarFornecedorComId()
+        {
+            return repository.ListarFornecedorComId();
         }
 
         public Produto BuscarProdutoPorId(int id)
