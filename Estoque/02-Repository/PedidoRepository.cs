@@ -8,16 +8,21 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
+using System.Reflection.Metadata;
+using Estoque._03_Entidades.DTOs.Pedido;
 
 namespace Estoque.Repository
 {
     public class PedidoRepository
     {
         private readonly string _connectionString;
+        private readonly IMapper _mapper;
 
-        public PedidoRepository(string connectionString)
+        public PedidoRepository(string connectionString, IMapper mapper)
         {
             _connectionString = connectionString;
+            _mapper = mapper;
         }
 
         public void Adicionar(Pedido pedido)
@@ -49,11 +54,18 @@ namespace Estoque.Repository
             return connection.GetAll<Pedido>().ToList();
         }
 
-        public List<Pedido> ListarInfoProduto()
+        public List<ReadPedidoProdutoDTO> ListarInfoProduto()
         {
             using var connection = new SQLiteConnection(_connectionString);
+            List<Pedido> pedidos = connection.GetAll<Pedido>().ToList();
+            List<ReadPedidoProdutoDTO> lista = _mapper.Map<List<ReadPedidoProdutoDTO>>(pedidos);
 
-            return connection.GetAll<Pedido>().ToList();
+            foreach (ReadPedidoProdutoDTO item in lista)
+            {
+                item.produto = connection.Get<Produto>(item.ProdutoId); 
+            }
+
+            return lista;
         }
 
         public Pedido BuscarPedidoPorId(int id)

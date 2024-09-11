@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Estoque._03_Entidades.DTOs.Pedido;
+using AutoMapper;
 
 namespace Estoque.Services
 {
@@ -12,9 +14,9 @@ namespace Estoque.Services
     {
         public PedidoRepository repository { get; set; }
 
-        public PedidoService(string ConnectionString)
+        public PedidoService(IMapper mapper, string ConnectionString)
         {
-            repository = new PedidoRepository(ConnectionString);
+            repository = new PedidoRepository(ConnectionString, mapper);
         }
 
         public void Adicionar(Pedido pedido)
@@ -36,7 +38,7 @@ namespace Estoque.Services
         {
             return repository.Listar();
         }
-        public List<Pedido> VisualizarPedidoInfoProduto()
+        public List<ReadPedidoProdutoDTO> VisualizarPedidoInfoProduto()
         {
             return repository.ListarInfoProduto();
         }

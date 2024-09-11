@@ -16,7 +16,7 @@ namespace EstoqueAPI.Controllers
         public PedidoController(IMapper mapper, IConfiguration configuration)
         {
             string ConnectionString = configuration.GetConnectionString("DefaultConnection");
-            _service = new PedidoService(ConnectionString);
+            _service = new PedidoService(mapper, ConnectionString);
             _mapper = mapper;
         }
 
@@ -35,10 +35,8 @@ namespace EstoqueAPI.Controllers
         }
 
         [HttpGet("VisualizarPedidoInfoProduto")] // Rota (EndPoint)
-        public List<Pedido> VisualizarPedidoInfoProduto(CreatePedidoProdutoDTO pp)
+        public List<ReadPedidoProdutoDTO> VisualizarPedidoInfoProduto(int pedidoId)
         {
-            Pedido pedido = _mapper.Map<Pedido>(pp);
-
             return _service.VisualizarPedidoInfoProduto();
         }
 
