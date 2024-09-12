@@ -33,9 +33,9 @@ namespace Estoque.Services
             return repository.Listar();
         }
 
-        public List<ReadFornecedorDTO> ListarFornecedorComId()
+        public List<ReadProdutoFornecedorDTO> VisualizarPedidoInfoProduto()
         {
-            return repository.ListarFornecedorComId();
+            return repository.VisualizarPedidoInfoProduto();
         }
 
         public Produto BuscarProdutoPorId(int id)

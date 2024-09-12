@@ -32,8 +32,5 @@ namespace Estoque.Entidades
         [Range(1, 10000, ErrorMessage = "FornecedorId Inválido")]
         public int FornecedorId { get; set; }
 
-        [JsonIgnore]
-        public virtual Fornecedor? fornecedor { get; set; } = new Fornecedor();
-
     }
 }

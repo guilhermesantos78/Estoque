@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Estoque.Entidades
@@ -29,6 +30,7 @@ namespace Estoque.Entidades
         [MinLength(2, ErrorMessage = "Quantidade de caracteres abaixo da mínima")]
         [MaxLength(14, ErrorMessage = "Quantidade de caracteres acima da máxima")]
         public string CNPJ { get; set; }
+        public int ProdutoId { get; set; }
 
     }
 }

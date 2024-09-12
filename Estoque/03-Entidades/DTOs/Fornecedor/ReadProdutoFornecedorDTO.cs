@@ -2,7 +2,7 @@
 
 namespace Estoque.Services
 {
-    public class ReadFornecedorDTO
+    public class ReadProdutoFornecedorDTO
     {
         public int Id { get; set; }
         public string Nome { get; set; }

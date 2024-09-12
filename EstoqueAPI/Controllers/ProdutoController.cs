@@ -33,10 +33,10 @@ namespace EstoqueAPI.Controllers
             return _service.Listar();
         }
 
-        [HttpGet("VisualizarProdutoComFornecedor")] // Rota (EndPoint)
-        public List<ReadFornecedorDTO> ListarFornecedorComId(int Id)
+        [HttpGet("VisualizarProdutoInfoFornecedor")] // Rota (EndPoint)
+        public List<ReadProdutoFornecedorDTO> ListarFornecedorInfoProduto(int FornecedorId)
         {
-            return _service.ListarFornecedorComId();
+            return _service.VisualizarPedidoInfoProduto();
         }
         [HttpGet("BuscarProdutoPorId")] // Rota (EndPoint)
         public Produto BuscarProdutoPorId(int id)

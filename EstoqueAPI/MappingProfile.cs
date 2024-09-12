@@ -12,7 +12,7 @@ namespace EstoqueAPI
         public MappingProfile()
         {
             CreateMap<CreateFornecedorDTO, Fornecedor>().ReverseMap();
-            CreateMap<ReadFornecedorDTO, Fornecedor>().ReverseMap();
+            CreateMap<ReadProdutoFornecedorDTO, Fornecedor>().ReverseMap();
             CreateMap<CreateProdutoDTO, Produto>().ReverseMap();
             CreateMap<ReadPedidoProdutoDTO, Pedido>().ReverseMap();
             CreateMap<CreatePedidoDTO, Pedido>().ReverseMap();
