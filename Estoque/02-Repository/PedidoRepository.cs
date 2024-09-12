@@ -48,13 +48,13 @@ namespace Estoque.Repository
             return connection.GetAll<Pedido>().ToList();
         }
 
-        public List<ReadPedidoProdutoDTO> ListarInfoProduto()
+        public List<ReadPedidoComProdutoDTO> ListarInfoProduto()
         {
             using var connection = new SQLiteConnection(_connectionString);
             List<Pedido> pedidos = connection.GetAll<Pedido>().ToList();
-            List<ReadPedidoProdutoDTO> lista = _mapper.Map<List<ReadPedidoProdutoDTO>>(pedidos);
+            List<ReadPedidoComProdutoDTO> lista = _mapper.Map<List<ReadPedidoComProdutoDTO>>(pedidos);
 
-            foreach (ReadPedidoProdutoDTO item in lista)
+            foreach (ReadPedidoComProdutoDTO item in lista)
             {
                 item.produto = connection.Get<Produto>(item.ProdutoId); 
             }

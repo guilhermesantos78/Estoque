@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Estoque.Services
 {
-    public class ReadProdutoFornecedorDTO
+    public class ReadProdutoComFornecedorDTO
     {
         public int Id { get; set; }
         public string Nome { get; set; }

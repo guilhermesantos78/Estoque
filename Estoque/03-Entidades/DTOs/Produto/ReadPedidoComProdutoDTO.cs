@@ -2,7 +2,7 @@
 
 namespace Estoque.Services
 {
-    public class ReadPedidoProdutoDTO
+    public class ReadPedidoComProdutoDTO
     {
         public DateTime DataPedido { get; set; }
         public DateTime DataEntrega { get; set; }

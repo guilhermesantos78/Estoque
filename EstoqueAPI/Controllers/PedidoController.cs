@@ -35,7 +35,7 @@ namespace EstoqueAPI.Controllers
         }
 
         [HttpGet("VisualizarPedidoInfoProduto")] // Rota (EndPoint)
-        public List<ReadPedidoProdutoDTO> VisualizarPedidoInfoProduto(int pedidoId)
+        public List<ReadPedidoComProdutoDTO> VisualizarPedidoInfoProduto(int pedidoId)
         {
             return _service.VisualizarPedidoInfoProduto();
         }

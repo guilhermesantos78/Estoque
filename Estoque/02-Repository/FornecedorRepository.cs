@@ -31,14 +31,12 @@ namespace Estoque.Repository
             connection.Delete<Fornecedor>(novoFornecedor);
         }
 
-
         public void Editar(Fornecedor editFornecedor)
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
 
             connection.Update<Fornecedor>(editFornecedor);
         }
-
 
         public List<Fornecedor> Listar()
         {

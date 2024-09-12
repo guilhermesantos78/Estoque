@@ -39,7 +39,7 @@ namespace Estoque.Services
             return repository.Listar();
         }
 
-        public List<ReadPedidoProdutoDTO> VisualizarPedidoInfoProduto()
+        public List<ReadPedidoComProdutoDTO> VisualizarPedidoInfoProduto()
         {
             return repository.ListarInfoProduto();
         }
