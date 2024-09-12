@@ -41,5 +41,6 @@ namespace Estoque.Services
         {
             return repository.BuscarFornecedorPorId(id);
         }
+
     }
 }

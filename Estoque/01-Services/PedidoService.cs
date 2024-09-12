@@ -38,6 +38,7 @@ namespace Estoque.Services
         {
             return repository.Listar();
         }
+
         public List<ReadPedidoProdutoDTO> VisualizarPedidoInfoProduto()
         {
             return repository.ListarInfoProduto();
@@ -47,5 +48,6 @@ namespace Estoque.Services
         {
             return repository.BuscarPedidoPorId(id);
         }
+
     }
 }

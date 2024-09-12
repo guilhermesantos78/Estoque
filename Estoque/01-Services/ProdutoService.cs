@@ -13,6 +13,7 @@ namespace Estoque.Services
         {
             repository = new ProdutoRepository(_mapper, Connection);
         }
+
         public void Adicionar(Produto produto)
         {
             repository.Adicionar(produto);
@@ -33,14 +34,15 @@ namespace Estoque.Services
             return repository.Listar();
         }
 
-        public List<ReadProdutoFornecedorDTO> VisualizarPedidoInfoProduto()
+        public List<ReadProdutoFornecedorDTO> VisualizarProdutoInfoFornecedor()
         {
-            return repository.VisualizarPedidoInfoProduto();
+            return repository.VisualizarProdutoInfoFornecedor();
         }
 
         public Produto BuscarProdutoPorId(int id)
         {
             return repository.BuscarProdutoPorId(id);
         }
+
     }
 }

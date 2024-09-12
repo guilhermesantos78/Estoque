@@ -12,20 +12,17 @@ namespace Estoque.Repository
     {
         public readonly string _connectionString; //Variável de connection string a ser preenchida
         public readonly IMapper _mapper;
-
         public ProdutoRepository(IMapper mapper, string ConnectionString) //Responsavel por preencher a connection string
         {
             _connectionString = ConnectionString;
             _mapper = mapper;
         }
-
         public void Adicionar(Produto produto)
         {
             using var connection = new SQLiteConnection(_connectionString);
 
             connection.Execute(ProdutoScript.InsertProduto(), produto);
         }
-
         public void Remover(int id)
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
@@ -33,8 +30,6 @@ namespace Estoque.Repository
 
             connection.Delete<Produto>(novoproduto);
         }
-
-
         public void Editar(Produto editProduto)
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
@@ -47,11 +42,11 @@ namespace Estoque.Repository
 
             return connection.GetAll<Produto>().ToList();
         }
-        public List<ReadProdutoFornecedorDTO> VisualizarPedidoInfoProduto()
+        public List<ReadProdutoFornecedorDTO> VisualizarProdutoInfoFornecedor()
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
-            List<Fornecedor> fornecedor = connection.GetAll<Fornecedor>().ToList();
-            List<ReadProdutoFornecedorDTO> lista = _mapper.Map<List<ReadProdutoFornecedorDTO>>(fornecedor);
+            List<Produto> produto = connection.GetAll<Produto>().ToList();
+            List<ReadProdutoFornecedorDTO> lista = _mapper.Map<List<ReadProdutoFornecedorDTO>>(produto);
 
             foreach (ReadProdutoFornecedorDTO item in lista)
             {
@@ -61,13 +56,11 @@ namespace Estoque.Repository
             return lista;
         }
 
-
         public Produto BuscarProdutoPorId(int id)
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
 
             return connection.Get<Produto>(id);
         }
-
     }
 }

@@ -34,9 +34,9 @@ namespace EstoqueAPI.Controllers
         }
 
         [HttpGet("VisualizarProdutoInfoFornecedor")] // Rota (EndPoint)
-        public List<ReadProdutoFornecedorDTO> ListarFornecedorInfoProduto(int FornecedorId)
+        public List<ReadProdutoFornecedorDTO> VisualizarProdutoInfoFornecedor(int FornecedorId)
         {
-            return _service.VisualizarPedidoInfoProduto();
+            return _service.VisualizarProdutoInfoFornecedor();
         }
         [HttpGet("BuscarProdutoPorId")] // Rota (EndPoint)
         public Produto BuscarProdutoPorId(int id)
