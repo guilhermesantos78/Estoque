@@ -1,22 +1,34 @@
-Estoque
-Bem-vindo ao repositório do projeto Estoque! Este repositório contém um sistema de gerenciamento de estoque que visa facilitar o controle e a administração de inventários em diferentes tipos de negócios.
+Controle de Estoque
+  
+  Bem-vindo ao repositório Estoque! Este projeto é uma aplicação de gerenciamento de inventário desenvolvida em C# utilizando Dapper e Dapper.Contrib para acesso a dados. O objetivo é fornecer uma solução eficiente e de fácil uso para o gerenciamento de produtos em estoque.
 
 Índice
 
-° Sobre
-° Funcionalidades
-° Instalação
-° Uso
-° Contribuição
-° Licença
-° Sobre
+  Visão Geral
+  Funcionalidades
+  Tecnologias Utilizadas
+  Instalação
+  Uso
+  Contribuição
+  Licença
+  Contato
+  
+Visão Geral
 
-
-O projeto Estoque é uma aplicação desenvolvida para ajudar empresas a gerenciar seu inventário de maneira eficiente. Ele permite o registro e controle de produtos, monitoramento de quantidades e geração de relatórios.
+  O Estoque é um sistema para gerenciamento de inventário, permitindo operações básicas de CRUD (criação, leitura, atualização e exclusão) dos produtos em estoque. O projeto utiliza Dapper para a execução de consultas SQL e Dapper.Contrib para operações simplificadas de CRUD.
 
 Funcionalidades
-° Adicionar e remover produtos do estoque
-° Atualizar quantidades e informações dos produtos
-° Consultar o inventário atual
-° Gerar relatórios detalhados sobre o estoque
-° Interface amigável para fácil navegação
+
+  Adicionar Produtos: Inclua novos produtos no estoque.
+  Editar Produtos: Atualize as informações dos produtos existentes.
+  Remover Produtos: Exclua produtos que não são mais necessários.
+  Visualizar Produtos: Consulte uma lista de todos os produtos e suas quantidades.
+  Relatórios: Gere relatórios simples sobre o status do inventário.
+Tecnologias Utilizadas
+
+Linguagem: C#
+  Bibliotecas:
+  Dapper: Micro ORM para simplificar o acesso a dados.
+  Dapper.Contrib: Extensão para Dapper que facilita operações de CRUD.
+  Banco de Dados: SQL Server (ou outro banco de dados relacional, conforme configuração)
+  Framework: .NET (versão específica conforme seu projeto)
