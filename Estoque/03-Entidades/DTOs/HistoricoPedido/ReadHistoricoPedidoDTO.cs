@@ -3,7 +3,7 @@ using Estoque.Entidades;
 
 namespace Estoque.Entidades.DTOs.HistoricoEstoque
 {
-    public class ReadHistoricoEstoqueDTO
+    public class ReadHistoricoPedidoDTO
     {
         public int Id { get; set; }
         public DateTime Data { get; set; }

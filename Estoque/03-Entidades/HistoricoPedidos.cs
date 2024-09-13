@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Estoque.Entidades
 {
-    public class HistoricoEstoque
+    public class HistoricoPedidos
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Compo Obrigatório 'ProdutoId' não preenchido")]
@@ -25,7 +25,6 @@ namespace Estoque.Entidades
         [Required(ErrorMessage = "Compo Obrigatório 'Descricao' não preenchido")]
         [MinLength(2, ErrorMessage = "Quantidade de caracteres abaixo da mínima")]
         [MaxLength(300, ErrorMessage = "Quantidade de caracteres acima da máxima")]
-        public string Descricao { get; set; }
     }
 
 }

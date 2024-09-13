@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Estoque.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,7 +43,17 @@ namespace Estoque.Repository.Data.Script
                     NomeProduto TEXT NOT NULL,
                     ProdutoId INTEGER,
                     FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
-                );"; // Comando para criar as tabelas no banco
+                );
+                 CREATE TABLE IF NOT EXISTS HistoricoPedidos (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    ProdutoId INTEGER ,
+                    Data DATE NOT NULL,
+                    QuantidadeAlterada INTEGER NOT NULL,
+                    TipoAlteracao TEXT NOT NULL,
+                    FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
+                );";
+
+; // Comando para criar as tabelas no banco
 
             return commandCREATE;
         }

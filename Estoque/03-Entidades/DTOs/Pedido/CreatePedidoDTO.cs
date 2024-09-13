@@ -13,9 +13,15 @@ namespace Estoque.Entidades.DTOs.Pedido
         [Required(ErrorMessage = "Compo Obrigatório 'NomeProduto' não preenchido")]
         [MinLength(2, ErrorMessage = "Quantidade de caracteres abaixo da mínima")]
         [MaxLength(100, ErrorMessage = "Quantidade de caracteres acima da máxima")]
+        public string TipoAlteracao { get; set; } // Entrada, Saída, Ajuste
         public string NomeProduto { get; set; }
         [Required(ErrorMessage = "Compo Obrigatório 'ProdutoId' não preenchido")]
         [Range(1, 10000, ErrorMessage = "ProdutoId Inválido")]
         public int ProdutoId { get; set; }
+
+        public CreatePedidoDTO()
+        {
+            DataPedido = DateTime.Now;
+        }
     }
 }
