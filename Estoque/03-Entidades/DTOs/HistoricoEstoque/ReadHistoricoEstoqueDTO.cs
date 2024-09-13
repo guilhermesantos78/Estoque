@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using Estoque.Entidades;
 
-namespace Estoque.Entidades
+namespace Estoque.Entidades.DTOs.HistoricoEstoque
 {
-    public class HistoricoEstoque
+    public class ReadHistoricoEstoqueDTO
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Compo Obrigatório 'ProdutoId' não preenchido")]
@@ -26,6 +22,6 @@ namespace Estoque.Entidades
         [MinLength(2, ErrorMessage = "Quantidade de caracteres abaixo da mínima")]
         [MaxLength(300, ErrorMessage = "Quantidade de caracteres acima da máxima")]
         public string Descricao { get; set; }
+        public Produto produto { get; set; }
     }
-
 }

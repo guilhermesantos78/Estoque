@@ -11,9 +11,9 @@ namespace Estoque.Entidades
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Compo Obrigatório 'DataPedido' não preenchido")]
-        public DateTime DataPedido { get; set; }
+        public DateOnly DataPedido { get; set; }
         [Required(ErrorMessage = "Compo Obrigatório 'DataEntrega' não preenchido")]
-        public DateTime DataEntrega { get; set; }
+        public DateOnly DataEntrega { get; set; }
         [Required(ErrorMessage = "Compo Obrigatório 'QuantidadeSolicitada' não preenchido")]
         public int QuantidadeSolicitada { get; set; }
         [Required(ErrorMessage = "Compo Obrigatório 'NomeProduto' não preenchido")]
