@@ -4,17 +4,19 @@ using Estoque.Entidades;
 using System.Data.SQLite;
 using Estoque.Repository.Data.Script;
 using Estoque.Services;
-using Estoque.Entidades.DTOs.HistoricoEstoque;
+using AutoMapper;
 
 namespace Estoque._02_Repository
 {
     public class HistoricoPedidoRepository
     {
         private readonly string _connectionString;
+        private readonly IMapper _mapper;
 
-        public HistoricoPedidoRepository(string connectionString)
+        public HistoricoPedidoRepository(string connectionString, IMapper mapper)
         {
             _connectionString = connectionString;
+            _mapper = mapper;
         }
 
         public void Adicionar(HistoricoPedidos HistoricoPedido)
@@ -27,7 +29,7 @@ namespace Estoque._02_Repository
         public List<ReadHistoricoPedidoDTO> ListarInfoProduto()
         {
             using var connection = new SQLiteConnection(_connectionString);
-            List<Produto> pedidos = connection.GetAll<Produto>().ToList();
+            List<HistoricoPedidos> pedidos = connection.GetAll<HistoricoPedidos>().ToList();
             List<ReadHistoricoPedidoDTO> lista = _mapper.Map<List<ReadHistoricoPedidoDTO>>(pedidos);
 
             foreach (ReadHistoricoPedidoDTO item in lista)

@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Estoque.Entidades;
 
-namespace Estoque.Entidades.DTOs.HistoricoEstoque
+namespace Estoque.Entidades
 {
     public class ReadHistoricoPedidoDTO
     {

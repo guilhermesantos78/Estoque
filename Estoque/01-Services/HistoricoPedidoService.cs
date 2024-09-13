@@ -1,4 +1,5 @@
-﻿using Estoque._02_Repository;
+﻿using AutoMapper;
+using Estoque._02_Repository;
 using Estoque.Entidades;
 using Estoque.Repository;
 using System;
@@ -13,9 +14,9 @@ namespace Estoque.Services
     {
         public HistoricoPedidoRepository repository { get; set; }
 
-        public HistoricoPedidoService(string ConnectionString)
+        public HistoricoPedidoService(IMapper mapper ,string ConnectionString)
         {
-            repository = new HistoricoPedidoRepository(ConnectionString);
+            repository = new HistoricoPedidoRepository(ConnectionString, mapper);
         }
 
         public void Adicionar(HistoricoPedidos historicopedidos)
@@ -24,7 +25,7 @@ namespace Estoque.Services
         }
 
 
-        public List<HistoricoPedidos> Listar()
+        public List<ReadHistoricoPedidoDTO> Listar()
         {
             return repository.ListarInfoProduto();
         }

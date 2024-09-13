@@ -6,48 +6,40 @@ using Microsoft.AspNetCore.Mvc;
 namespace EstoqueAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")] // DataNotation
+    [Route("[controller]")]
     public class HistoricoPedidoController : ControllerBase
     {
-        private HistoricoPedidoService _service;
+        private readonly HistoricoPedidoService _service;
         private readonly IMapper _mapper;
+
         public HistoricoPedidoController(IMapper mapper, IConfiguration configuration)
         {
-            string ConnectionString = configuration.GetConnectionString("DefaultConnection");
-            _service = new HistoricoPedidoService(ConnectionString);
+            string connectionString = configuration.GetConnectionString("DefaultConnection");
+            _service = new HistoricoPedidoService(mapper, connectionString);
             _mapper = mapper;
         }
 
-        [HttpPost("AdicionarHistoricoPedido")] // Rota (EndPoint)
-        public void AdicionarHistoricoPedidos(HistoricoPedidos p)
+        [HttpPost("AdicionarHistoricoPedido")]
+        public IActionResult AdicionarHistoricoPedidos([FromBody] HistoricoPedidos p)
         {
-            HistoricoPedidos historicopedido = _mapper.Map<HistoricoPedidos>(p);
+            if (p == null)
+            {
+                return BadRequest("Histórico de pedido inválido.");
+            }
 
-            _service.Adicionar(historicopedido);
+            // O mapeamento pode não ser necessário se `p` já for do tipo `HistoricoPedidos`
+            HistoricoPedidos historicoPedido = _mapper.Map<HistoricoPedidos>(p);
+
+            _service.Adicionar(historicoPedido);
+
+            return Ok("Histórico de pedido adicionado com sucesso.");
         }
 
-        [HttpGet("VisualizarHistoricoPedidos")] // Rota (EndPoint)
-        public List<HistoricoPedidos> VisualizarHistoricoPedidos()
+        [HttpGet("VisualizarHistoricoPedidos")]
+        public ActionResult<List<ReadHistoricoPedidoDTO>> VisualizarHistoricoPedidos()
         {
-            return _service.Listar();
-        }
-
-        [HttpGet("BuscarFornecedorPorId")] // Rota (EndPoint)
-        public Fornecedor BuscarFornecedorPorId(int id)
-        {
-            return _service.BuscarFornecedorPorId(id);
-        }
-
-        [HttpPut("EditarFornecedor")] // Rota (EndPoint)
-        public void EditarFornecedor(Fornecedor fornecedor)
-        {
-            _service.Editar(fornecedor);
-        }
-
-        [HttpDelete("RemoverFornecedor")] // Rota (EndPoint)
-        public void RemoverFornecedor(int id)
-        {
-            _service.Remover(id);
+            var historicos = _service.Listar();
+            return Ok(historicos);
         }
     }
 }

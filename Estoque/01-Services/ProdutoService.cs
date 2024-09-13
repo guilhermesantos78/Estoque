@@ -12,6 +12,7 @@ namespace Estoque.Services
         public ProdutoService(IMapper _mapper, string Connection)
         {
             repository = new ProdutoRepository(_mapper, Connection);
+            _Mapper = _mapper;
         }
 
         public void Adicionar(Produto produto)
