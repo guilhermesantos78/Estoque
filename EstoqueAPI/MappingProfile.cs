@@ -4,6 +4,7 @@ using Estoque.Entidades.DTOs.Produto;
 using Estoque.Entidades;
 using Estoque.Entidades.DTOs.FuncionarioLog;
 using Estoque.Services;
+using Estoque.Entidades;
 
 namespace EstoqueAPI
 {
