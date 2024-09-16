@@ -17,7 +17,6 @@ namespace EstoqueAPI
             CreateMap<ReadPedidoComProdutoDTO, Pedido>().ReverseMap();
             CreateMap<CreatePedidoDTO, Pedido>().ReverseMap();
             CreateMap<CreateFuncionarioLogDTO, FuncionarioLog>().ReverseMap();
-            CreateMap<ReadHistoricoPedidoDTO, HistoricoPedidos>().ReverseMap();
         }
     }
 }

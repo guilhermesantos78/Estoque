@@ -4,6 +4,8 @@ namespace Estoque.Entidades.DTOs.Pedido
 {
     public class CreatePedidoDTO
     {
+        [Key]
+        public int Id { get; set; }
         [Required(ErrorMessage = "Compo Obrigatório 'DataPedido' não preenchido")]
         public DateTime DataPedido { get; set; }
         [Required(ErrorMessage = "Compo Obrigatório 'DataEntrega' não preenchido")]

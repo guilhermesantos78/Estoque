@@ -40,16 +40,19 @@ namespace Estoque.Repository.Data.Script
                     DataPedido DATE NOT NULL,
                     DataEntrega DATE NOT NULL,
                     QuantidadeSolicitada INTEGER NOT NULL,
+                    TipoAlteracao TEXT NOT NULL,
                     NomeProduto TEXT NOT NULL,
                     ProdutoId INTEGER,
                     FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
                 );
                  CREATE TABLE IF NOT EXISTS HistoricoPedidos (
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    ProdutoId INTEGER ,
-                    Data DATE NOT NULL,
-                    QuantidadeAlterada INTEGER NOT NULL,
+                    DataPedido DATE NOT NULL,
+                    DataEntrega DATE NOT NULL,
+                    QuantidadeSolicitada INTEGER NOT NULL,
                     TipoAlteracao TEXT NOT NULL,
+                    NomeProduto TEXT NOT NULL,
+                    ProdutoId INTEGER,
                     FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
                 );";
 

@@ -19,15 +19,9 @@ namespace Estoque.Services
             repository = new HistoricoPedidoRepository(ConnectionString, mapper);
         }
 
-        public void Adicionar(HistoricoPedidos historicopedidos)
+        public List<ReadPedidoComProdutoDTO> VisualizarHistoricoPedidos()
         {
-            repository.Adicionar(historicopedidos);
-        }
-
-
-        public List<ReadHistoricoPedidoDTO> Listar()
-        {
-            return repository.ListarInfoProduto();
+            return repository.ListarHistorico();
         }
     }
 }

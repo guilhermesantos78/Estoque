@@ -19,20 +19,13 @@ namespace Estoque._02_Repository
             _mapper = mapper;
         }
 
-        public void Adicionar(HistoricoPedidos HistoricoPedido)
+        public List<ReadPedidoComProdutoDTO> ListarHistorico()
         {
             using var connection = new SQLiteConnection(_connectionString);
+            List<Pedido> pedidos = connection.GetAll<Pedido>().ToList();
+            List<ReadPedidoComProdutoDTO> lista = _mapper.Map<List<ReadPedidoComProdutoDTO>>(pedidos);
 
-            connection.Execute(HistoricoPedidoScript.InsertHistoricoPedido(), HistoricoPedido);
-        }
-
-        public List<ReadHistoricoPedidoDTO> ListarInfoProduto()
-        {
-            using var connection = new SQLiteConnection(_connectionString);
-            List<HistoricoPedidos> pedidos = connection.GetAll<HistoricoPedidos>().ToList();
-            List<ReadHistoricoPedidoDTO> lista = _mapper.Map<List<ReadHistoricoPedidoDTO>>(pedidos);
-
-            foreach (ReadHistoricoPedidoDTO item in lista)
+            foreach (ReadPedidoComProdutoDTO item in lista)
             {
                 item.produto = connection.Get<Produto>(item.ProdutoId);
             }
