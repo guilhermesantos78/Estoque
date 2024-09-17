@@ -41,9 +41,9 @@ namespace Estoque.Repository
         public List<ReadProdutoDTO> Listar()
         {
             using var connection = new SQLiteConnection(_connectionString);
-            List<Produto> rotinas = connection.GetAll<Produto>().ToList();
+            List<Produto> produtos = connection.GetAll<Produto>().ToList();
             List<ReadProdutoDTO> produtosDTO = new List<ReadProdutoDTO>();//_mapper.Map<List<ReadRotinaDTO>>(lista);
-            foreach (Produto p in rotinas)
+            foreach (Produto p in produtos)
             {
                 ReadProdutoDTO produtoDTO = new ReadProdutoDTO();
                 produtoDTO.Id = p.Id;
