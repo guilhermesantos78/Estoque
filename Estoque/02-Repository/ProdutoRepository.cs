@@ -17,6 +17,7 @@ namespace Estoque.Repository
         {
             _connectionString = ConnectionString;
             _mapper = mapper;
+            repository = new FornecedorRepository(ConnectionString);
         }
         public void Adicionar(Produto produto)
         {
@@ -58,7 +59,6 @@ namespace Estoque.Repository
             }
             return produtosDTO;
         }
-
 
         public List<ReadProdutoComFornecedorDTO> VisualizarProdutoInfoFornecedor()
         {
