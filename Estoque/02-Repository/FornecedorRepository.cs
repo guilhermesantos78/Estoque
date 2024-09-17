@@ -55,8 +55,13 @@ namespace Estoque.Repository
         public ReadFornecedorDTO BuscarFornecedorNamePorId(int id)
         {
             using var connection = new SQLiteConnection(_connectionString);
+            connection.Open();
 
-            return connection.Get<ReadFornecedorDTO>(id);
+            var query = "SELECT Id, Nome FROM Fornecedores WHERE Id = @Id";
+
+            var fornecedor = connection.QuerySingleOrDefault<ReadFornecedorDTO>(query, new { Id = id });
+      
+            return fornecedor;
         }
 
     }
