@@ -53,7 +53,7 @@ namespace Estoque.Repository
                 produtoDTO.Descricao = p.Descricao;
                 produtoDTO.QuantidadeEmEstoque = p.QuantidadeEmEstoque;
                 produtoDTO.FornecedorId = p.FornecedorId;
-                produtoDTO.fornecedor = repository.BuscarFornecedorPorId(p.FornecedorId);
+                produtoDTO.fornecedorname = repository.BuscarFornecedorNamePorId(p.FornecedorId);
                 produtosDTO.Add(produtoDTO);
 
             }
