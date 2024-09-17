@@ -30,7 +30,7 @@ namespace Estoque.Services
             repository.Remover(id);
         }
 
-        public List<Produto> Listar()
+        public List<ReadProdutoDTO> Listar()
         {
             return repository.Listar();
         }

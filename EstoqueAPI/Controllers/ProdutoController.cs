@@ -28,7 +28,7 @@ namespace EstoqueAPI.Controllers
         }
 
         [HttpGet("VisualizarProduto")] // Rota (EndPoint)
-        public List<Produto> VisualizarProduto()
+        public List<ReadProdutoDTO> VisualizarProduto()
         {
             return _service.Listar();
         }

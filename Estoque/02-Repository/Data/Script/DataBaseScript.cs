@@ -48,7 +48,7 @@ namespace Estoque.Repository.Data.Script
                     FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
                 );
 
-                 CREATE TABLE IF NOT EXISTS HistoricoPedidos (
+                CREATE TABLE IF NOT EXISTS HistoricoPedidos (
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
                     DataPedido DATE NOT NULL,
                     DataEntrega DATE NOT NULL,
@@ -57,7 +57,7 @@ namespace Estoque.Repository.Data.Script
                     NomeProduto TEXT NOT NULL,
                     ProdutoId INTEGER,
                     FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
-                );"; // Comando para criar as tabelas no banco
+                );";
 
             return commandCREATE;
         }

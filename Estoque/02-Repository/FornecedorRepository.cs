@@ -40,7 +40,6 @@ namespace Estoque.Repository
 
         public List<Fornecedor> Listar()
         {
-
             using var connection = new SQLiteConnection(_connectionString);// conexao
 
             return connection.GetAll<Fornecedor>().ToList();
