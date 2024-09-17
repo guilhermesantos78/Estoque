@@ -1,4 +1,4 @@
-﻿using Estoque._03_Entidades.DTOs.Fornecedor;
+﻿using Estoque.Entidades;
 
 namespace Estoque.Entidades
 {
