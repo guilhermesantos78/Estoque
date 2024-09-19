@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Estoque.Entidades.DTOs.Produto
+namespace Estoque.Entidades
 {
     public class CreateProdutoDTO
     {

@@ -3,7 +3,6 @@ using Dapper.Contrib.Extensions;
 using Estoque.Repository.Data.Script;
 using Estoque.Entidades;
 using System.Data.SQLite;
-using AutoMapper;
 
 namespace Estoque.Repository
 {
