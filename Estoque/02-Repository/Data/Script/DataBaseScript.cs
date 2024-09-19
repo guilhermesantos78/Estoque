@@ -29,13 +29,6 @@ namespace Estoque.Repository.Data.Script
                     Endereco TEXT NOT NULL,
                     CNPJ TEXT NOT NULL
                 );
-
-                CREATE TABLE IF NOT EXISTS FuncionariosLogin(
-                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Nome TEXT NOT NULL,
-                    Email TEXT NOT NULL,
-                    Senha TEXT NOT NULL
-                ); 
                 
                 CREATE TABLE IF NOT EXISTS Pedidos (
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
