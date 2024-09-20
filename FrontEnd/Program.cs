@@ -1,6 +1,9 @@
-﻿
-using FrontEnd;
+﻿using FrontEnd;
 
-Sistema sistem = new Sistema();
+HttpClient cliente = new HttpClient
+{
+    BaseAddress = new Uri("https://localhost:7096/")
+};
 
+Sistema sistem = new Sistema(cliente);
 sistem.IniciarSistema();

@@ -1,34 +1,51 @@
 ﻿using FrontEnd.UseCases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FrontEnd
 {
     public class Sistema
     {
-        UsuarioUC usuario = new UsuarioUC();
+        private readonly UsuarioUC _usuariouc;
 
+        public Sistema(HttpClient cliente)
+        {
+            _usuariouc = new UsuarioUC(cliente);
+        }
         public void IniciarSistema()
         {
-            int resposta = ExibirLogin();
+            int resposta = -1;
 
-            if (resposta == 0)
+            while (resposta != 0)
             {
-                return;
-            }
-            if (resposta == 1)
-            {
-                //Login
-            }
-            if (resposta == 2)
-            {
-                Usuario createdUsuario = usuario.CreateUsuario();
+                resposta = ExibirLogin();
 
-                usuario.CadastrarUsuario(createdUsuario);
+                if (resposta == 0)
+                {
+                    return;
+                }
+                else if (resposta == 1)
+                {
+                    _usuariouc.ListarUsuario();
+                }
+                else if (resposta == 2)
+                {
+                    Usuario createdUsuario = _usuariouc.CreateUsuario();
+
+                    _usuariouc.CadastrarUsuario(createdUsuario);
+
+                    Console.WriteLine("Usuario cadastrado com sucesso!!");
+                }
+                else if (resposta == 3)
+                {
+                    List<Usuario> usuarios = _usuariouc.ListarUsuario();
+
+                    foreach (Usuario u in usuarios)
+                    {
+                        Console.WriteLine(u.ToString());
+                        Console.WriteLine("---------");
+                    }
+                }
             }
+
 
         }
         public int ExibirLogin()
@@ -36,6 +53,7 @@ namespace FrontEnd
             Console.WriteLine("---------- Login ----------");
             Console.WriteLine("1- Deseja Fazer Login");
             Console.WriteLine("2- Deseja Se cadastrar");
+            Console.WriteLine("3- Listar usuarios cadastrados");
             Console.WriteLine("0- Sair");
             return int.Parse(Console.ReadLine());
 
@@ -47,4 +65,3 @@ namespace FrontEnd
 
     }
 }
-

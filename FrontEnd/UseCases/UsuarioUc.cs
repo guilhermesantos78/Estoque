@@ -5,42 +5,33 @@ namespace FrontEnd.UseCases
 {
     public class UsuarioUC
     {
-        public async void ListarUsuario()
+        private readonly HttpClient _Cliente;
+        public UsuarioUC(HttpClient cliente)
         {
-            string apiURL = "https://localhost:7096/Usuario/listar-usuario";
+            _Cliente = cliente;
+        }
+        public List<Usuario> ListarUsuario()
+        {
+            return _Cliente.GetFromJsonAsync<List<Usuario>>("Usuario/listar-usuario").Result;
 
-            using HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(apiURL);
-            string resposta = await response.Content.ReadAsStringAsync();
-            List<Usuario> usu = JsonSerializer.Deserialize<List<Usuario>>(resposta);
-            Console.ReadLine();
         }
 
         public void CadastrarUsuario(Usuario usuario)
         {
-            string apiURL = "https://localhost:7096/Usuario/adicionar-usuario";
-            using HttpClient client = new HttpClient();
-            //string JsonRequest = JsonSerializer.Serialize(usuario);
-            //HttpResponseMessage response = await client.PostAsync(apiURL);
-
+            HttpResponseMessage response = _Cliente.PostAsJsonAsync("Usuario/adicionar-usuario", usuario).Result;
         }
 
         public Usuario CreateUsuario()
         {
             Usuario usuario = new Usuario();
-            Console.WriteLine("Digite seu nome");
-            string nome = Console.ReadLine();
-            Console.WriteLine("Digite seu username");
-            string username = Console.ReadLine();
-            Console.WriteLine("Digite sua senha");
-            string senha = Console.ReadLine();
-            Console.WriteLine("Digite email");
-            string email = Console.ReadLine();
-
-            usuario.nome = nome;
-            usuario.username = username;
-            usuario.senha = senha;
-            usuario.email = email;
+            Console.WriteLine("Digite seu nome: ");
+            usuario.Nome = Console.ReadLine();
+            Console.WriteLine("Digite seu username: ");
+            usuario.Username = Console.ReadLine();
+            Console.WriteLine("Digite sua senha: ");
+            usuario.Senha = Console.ReadLine();
+            Console.WriteLine("Digite email: ");
+            usuario.Email = Console.ReadLine();
 
             return usuario;
         }
