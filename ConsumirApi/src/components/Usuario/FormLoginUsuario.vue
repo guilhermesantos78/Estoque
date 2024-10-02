@@ -39,7 +39,7 @@ export default {
       const dataJson = JSON.stringify(data);
 
       try {
-        const req = await fetch('https://localhost:7096/Usuario/fazer-login', {
+        const req = await fetch('https://localhost:7248/Usuario/fazer-login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: dataJson,

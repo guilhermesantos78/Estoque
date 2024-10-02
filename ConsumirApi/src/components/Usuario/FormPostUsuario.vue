@@ -54,7 +54,7 @@ export default {
 
       const dataJson = JSON.stringify(data);
 
-      const req = await fetch('https://localhost:7096/Usuario/adicionar-usuario', {
+      const req = await fetch('https://localhost:7248/Usuario/adicionar-usuario', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: dataJson,

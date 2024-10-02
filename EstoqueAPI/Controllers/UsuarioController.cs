@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Estoque.Entidades;
+using Entidades;
 using Microsoft.AspNetCore.Mvc;
-using Estoque.Services;
+using Services;
 
 namespace API.Controllers;
 
@@ -20,8 +20,13 @@ public class UsuarioController : ControllerBase
     [HttpPost("adicionar-usuario")]
     public void AdicionarAluno(Usuario usuarioDTO)
     {
-        Usuario usuario = _mapper.Map<Usuario>(usuarioDTO);
-        _service.Adicionar(usuario);
+        _service.Adicionar(usuarioDTO);
+    }
+    [HttpPost("fazer-login")]
+    public Usuario FazerLogin(UsuarioLoginDTO usuarioLogin)
+    {
+        Usuario usuario = _service.FazerLogin(usuarioLogin);
+        return usuario;
     }
     [HttpGet("listar-usuario")]
     public List<Usuario> ListarAluno()
@@ -39,4 +44,3 @@ public class UsuarioController : ControllerBase
         _service.Remover(id);
     }
 }
-

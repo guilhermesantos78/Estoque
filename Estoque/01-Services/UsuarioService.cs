@@ -1,36 +1,49 @@
-﻿using Estoque.Entidades;
+﻿using Entidades;
 using Estoque.Repository;
+using Repository;
 
-namespace Estoque.Services
+namespace Services;
+
+public class UsuarioService
 {
-    public class UsuarioService
+    public UsuarioRepository repository { get; set; }
+    public UsuarioService(string _config)
     {
-        public UsuarioRepository repository { get; set; }
-        public UsuarioService(string ConnectionString)
-        {
-            repository = new UsuarioRepository(ConnectionString);
-        }
-        public void Adicionar(Usuario usuario)
-        {
-            repository.Adicionar(usuario);
-        }
+        repository = new UsuarioRepository(_config);
+    }
+    public void Adicionar(Usuario usuario)
+    {
+        repository.Adicionar(usuario);
+    }
 
-        public void Remover(int id)
-        {
-            repository.Remover(id);
-        }
+    public void Remover(int id)
+    {
+        repository.Remover(id);
+    }
 
-        public List<Usuario> Listar()
+    public List<Usuario> Listar()
+    {
+        return repository.Listar();
+    }
+    public Usuario BuscarTimePorId(int id)
+    {
+        return repository.BuscarPorId(id);
+    }
+    public void Editar(Usuario editPessoa)
+    {
+        repository.Editar(editPessoa);
+    }
+    public Usuario FazerLogin(UsuarioLoginDTO usuarioLogin)
+    {
+        List<Usuario> listUsuario = Listar();
+        foreach (Usuario usuario in listUsuario)
         {
-            return repository.Listar();
+            if (usuario.Username == usuarioLogin.Username
+                && usuario.Senha == usuarioLogin.Senha)
+            {
+                return usuario;
+            }
         }
-        public Usuario BuscarTimePorId(int id)
-        {
-            return repository.BuscarPorId(id);
-        }
-        public void Editar(Usuario editPessoa)
-        {
-            repository.Editar(editPessoa);
-        }
+        return null;
     }
 }

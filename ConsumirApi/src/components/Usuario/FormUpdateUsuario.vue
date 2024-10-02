@@ -56,7 +56,7 @@
   
         const dataJson = JSON.stringify(data);
   
-        const req = await fetch('https://localhost:7096/Usuario/editar-usuario', {
+        const req = await fetch('https://localhost:7248/Usuario/editar-usuario', {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: dataJson,

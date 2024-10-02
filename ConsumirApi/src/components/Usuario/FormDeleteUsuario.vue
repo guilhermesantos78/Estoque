@@ -27,7 +27,7 @@
         e.preventDefault();
   
         try {
-          const req = await fetch(`https://localhost:7096/Usuario/deletar-usuario?id=${this.id}`, {
+          const req = await fetch(`https://localhost:7248/Usuario/deletar-usuario?id=${this.id}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
           });

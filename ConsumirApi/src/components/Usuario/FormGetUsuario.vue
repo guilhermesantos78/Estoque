@@ -20,7 +20,7 @@
     },
     methods: {
       async listarUsuarios() {
-        const apiUrl = 'https://localhost:7096/Usuario/listar-usuario';
+        const apiUrl = 'https://localhost:7248/Usuario/listar-usuario';
         try {
           const response = await fetch(apiUrl, {
             method: 'GET',
