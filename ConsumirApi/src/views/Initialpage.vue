@@ -6,21 +6,7 @@
       <p>Gerencie o seu estoque.</p>
     </header>
     <main class="content">
-      <h2>Recursos Principais</h2>
-      <section class="features">
-        <div class="feature-card">
-          <h3>Aprendizado Interativo</h3>
-          <p>Engaje-se em atividades práticas e interativas.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Comunidade</h3>
-          <p>Junte-se a uma comunidade de aprendizes e educadores.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Conteúdo Atualizado</h3>
-          <p>Mantenha-se atualizado com os últimos recursos e informações.</p>
-        </div>
-      </section>
+      <h2>Gerenciar</h2>
     </main>
     <footer>
       <p>&copy; 2024 Salinha Inovação. Todos os direitos reservados.</p>
@@ -76,23 +62,6 @@ html, body {
   margin: 0 auto;
   padding: 20px;
 }
-
-.features {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin: 20px 0;
-}
-
-.feature-card {
-  background-color: #f8f8f8; /* Fundo claro para cartões */
-  border-radius: 10px;
-  padding: 20px;
-  margin: 10px;
-  flex: 1 1 30%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
 footer {
   text-align: center;
   padding: 10px;

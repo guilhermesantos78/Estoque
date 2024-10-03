@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using Estoque.Repository.Data.Script;
+using Estoque.Repository;
 using System;
 using System.Data.SQLite;
 
