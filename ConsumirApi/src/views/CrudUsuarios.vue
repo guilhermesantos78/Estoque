@@ -1,14 +1,14 @@
 <template>
   <NavBar />
   <NavBarUsuarios />
-    <div class="Tittle">
-      <h1>Usuarios</h1>
-    </div>
-    <div class="Description__container">
-      <div class="Description">
+  <div class="Tittle">
+    <h1>Usuarios</h1>
+  </div>
+  <div class="Description__container">
+    <div class="Description">
       <h2>Use essa pagina para Editar, Criar, Deletar, e Visualizar os seus Usuarios</h2>
-      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -25,21 +25,21 @@ export default {
 </script>
 
 <style scoped>
-
 .Tittle {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 50px;
 }
-.Description__container{
+
+.Description__container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50vh;
 }
 
-.Description{
+.Description {
   max-width: 400px;
   font-size: 0.75rem;
   text-align: justify;

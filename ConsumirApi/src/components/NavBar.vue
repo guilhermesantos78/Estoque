@@ -29,6 +29,7 @@ export default {
 .nav a {
   color: #000;
 }
+
 .nav-link {
   color: #f0f0f0;
   text-decoration: none;

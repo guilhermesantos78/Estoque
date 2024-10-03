@@ -37,9 +37,9 @@
 <script>
 export default {
   name: 'FormPostusuario',
-    components:{
-      NavBarProdutos
-    },
+  components: {
+    NavBarProdutos
+  },
   data() {
     return {
       id: '',
@@ -61,7 +61,7 @@ export default {
         Descricao: this.Descricao,
         QuantidadeEmEstoque: this.QuantidadeEmEstoque,
         FornecedorId: this.FornecedorId
-        };
+      };
 
       const dataJson = JSON.stringify(data);
 

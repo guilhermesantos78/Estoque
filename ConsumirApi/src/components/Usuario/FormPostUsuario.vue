@@ -66,7 +66,7 @@ export default {
 
       await fetch('https://localhost:7248/Usuario/adicionar-usuario', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'ContentD-Type': 'application/json' },
         body: dataJson,
       });
     },

@@ -26,7 +26,8 @@ export default {
 </script>
 
 <style scoped>
-html, body {
+html,
+body {
   margin: 0;
   height: 100%;
 }
@@ -62,6 +63,7 @@ html, body {
   margin: 0 auto;
   padding: 20px;
 }
+
 footer {
   text-align: center;
   padding: 10px;

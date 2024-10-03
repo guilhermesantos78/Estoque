@@ -1,146 +1,147 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/Home.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import HomeView from "../views/Home.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+      path: "/",
+      name: "home",
+      component: HomeView,
     },
     {
-      path: '/CrudUsuarios',
-      name: 'CrudUsuarios',
+      path: "/CrudUsuarios",
+      name: "CrudUsuarios",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/CrudUsuarios.vue')
+      component: () => import("../views/CrudUsuarios.vue"),
     },
     {
-      path: '/CrudProdutos',
-      name: 'CrudProdutos',
+      path: "/CrudProdutos",
+      name: "CrudProdutos",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/CrudProdutos.vue')
+      component: () => import("../views/CrudProdutos.vue"),
     },
     {
-      path: '/CrudFornecedores',
-      name: 'CrudFornecedores',
+      path: "/CrudFornecedores",
+      name: "CrudFornecedores",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/CrudFornecedores.vue')
+      component: () => import("../views/CrudFornecedores.vue"),
     },
     {
-      path: '/Initialpage',
-      name: 'Initialpage',
+      path: "/Initialpage",
+      name: "Initialpage",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/Initialpage.vue')
+      component: () => import("../views/Initialpage.vue"),
     },
     {
-      path: '/FormDeleteUsuario',
-      name: 'FormDeleteUsuario',
+      path: "/FormDeleteUsuario",
+      name: "FormDeleteUsuario",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/components/Usuario/FormDeleteUsuario.vue')
+      component: () => import("@/components/Usuario/FormDeleteUsuario.vue"),
     },
     {
-      path: '/FormGetUsuario',
-      name: 'FormGetUsuario',
+      path: "/FormGetUsuario",
+      name: "FormGetUsuario",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/components/Usuario/FormGetUsuario.vue')
+      component: () => import("@/components/Usuario/FormGetUsuario.vue"),
     },
     {
-      path: '/FormPostUsuario',
-      name: 'FormPostUsuario',
+      path: "/FormPostUsuario",
+      name: "FormPostUsuario",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/components/Usuario/FormPostUsuario.vue')
+      component: () => import("@/components/Usuario/FormPostUsuario.vue"),
     },
     {
-      path: '/FormUpdateUsuario',
-      name: 'FormUpdateUsuario',
+      path: "/FormUpdateUsuario",
+      name: "FormUpdateUsuario",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/components/Usuario/FormUpdateUsuario.vue')
+      component: () => import("@/components/Usuario/FormUpdateUsuario.vue"),
     },
     {
-      path: '/FormDeleteProduto',
-      name: 'FormDeleteProduto',
+      path: "/FormDeleteProduto",
+      name: "FormDeleteProduto",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/components/Produto/FormDeleteProduto.vue')
+      component: () => import("@/components/Produto/FormDeleteProduto.vue"),
     },
     {
-      path: '/FormGetProduto',
-      name: 'FormGetProduto',
+      path: "/FormGetProduto",
+      name: "FormGetProduto",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/components/Produto/FormGetProduto.vue')
+      component: () => import("@/components/Produto/FormGetProduto.vue"),
     },
     {
-      path: '/FormPostProduto',
-      name: 'FormPostProduto',
+      path: "/FormPostProduto",
+      name: "FormPostProduto",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/components/Produto/FormPostProduto.vue')
+      component: () => import("@/components/Produto/FormPostProduto.vue"),
     },
     {
-      path: '/FormUpdateProduto',
-      name: 'FormUpdateProduto',
+      path: "/FormUpdateProduto",
+      name: "FormUpdateProduto",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/components/Produto/FormUpdateProduto.vue')
+      component: () => import("@/components/Produto/FormUpdateProduto.vue"),
     },
-
 
     ,
     {
-      path: '/FormDeleteFornecedor',
-      name: 'FormDeleteFornecedor',
+      path: "/FormDeleteFornecedor",
+      name: "FormDeleteFornecedor",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/components/Fornecedor/FormDeleteFornecedor.vue')
+      component: () =>
+        import("@/components/Fornecedor/FormDeleteFornecedor.vue"),
     },
     {
-      path: '/FormGetFornecedor',
-      name: 'FormGetFornecedor',
+      path: "/FormGetFornecedor",
+      name: "FormGetFornecedor",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/components/Fornecedor/FormGetFornecedor.vue')
+      component: () => import("@/components/Fornecedor/FormGetFornecedor.vue"),
     },
     {
-      path: '/FormPostFornecedor',
-      name: 'FormPostFornecedor',
+      path: "/FormPostFornecedor",
+      name: "FormPostFornecedor",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/components/Fornecedor/FormPostFornecedor.vue')
+      component: () => import("@/components/Fornecedor/FormPostFornecedor.vue"),
     },
     {
-      path: '/FormUpdateFornecedor',
-      name: 'FormUpdateFornecedor',
+      path: "/FormUpdateFornecedor",
+      name: "FormUpdateFornecedor",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/components/Fornecedor/FormUpdateFornecedor.vue')
-    }
-  ]
-})
+      component: () =>
+        import("@/components/Fornecedor/FormUpdateFornecedor.vue"),
+    },
+  ],
+});
 
-export default router
+export default router;

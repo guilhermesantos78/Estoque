@@ -59,7 +59,7 @@ export default {
 
           this.username = ''
           this.senha = ''
-          
+
         } else {
           this.message = 'Erro.';
         }

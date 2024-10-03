@@ -114,7 +114,7 @@ input {
 }
 
 .delete-button:hover {
-  background-color: #d10000; 
+  background-color: #d10000;
 }
 
 .message {
