@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="login-container">
     <div class="form-container">
-      <form @submit="loginUsuario">
+      <form @submit="loginUsuario" class="login-form">
         <div class="form-group">
           <label for="username">Username :</label>
           <input type="text" id="username" v-model="username" required />
@@ -10,9 +10,9 @@
           <label for="senha">Senha :</label>
           <input type="password" id="senha" v-model="senha" required />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" class="login-btn">Login</button>
       </form>
-      <div v-if="message" class="message">{{ message }}</div>
+      <div v-if="message" :class="['message', message === 'Sucesso.' ? 'success' : 'error']">{{ message }}</div>
     </div>
   </div>
 </template>
@@ -54,7 +54,11 @@ export default {
 
         if (data.username === usuario.username) {
           this.message = 'Sucesso.';
-          this.$router.push('/CrudUsuarios'); // Redireciona para a nova página
+          this.$router.push('/Initialpage');
+
+          this.username = ''
+          this.senha = ''
+          
         } else {
           this.message = 'Erro.';
         }
@@ -69,8 +73,71 @@ export default {
 </script>
 
 <style scoped>
+/* Container principal do login */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* Formulário */
+.form-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  text-align: center;
+}
+
+.login-form .form-group {
+  margin-bottom: 15px;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.login-form input {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.login-btn:hover {
+  background-color: #000;
+}
+
 .message {
-  margin-top: 10px;
-  color: green; /* Mudar a cor conforme o status */
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
 }
 </style>
