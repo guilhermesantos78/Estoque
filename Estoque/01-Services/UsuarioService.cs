@@ -1,5 +1,6 @@
 ﻿using Entidades;
 using Estoque.Repository;
+using Estoque.UseCases;
 using Repository;
 
 namespace Services;
@@ -7,6 +8,7 @@ namespace Services;
 public class UsuarioService
 {
     public UsuarioRepository repository { get; set; }
+    public UsuarioUc usuarioUc { get; set; }
     public UsuarioService(string _config)
     {
         repository = new UsuarioRepository(_config);
@@ -35,15 +37,7 @@ public class UsuarioService
     }
     public Usuario FazerLogin(UsuarioLoginDTO usuarioLogin)
     {
-        List<Usuario> listUsuario = Listar();
-        foreach (Usuario usuario in listUsuario)
-        {
-            if (usuario.Username == usuarioLogin.Username
-                && usuario.Senha == usuarioLogin.Senha)
-            {
-                return usuario;
-            }
-        }
-        return null;
+        Usuario Usuariologado = usuarioUc.FazerLogin(usuarioLogin);
+        return Usuariologado;
     }
 }

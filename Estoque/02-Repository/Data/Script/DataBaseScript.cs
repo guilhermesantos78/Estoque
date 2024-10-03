@@ -12,6 +12,7 @@
                     Descricao TEXT NOT NULL,
                     QuantidadeEmEstoque INTEGER NOT NULL,
                     FornecedorId INTEGER,
+                    UsuarioId INTEGER NOT NULL,
                     FOREIGN KEY (FornecedorId) REFERENCES Fornecedores(Id)
                 );
 
@@ -20,7 +21,9 @@
                     Nome TEXT NOT NULL,
                     Contato TEXT NOT NULL,
                     Endereco TEXT NOT NULL,
-                    CNPJ TEXT NOT NULL
+                    CNPJ TEXT NOT NULL,
+                    ProdutoId INTEGER NOT NULL,
+                    UsuarioId INTEGER NOT NULL,
                 );
 
                CREATE TABLE IF NOT EXISTS Usuarios(
@@ -28,7 +31,7 @@
                  Nome TEXT NOT NULL,
                  Username TEXT NOT NULL,
                  Senha TEXT NOT NULL,
-                 Email TEXT NOT NULL
+                 Email TEXT NOT NULL,
                 );
                 
                 CREATE TABLE IF NOT EXISTS Pedidos (
@@ -38,7 +41,8 @@
                     QuantidadeSolicitada INTEGER NOT NULL,
                     TipoAlteracao TEXT NOT NULL,
                     NomeProduto TEXT NOT NULL,
-                    ProdutoId INTEGER,
+                    ProdutoId INTEGER NOT NULL,
+                    UsuarioId INTEGER NOT NULL,
                     FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
                 );
 
@@ -50,6 +54,7 @@
                     TipoAlteracao TEXT NOT NULL,
                     NomeProduto TEXT NOT NULL,
                     ProdutoId INTEGER,
+                    UsuarioId INTEGER NOT NULL,
                     FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
                 );";
 
