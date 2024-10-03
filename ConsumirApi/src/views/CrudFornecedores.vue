@@ -1,38 +1,47 @@
 <template>
     <NavBar />
-    <div class="all">
-        <FormPostUsuario />
-        <br>
-        <FormDeleteUsuario />
-        <br>
-        <FormUpdateUsuario />
-        <br>
-        <FormGetUsuario />
+    <NavBarFornecedores />
+    <div class="Tittle">
+        <h1>Fornecedores</h1>
+    </div>
+    <div class="Description__container">
+        <div class="Description">
+            <h2>Use essa pagina para Editar, Criar, Deletar, e Visualizar os seus Fornecedores</h2>
+        </div>
     </div>
 </template>
 
 <script>
-import FormPostUsuario from '@/components/Usuario/FormPostUsuario.vue'
-import FormDeleteUsuario from '@/components/Usuario/FormDeleteUsuario.vue'
-import FormUpdateUsuario from '@/components/Usuario/FormUpdateUsuario.vue'
-import FormGetUsuario from '@/components/Usuario/FormGetUsuario.vue'
 import NavBar from '@/components/NavBar.vue'
+import NavBarFornecedores from '@/components/Fornecedor/NavBarFornecedores.vue';
 
 export default {
-    name: 'Home',
+    name: 'CrudUsuarios',
     components: {
-        FormPostUsuario,
-        FormDeleteUsuario,
-        FormUpdateUsuario,
-        FormGetUsuario,
-        NavBar
+        NavBar,
+        NavBarFornecedores
     }
 }
 </script>
 
 <style scoped>
-.all {
+.Tittle {
     display: flex;
-    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.Description__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.Description {
+    max-width: 400px;
+    font-size: 0.75rem;
+    text-align: justify;
 }
 </style>

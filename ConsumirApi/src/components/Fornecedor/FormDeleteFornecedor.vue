@@ -1,14 +1,14 @@
 <template>
   <NavBar />
-  <NavBarProdutos />
+  <NavBarFornecedores />
     <div>
       <div class="form-container">
-        <form @submit="deleteUsuario">
+        <form @submit="deleteFornecedor">
           <div class="form-group">
             <label for="id">Id :</label>
             <input type="password" id="id" v-model="id" required />
           </div>
-          <button type="submit">Deletar Produto</button>
+          <button type="submit">Deletar Fornecedor</button>
         </form>
         <div v-if="message" class="message">{{ message }}</div>
       </div>
@@ -16,12 +16,14 @@
   </template>
   
   <script>
-import NavBarProdutos from './NavBarProdutos.vue';
+import NavBarFornecedores from './NavBarFornecedores.vue';
+import NavBar from '@/components/NavBar.vue';
 
   export default {
     name: 'FormGetUsuario',
     components:{
-      NavBarProdutos
+      NavBarFornecedores,
+      NavBar
     },
     data() {
       return {
@@ -30,11 +32,11 @@ import NavBarProdutos from './NavBarProdutos.vue';
       };
     },
     methods: {
-      async deleteUsuario(e) {
+      async deleteFornecedor(e) {
         e.preventDefault();
   
         try {
-          const req = await fetch(`https://localhost:7248/Produto/deletar-produto?id=${this.id}`, {
+          const req = await fetch(`https://localhost:7248/Fornecedor/deletar-fornecedor?id=${this.id}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
           });
@@ -43,19 +45,19 @@ import NavBarProdutos from './NavBarProdutos.vue';
             throw new Error('Erro ao deletar');
           }
   
-          const produto = await req.json();
-          console.log('Resposta da API:', produto);
+          const Fornecedor = await req.json();
+          console.log('Resposta da API:', Fornecedor);
   
-          if (produto) {
-            this.message = 'Produto deletado com sucesso.';
+          if (Fornecedor) {
+            this.message = 'Fornecedor deletado com sucesso.';
             console.log('Sucesso');
           } else {
-            this.message = 'Erro ao deletar Produto.';
+            this.message = 'Erro ao deletar Fornecedor.';
             console.log('Erro');
           }
   
         } catch (error) {
-          console.error('Erro ao deletar Produto:', error);
+          console.error('Erro ao deletar Fornecedor:', error);
         }
       }
     }

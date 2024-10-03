@@ -9,7 +9,7 @@
       <h2>Gerenciar</h2>
     </main>
     <footer>
-      <p>&copy; 2024 Salinha Inovação. Todos os direitos reservados.</p>
+      <p>&copy; 2024 Estoque. Todos os direitos reservados.</p>
     </footer>
   </div>
 </template>
@@ -34,20 +34,20 @@ html, body {
 .initial-page {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Garante que a página preencha a altura da tela */
+  min-height: 100vh;
 }
 
 .hero {
-  background-color: #333; /* Cor de fundo do cabeçalho */
-  color: white; /* Texto em branco para contraste */
+  background-color: #333;
+  color: white;
   text-align: center;
   padding: 50px 20px;
   margin-bottom: 20px;
 }
 
 .cta-button {
-  background-color: #000; /* Botão preto */
-  color: white; /* Texto do botão em branco */
+  background-color: #000;
+  color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -56,7 +56,7 @@ html, body {
 }
 
 .content {
-  flex: 1; /* Faz com que o conteúdo principal cresça para ocupar o espaço restante */
+  flex: 1;
   width: 80%;
   max-width: 1200px;
   margin: 0 auto;
@@ -65,8 +65,8 @@ html, body {
 footer {
   text-align: center;
   padding: 10px;
-  background-color: #333; /* Cor de fundo do rodapé */
-  color: white; /* Texto em branco no rodapé */
+  background-color: #333;
+  color: white;
   width: 100%;
 }
 </style>

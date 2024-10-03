@@ -1,4 +1,6 @@
 <template>
+  <NavBar />
+  <NavBarProdutos />
     <div>
       <h1>Lista de Produto</h1>
       <button @click="listarProdutos">Carregar Produto</button>
@@ -13,6 +15,9 @@
   <script>
   export default {
     name: 'FormGetProduto',
+    components:{
+      NavBarProdutos
+    },
     data() {
       return {
         Produtos: [],
