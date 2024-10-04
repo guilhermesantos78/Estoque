@@ -35,10 +35,13 @@
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue';
+import NavBarProdutos from '@/components/Produto/NavBarProdutos.vue';
 export default {
-  name: 'FormUpdateusuario',
+  name: 'FormUpdateProduto',
   components: {
-    NavBarProdutos
+    NavBarProdutos,
+    NavBar
   },
   data() {
     return {

@@ -6,17 +6,20 @@
     <button @click="listarProdutos">Carregar Produto</button>
     <ul>
       <li v-for="produto in Produtos" :key="produto.id">
-        Id: {{ produto.id }} - Nome: {{ produto.nome }} - Preço: {{ produto.Preco }} - descrição: {{ produto.descricao
-        }} - fornecedorId: {{ produto.fornecedorId }}
+        Id: {{ produto.id }} - Nome: {{ produto.nome }} - Preço: {{ produto.preco }} - Descrição: {{ produto.descricao }} - FornecedorId: {{ produto.fornecedorId }}
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue';
+import NavBarProdutos from '@/components/Produto/NavBarProdutos.vue';
+
 export default {
   name: 'FormGetProduto',
   components: {
+    NavBar,
     NavBarProdutos
   },
   data() {
@@ -39,7 +42,7 @@ export default {
           throw new Error('Erro ao buscar os Produtos');
         }
 
-        const data = await response.json(); // Aguarda os dados
+        const data = await response.json();
         console.log(data);
         this.Produtos = data; // Atribui os dados ao array 'Produtos'
       } catch (error) {
