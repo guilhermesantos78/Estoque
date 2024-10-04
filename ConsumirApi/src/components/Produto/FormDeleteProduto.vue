@@ -19,7 +19,7 @@
 import NavBarProdutos from './NavBarProdutos.vue';
 
 export default {
-  name: 'FormGetProdutos',
+  name: 'FormDeleteProduto',
   components: {
     NavBarProdutos
   },

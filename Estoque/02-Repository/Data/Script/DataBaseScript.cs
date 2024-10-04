@@ -63,6 +63,7 @@ namespace Estoque.Repository
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
                     Nome TEXT NOT NULL,
                     Username TEXT NOT NULL,
+                    TipoUsuario TEXT NOT NULL,
                     Senha TEXT NOT NULL,
                     Email TEXT NOT NULL
                 );

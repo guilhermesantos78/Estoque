@@ -21,7 +21,7 @@ import NavBar from '@/components/NavBar.vue';
 import NavBarUsuarios from '@/components/Usuario/NavBarUsuarios.vue';
 
 export default {
-  name: 'FormGetUsuario',
+  name: 'FormDeleteUsuario',
   components: {
     NavBar,
     NavBarUsuarios,

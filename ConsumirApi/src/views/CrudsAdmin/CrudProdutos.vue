@@ -16,7 +16,7 @@ import NavBar from '@/components/NavBar.vue'
 import NavBarProdutos from '@/components/Produto/NavBarProdutos.vue';
 
 export default {
-    name: 'CrudUsuarios',
+    name: 'CrudProdutos',
     components: {
         NavBar,
         NavBarProdutos

@@ -15,7 +15,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/CrudUsuarios.vue"),
+      component: () => import("../views/CrudsAdmin/CrudUsuarios.vue"),
     },
     {
       path: "/CrudProdutos",
@@ -23,7 +23,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/CrudProdutos.vue"),
+      component: () => import("../views/CrudsAdmin/CrudProdutos.vue"),
     },
     {
       path: "/CrudFornecedores",
@@ -31,7 +31,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/CrudFornecedores.vue"),
+      component: () => import("../views/CrudsAdmin/CrudFornecedores.vue"),
     },
     {
       path: "/Initialpage",
@@ -39,7 +39,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/Initialpage.vue"),
+      component: () => import("../views/CrudsAdmin/Initialpage.vue"),
     },
     {
       path: "/FormDeleteUsuario",
