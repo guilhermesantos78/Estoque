@@ -12,8 +12,7 @@
                     Descricao TEXT NOT NULL,
                     QuantidadeEmEstoque INTEGER NOT NULL,
                     FornecedorId INTEGER,
-                    UsuarioId INTEGER NOT NULL,
-                    FOREIGN KEY (FornecedorId) REFERENCES Fornecedores(Id)
+                    UsuarioId INTEGER NOT NULL
                 );
 
                 CREATE TABLE IF NOT EXISTS Fornecedores (
@@ -22,16 +21,15 @@
                     Contato TEXT NOT NULL,
                     Endereco TEXT NOT NULL,
                     CNPJ TEXT NOT NULL,
-                    ProdutoId INTEGER NOT NULL,
-                    UsuarioId INTEGER NOT NULL,
+                    UsuarioId INTEGER NOT NULL
                 );
 
-               CREATE TABLE IF NOT EXISTS Usuarios(
-                 Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                 Nome TEXT NOT NULL,
-                 Username TEXT NOT NULL,
-                 Senha TEXT NOT NULL,
-                 Email TEXT NOT NULL,
+                CREATE TABLE IF NOT EXISTS Usuarios(
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Nome TEXT NOT NULL,
+                    Username TEXT NOT NULL,
+                    Senha TEXT NOT NULL,
+                    Email TEXT NOT NULL
                 );
                 
                 CREATE TABLE IF NOT EXISTS Pedidos (
