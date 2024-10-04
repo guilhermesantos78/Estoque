@@ -16,6 +16,10 @@
         <div class="form-group">
           <label for="username">Username :</label>
           <input type="text" id="username" v-model="username" required />
+        </div>        
+        <div class="form-group">
+          <label for="tipousuario">Tipo Usuario :</label>
+          <input type="text" id="tipousuario" v-model="tipousuario" required />
         </div>
         <div class="form-group">
           <label for="senha">Senha :</label>
@@ -46,6 +50,7 @@ export default {
       id: '',
       nome: '',
       username: '',
+      tipousuario:'',
       senha: '',
       email: '',
     };
@@ -58,6 +63,7 @@ export default {
         id: this.id,
         nome: this.nome,
         username: this.username,
+        tipousuario: this.tipousuario,
         senha: this.senha,
         email: this.email,
       };
