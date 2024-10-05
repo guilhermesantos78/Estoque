@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 InicializadorBd.Inicializar();
 
+//Permite usar a Api de qualquer lugar
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("PermitirTudo",
@@ -33,6 +34,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//Permite usar a Api de qualquer lugar
 app.UseCors("PermitirTudo");
 
 app.UseHttpsRedirection();

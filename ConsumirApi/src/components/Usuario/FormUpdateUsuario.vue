@@ -37,7 +37,7 @@ import NavBar from '@/components/NavBar.vue';
 import NavBarUsuarios from '@/components/Usuario/NavBarUsuarios.vue';
 
 export default {
-  name: 'FormPostusuario',
+  name: 'FormUpdateusuario',
   components: {
     NavBar,
     NavBarUsuarios,

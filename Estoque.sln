@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Estoque", "Estoque\Estoque.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstoqueAPI", "EstoqueAPI\EstoqueAPI.csproj", "{659A1DDB-D642-4E11-89D6-45D525FBBA4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontEnd", "FrontEnd\FrontEnd.csproj", "{283ED8DE-86DC-4DB8-9218-CDA72F60A2B1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{659A1DDB-D642-4E11-89D6-45D525FBBA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{659A1DDB-D642-4E11-89D6-45D525FBBA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{659A1DDB-D642-4E11-89D6-45D525FBBA4B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{283ED8DE-86DC-4DB8-9218-CDA72F60A2B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{283ED8DE-86DC-4DB8-9218-CDA72F60A2B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{283ED8DE-86DC-4DB8-9218-CDA72F60A2B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{283ED8DE-86DC-4DB8-9218-CDA72F60A2B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

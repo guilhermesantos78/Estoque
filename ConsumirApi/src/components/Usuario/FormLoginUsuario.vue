@@ -1,6 +1,7 @@
 <template>
   <div class="login-container">
     <div class="form-container">
+      <h1>Faça Login</h1>
       <form @submit="loginUsuario" class="login-form">
         <div class="form-group">
           <label for="username">Username :</label>
@@ -19,17 +20,19 @@
 
 <script>
 export default {
-  name: 'FormGetUsuario',
+  name: 'FormLoginUsuario',
   data() {
     return {
       username: '',
       senha: '',
+      tipoUsuario: 'Cliente', // Valor padrão
       message: ''
     };
   },
   methods: {
     async loginUsuario(e) {
       e.preventDefault();
+      this.message = ''; // Limpa a mensagem antes de uma nova tentativa
 
       const data = {
         username: this.username,
@@ -54,13 +57,19 @@ export default {
 
         if (data.username === usuario.username) {
           this.message = 'Sucesso.';
-          this.$router.push('/Initialpage');
+          this.username = '';
+          this.senha = '';
 
-          this.username = ''
-          this.senha = ''
-          
+          // Redireciona com base no tipo de usuário
+          if (usuario.tipoUsuario === "Cliente") {
+            this.$router.push('/InitialPageClientes');
+          } else if (usuario.tipoUsuario === "Admin") {
+            this.$router.push('/InitialPage'); // Adicione a rota para Administrador
+          } else {
+            this.message = 'Tipo de usuário desconhecido.';
+          }
         } else {
-          this.message = 'Erro.';
+          this.message = 'Erro nas credenciais.';
         }
 
       } catch (error) {
@@ -68,7 +77,7 @@ export default {
         this.message = 'Erro ao conectar à API.';
       }
     }
-  },
+  }
 };
 </script>
 

@@ -13,8 +13,8 @@
     <!-- Lista de usuários -->
     <ul class="user-list">
       <li v-for="usuario in usuarios" :key="usuario.id" class="user-item">
-        <span><strong>Id:</strong> {{ usuario.id }}</span> - 
-        <span><strong>Usuário:</strong> {{ usuario.nome }}</span> - 
+        <span><strong>Id:</strong> {{ usuario.id }}</span> -
+        <span><strong>Usuário:</strong> {{ usuario.nome }}</span> -
         <span><strong>Senha:</strong> {{ usuario.senha }}</span>
       </li>
     </ul>
@@ -27,7 +27,7 @@ import NavBarUsuarios from '@/components/Usuario/NavBarUsuarios.vue'
 
 export default {
   name: 'FormGetUsuario',
-  components:{
+  components: {
     NavBar,
     NavBarUsuarios
   },

@@ -17,11 +17,16 @@ export default {
 .nav {
   width: 100%;
   height: 80px;
-  background: #333;
+  background: #FFF;
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 0 20px;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+}
+
+.nav a {
+  color: #000;
 }
 
 .nav-link {
@@ -37,7 +42,7 @@ export default {
 
 .nav-link:hover {
   background-color: rgba(255, 255, 255, 0.3);
-  color: #fff;
+  color: #000;
   transform: scale(1.1);
 }
 </style>

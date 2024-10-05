@@ -21,6 +21,9 @@ namespace Estoque.Entidades
         [Required(ErrorMessage = "Compo Obrigatório 'FornecedorId' não preenchido")]
         [Range(1, 10000, ErrorMessage = "FornecedorId Inválido")]
         public int FornecedorId { get; set; }
+        [Required(ErrorMessage = "Compo Obrigatório 'EmpresaId' não preenchido")]
+        [Range(1, 10000, ErrorMessage = "EmpresaId Inválido")]
+        public int EmpresaId { get; set; }
 
     }
 }
