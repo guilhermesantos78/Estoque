@@ -12,7 +12,6 @@ namespace Estoque.Entidades
         public string Endereco { get; set; }
         public string CNPJ { get; set; }
         public int ProdutoId { get; set; }
-        public int NomeProduto { get; set; }
 
     }
 }

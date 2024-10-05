@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Estoque.Entidades.DTOs.Pedido;
-using Estoque.Entidades.DTOs.Produto;
 using Estoque.Entidades;
 using Estoque.Services;
 using Estoque.Entidades;

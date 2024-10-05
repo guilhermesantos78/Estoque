@@ -18,8 +18,7 @@ namespace Estoque.Repository.Data.Script
                     Preco REAL NOT NULL,
                     Descricao TEXT NOT NULL,
                     QuantidadeEmEstoque INTEGER NOT NULL,
-                    FornecedorId INTEGER,
-                    FOREIGN KEY (FornecedorId) REFERENCES Fornecedores(Id)
+                    FornecedorId INTEGER
                 );
 
                 CREATE TABLE IF NOT EXISTS Fornecedores (

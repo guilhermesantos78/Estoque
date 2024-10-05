@@ -64,15 +64,5 @@ namespace Estoque.Repository
             return fornecedor;
         }
 
-        //public ReadFornecedorDTO BuscarFornecedorNamePorId(int id)
-        //{
-        //    using var connection = new SQLiteConnection(_connectionString);
-        //    Fornecedor f = connection.Get<Fornecedor>(id);
-
-        //    ReadFornecedorDTO fornecedor = mapper.Map<ReadFornecedorDTO>(f);
-
-        //    return fornecedor;
-        //}
-
     }
 }
