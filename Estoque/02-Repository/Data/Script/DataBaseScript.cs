@@ -1,11 +1,11 @@
-using Estoque.Entidades;
+﻿using Estoque.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Estoque.Repository
+namespace Estoque.Repository.Data.Script
 {
     public static class DataBaseScript
     {
@@ -18,8 +18,7 @@ namespace Estoque.Repository
                     Preco REAL NOT NULL,
                     Descricao TEXT NOT NULL,
                     QuantidadeEmEstoque INTEGER NOT NULL,
-                    FornecedorId INTEGER,
-                    FOREIGN KEY (FornecedorId) REFERENCES Fornecedores(Id)
+                    FornecedorId INTEGER
                 );
 
                 CREATE TABLE IF NOT EXISTS Fornecedores (
@@ -34,6 +33,7 @@ namespace Estoque.Repository
                  Id INTEGER PRIMARY KEY AUTOINCREMENT,
                  Nome TEXT NOT NULL,
                  Username TEXT NOT NULL,
+                 TipoUsuario TEXT NOT NULL,
                  Senha TEXT NOT NULL,
                  Email TEXT NOT NULL
                 );
@@ -45,7 +45,8 @@ namespace Estoque.Repository
                     QuantidadeSolicitada INTEGER NOT NULL,
                     TipoAlteracao TEXT NOT NULL,
                     NomeProduto TEXT NOT NULL,
-                    ProdutoId INTEGER
+                    ProdutoId INTEGER,
+                    FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
                 );
 
                 CREATE TABLE IF NOT EXISTS HistoricoPedidos (
@@ -55,7 +56,8 @@ namespace Estoque.Repository
                     QuantidadeSolicitada INTEGER NOT NULL,
                     TipoAlteracao TEXT NOT NULL,
                     NomeProduto TEXT NOT NULL,
-                    ProdutoId INTEGER
+                    ProdutoId INTEGER,
+                    FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
                 );";
 
             return commandCREATE;

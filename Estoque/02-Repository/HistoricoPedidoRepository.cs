@@ -4,7 +4,7 @@ using System.Data.SQLite;
 using Estoque.Services;
 using AutoMapper;
 
-namespace Estoque.Repository
+namespace Estoque._02_Repository
 {
     public class HistoricoPedidoRepository
     {

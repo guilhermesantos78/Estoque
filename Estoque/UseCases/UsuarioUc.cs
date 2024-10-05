@@ -1,7 +1,8 @@
-﻿using Entidades;
-using Repository;
-using Services;
+﻿using Core.Entidades;
+using Estoque.Entidades;
+using Estoque.Services;
 using System.Collections.Generic;
+using TrabalhoFinal.Services;
 
 namespace Estoque.UseCases
 {

@@ -1,8 +1,9 @@
-﻿using Dapper.Contrib.Extensions;
-using Entidades;
+﻿using Core.Entidades;
+using Dapper.Contrib.Extensions;
+using Estoque.Entidades;
 using System.Data.SQLite;
 
-namespace Repository;
+namespace TrabalhoFinal.Repository;
 
 public class UsuarioRepository
 {

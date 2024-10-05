@@ -73,7 +73,6 @@ export default {
         }
 
       } catch (error) {
-        console.error('Erro ao fazer login:', error);
         this.message = 'Erro ao conectar à API.';
       }
     }

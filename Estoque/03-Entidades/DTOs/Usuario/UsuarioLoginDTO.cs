@@ -1,4 +1,4 @@
-﻿namespace Entidades
+﻿namespace Core.Entidades
 {
     public class UsuarioLoginDTO
     {

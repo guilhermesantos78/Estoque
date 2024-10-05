@@ -1,4 +1,5 @@
 ﻿using Estoque.Entidades;
+using System.ComponentModel.DataAnnotations;
 
 namespace Estoque.Services
 {

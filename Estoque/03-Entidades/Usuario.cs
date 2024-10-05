@@ -1,4 +1,4 @@
-﻿namespace Entidades
+﻿namespace Core.Entidades
 {
     public class Usuario
     {
@@ -8,6 +8,5 @@
         public string TipoUsuario { get; set; }
         public string Senha { get; set; }
         public string Email { get; set; }
-
     }
 }

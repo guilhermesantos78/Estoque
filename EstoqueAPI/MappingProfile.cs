@@ -2,6 +2,7 @@
 using Estoque.Entidades.DTOs.Pedido;
 using Estoque.Entidades;
 using Estoque.Services;
+using Estoque.Entidades;
 
 namespace EstoqueAPI
 {

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Estoque.Repository;
+using Estoque._02_Repository;
 
 namespace Estoque.Services
 {
