@@ -2,6 +2,7 @@
 using Estoque.Services;
 using Estoque.Entidades;
 using Microsoft.AspNetCore.Mvc;
+using Estoque.UseCases;
 
 namespace EstoqueAPI.Controllers
 {
@@ -18,7 +19,7 @@ namespace EstoqueAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("AdicionarProduto")] // Rota (EndPoint)
+        [HttpPost("adicionar-produto")] // Rota (EndPoint)
         public void AdicionarProduto(CreateProdutoDTO p)
         {
             Produto produto = _mapper.Map<Produto>(p);
@@ -26,7 +27,7 @@ namespace EstoqueAPI.Controllers
             _service.Adicionar(produto);
         }
 
-        [HttpGet("VisualizarProduto")] // Rota (EndPoint)
+        [HttpGet("visualizar-produto")] // Rota (EndPoint)
         public List<ReadProdutoDTO> VisualizarProduto()
         {
             return _service.Listar();
@@ -43,13 +44,13 @@ namespace EstoqueAPI.Controllers
             return _service.BuscarProdutoPorId(id);
         }
 
-        [HttpPut("Editarproduto")] // Rota (EndPoint)
+        [HttpPut("editar-produto")] // Rota (EndPoint)
         public void Editarproduto(Produto produto)
         {
             _service.Editar(produto);
         }
 
-        [HttpDelete("Removerproduto")] // Rota (EndPoint)
+        [HttpDelete("remover-produto")] // Rota (EndPoint)
         public void Removerproduto(int id)
         {
             _service.Remover(id);

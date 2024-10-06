@@ -36,7 +36,7 @@ export default {
       e.preventDefault();
 
       try {
-        const req = await fetch(`https://localhost:7248/Fornecedor/deletar-fornecedor?id=${this.id}`, {
+        const req = await fetch(`https://localhost:7248/Fornecedor/remover-fornecedor?id=${this.id}`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' }
         });

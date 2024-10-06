@@ -18,6 +18,8 @@
         <span><strong>Senha:</strong> {{ usuario.senha }}</span>
       </li>
     </ul>
+
+    <div v-if="message" class="message">{{ message }}</div>
   </div>
 </template>
 
@@ -34,6 +36,7 @@ export default {
   data() {
     return {
       usuarios: [],
+      message:''
     };
   },
   methods: {
@@ -46,11 +49,13 @@ export default {
             'Accept': 'application/json',
           },
         });
-
-        if (!response.ok) {
-          throw new Error('Erro ao buscar os Usuários');
+        if (usuario) {
+          this.message = 'Usuário Visualizado com sucesso.';
+          console.log('Sucesso');
+        } else {
+          this.message = 'Erro ao Visualizar usuário.';
+          console.log('Erro');
         }
-
         this.usuarios = await response.json();
       } catch (error) {
         console.error('Erro:', error);

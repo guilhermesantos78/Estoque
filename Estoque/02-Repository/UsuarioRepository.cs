@@ -1,6 +1,7 @@
 ﻿using Core.Entidades;
+using Dapper;
 using Dapper.Contrib.Extensions;
-using Estoque.Entidades;
+using Estoque.Repository;
 using System.Data.SQLite;
 
 namespace TrabalhoFinal.Repository;
@@ -15,7 +16,8 @@ public class UsuarioRepository
     public void Adicionar(Usuario usuario)
     {
         using var connection = new SQLiteConnection(ConnectionString);
-        connection.Insert<Usuario>(usuario);
+
+        connection.Execute(UsuarioScript.InsertUsuario(), usuario);
     }
     public void Remover(int id)
     {

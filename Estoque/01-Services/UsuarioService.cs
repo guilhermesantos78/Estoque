@@ -1,4 +1,5 @@
 ﻿using Core.Entidades;
+using Estoque.UseCases;
 using TrabalhoFinal.Repository;
 
 namespace TrabalhoFinal.Services;
@@ -6,6 +7,7 @@ namespace TrabalhoFinal.Services;
 public class UsuarioService
 {
     public UsuarioRepository repository { get; set; }
+    private UsuarioUc Uc;
     public UsuarioService(string _config)
     {
         repository = new UsuarioRepository(_config);
@@ -34,15 +36,7 @@ public class UsuarioService
     }
     public Usuario FazerLogin(UsuarioLoginDTO usuarioLogin)
     {
-        List<Usuario> listUsuario = Listar();
-        foreach (Usuario usuario in listUsuario)
-        {
-            if (usuario.Username == usuarioLogin.Username
-                && usuario.Senha == usuarioLogin.Senha)
-            {
-                return usuario;
-            }
-        }
-        return null;
+        Usuario usuario = Uc.FazerLogin(usuarioLogin);
+        return usuario;
     }
 }

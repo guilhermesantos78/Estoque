@@ -19,7 +19,7 @@ namespace EstoqueAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("AdicionarPedido")] // Rota (EndPoint)
+        [HttpPost("adicionar-pedido")] // Rota (EndPoint)
         public void AdicionarPedido(CreatePedidoDTO p)
         {
             Pedido pedido = _mapper.Map<Pedido>(p);
@@ -27,7 +27,7 @@ namespace EstoqueAPI.Controllers
             _service.Adicionar(pedido);
         }
 
-        [HttpGet("VisualizarPedido")] // Rota (EndPoint)
+        [HttpGet("visualizar-pedido")] // Rota (EndPoint)
         public List<Pedido> Listar()
         {
             return _service.Listar();
@@ -45,13 +45,13 @@ namespace EstoqueAPI.Controllers
             return _service.BuscarPedidoPorId(id);
         }
 
-        [HttpPut("EditarPedido")] // Rota (EndPoint)
+        [HttpPut("editar-pedido")] // Rota (EndPoint)
         public void EditarPedido(Pedido pedido)
         {
             _service.Editar(pedido);
         }
 
-        [HttpDelete("RemoverPedido")] // Rota (EndPoint)
+        [HttpDelete("remover-pedido")] // Rota (EndPoint)
         public void RemoverPedido(int id)
         {
             _service.Remover(id);

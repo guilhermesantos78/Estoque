@@ -74,7 +74,7 @@ export default {
 
       const dataJson = JSON.stringify(data);
 
-      const req = await fetch('https://localhost:7248/Fornecedor/editar-Fornecedor', {
+      const req = await fetch('https://localhost:7248/Fornecedor/editar-fornecedor', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: dataJson,

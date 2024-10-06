@@ -52,7 +52,6 @@ export default {
         if (usuario) {
           this.message = 'Usuário deletado com sucesso.';
           console.log('Sucesso');
-          this.$router.push('/pagina-de-sucesso');
         } else {
           this.message = 'Erro ao deletar usuário.';
           console.log('Erro');

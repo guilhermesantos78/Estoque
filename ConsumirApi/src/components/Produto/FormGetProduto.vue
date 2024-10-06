@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     async listarProdutos() {
-      const apiUrl = 'https://localhost:7248/Produto/VisualizarProduto';
+      const apiUrl = 'https://localhost:7248/Produto/visualizar-produto';
       try {
         const response = await fetch(apiUrl, {
           method: 'GET',

@@ -34,7 +34,7 @@ export default {
       e.preventDefault();
 
       try {
-        const req = await fetch(`https://localhost:7248/Produto/deletar-produto?id=${this.id}`, {
+        const req = await fetch(`https://localhost:7248/Produto/remover-produto?id=${this.id}`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' }
         });

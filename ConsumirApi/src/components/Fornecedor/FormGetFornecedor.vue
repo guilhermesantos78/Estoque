@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     async listarFornecedor() {
-      const apiUrl = 'https://localhost:7248/Fornecedor/VisualizarFornecedor';
+      const apiUrl = 'https://localhost:7248/Fornecedor/visualizar-fornecedor';
       try {
         const response = await fetch(apiUrl, {
           method: 'GET',
