@@ -36,7 +36,16 @@ public class UsuarioService
     }
     public Usuario FazerLogin(UsuarioLoginDTO usuarioLogin)
     {
-        Usuario usuario = Uc.FazerLogin(usuarioLogin);
-        return usuario;
+        List<Usuario> listUsuario = Listar();
+
+        foreach (Usuario usuario in listUsuario)
+        {
+            if (usuario.Username == usuarioLogin.Username && usuario.Senha == usuarioLogin.Senha)
+            {
+                return usuario;
+            }
+        }
+
+        return null;
     }
 }
