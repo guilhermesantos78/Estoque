@@ -15,11 +15,11 @@
       <li v-for="usuario in usuarios" :key="usuario.id" class="user-item">
         <span><strong>Id:</strong> {{ usuario.id }}</span> -
         <span><strong>Usuário:</strong> {{ usuario.nome }}</span> -
-        <span><strong>Senha:</strong> {{ usuario.senha }}</span>
+        <span><strong>Senha:</strong> {{ usuario.senha}}</span>
+
       </li>
     </ul>
 
-    <div v-if="message" class="message">{{ message }}</div>
   </div>
 </template>
 
@@ -36,27 +36,28 @@ export default {
   data() {
     return {
       usuarios: [],
-      message:''
+      message: ''
     };
   },
   methods: {
     async listarUsuarios() {
       const apiUrl = 'https://localhost:7248/Usuario/listar-usuario';
+
       try {
+
         const response = await fetch(apiUrl, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
           },
         });
-        if (usuario) {
-          this.message = 'Usuário Visualizado com sucesso.';
-          console.log('Sucesso');
-        } else {
-          this.message = 'Erro ao Visualizar usuário.';
-          console.log('Erro');
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
+
         this.usuarios = await response.json();
+
       } catch (error) {
         console.error('Erro:', error);
       }

@@ -6,10 +6,6 @@
       <h1 class="form-title">Cadastrar Usuário</h1>
       <form @submit="CreateUsuario" class="user-form">
         <div class="form-group">
-          <label for="id">Id :</label>
-          <input type="text" id="id" v-model="id" required />
-        </div>
-        <div class="form-group">
           <label for="nome">Nome :</label>
           <input type="text" id="nome" v-model="nome" required />
         </div>
@@ -47,7 +43,6 @@ export default {
   },
   data() {
     return {
-      id: '',
       nome: '',
       username: '',
       tipousuario:'',
