@@ -1,10 +1,12 @@
 <template>
-    <NavBar />
-    <NavBarUsuarios />
-    <div class="page-container">
+  <NavBar />
+  <NavBarUsuarios />
+  <div class="page-container">
     <div class="form-container">
       <h1 class="form-title">Cadastrar Usuário</h1>
       <form @submit="CreateUsuario" class="user-form">
+        <div v-if="message" :class="['message', message === 'Sucesso ao Cadastrar o usuario.' ? 'success' : 'error']">
+          {{ message }}</div>
         <div class="form-group">
           <label for="nome">Nome :</label>
           <input type="text" id="nome" v-model="nome" required />
@@ -12,10 +14,14 @@
         <div class="form-group">
           <label for="username">Username :</label>
           <input type="text" id="username" v-model="username" required />
-        </div>        
+        </div>
         <div class="form-group">
-          <label for="tipousuario">Tipo Usuario :</label>
-          <input type="text" id="tipousuario" v-model="tipousuario" required />
+          <label for="tipousuario">Tipo de Usuário :</label>
+          <select id="tipousuario" v-model="tipousuario" required>
+            <option value="" disabled>Selecione...</option>
+            <option value="admin">Admin</option>
+            <option value="cliente">Cliente</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="senha">Senha :</label>
@@ -45,9 +51,10 @@ export default {
     return {
       nome: '',
       username: '',
-      tipousuario:'',
+      tipousuario: '',
       senha: '',
       email: '',
+      message: ''
     };
   },
   methods: {
@@ -55,7 +62,6 @@ export default {
       e.preventDefault();
 
       const data = {
-        id: this.id,
         nome: this.nome,
         username: this.username,
         tipousuario: this.tipousuario,
@@ -65,11 +71,18 @@ export default {
 
       const dataJson = JSON.stringify(data);
 
-      await fetch('https://localhost:7248/Usuario/adicionar-usuario', {
+      const response = await fetch('https://localhost:7248/Usuario/adicionar-usuario', {
         method: 'POST',
-        headers: { 'ContentD-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: dataJson,
       });
+
+      if (response.status === 200) {
+        this.message = 'Sucesso ao Cadastrar o usuario.';
+      }
+      else {
+        this.message = 'Erro ao Cadastrar o usuario.';
+      }
     },
   },
 };
@@ -86,7 +99,6 @@ export default {
   min-height: 100vh;
 }
 
-/* Container do formulário */
 .form-container {
   background-color: white;
   padding: 40px;
@@ -121,7 +133,8 @@ export default {
   display: block;
 }
 
-.form-group input {
+.form-group input,
+.form-group select {
   width: 95%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -130,8 +143,6 @@ export default {
   transition: border-color 0.3s ease;
 }
 
-
-/* Botão de submit */
 .submit-btn {
   padding: 12px;
   background-color: #333;
@@ -145,5 +156,18 @@ export default {
 
 .submit-btn:hover {
   background-color: #000;
+}
+
+.message {
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
 }
 </style>

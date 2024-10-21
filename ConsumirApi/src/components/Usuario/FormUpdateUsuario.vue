@@ -5,29 +5,39 @@
     <div class="form-container">
       <h1>Editar Usuário</h1>
       <form @submit="CreateUsuario" class="user-form">
+        <div v-if="message" :class="['message', message === 'Sucesso ao editar usuarios.' ? 'success' : 'error']">
+          {{ message }}
+        </div>
         <div class="form-group">
           <label for="id">Id :</label>
           <input type="text" id="id" v-model="id" required />
         </div>
         <div class="form-group">
           <label for="nome">Nome :</label>
-          <input type="text" id="nome" v-model="nome" required />
+          <input type="text" id="nome" v-model="nome" />
         </div>
         <div class="form-group">
           <label for="username">Username :</label>
-          <input type="text" id="username" v-model="username" required />
+          <input type="text" id="username" v-model="username" />
+        </div>
+        <div class="form-group">
+          <label for="tipousuario">Tipo de Usuário :</label>
+          <select id="tipousuario" v-model="tipousuario" required>
+            <option value="" disabled>Selecione...</option>
+            <option value="admin">Admin</option>
+            <option value="cliente">Cliente</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="senha">Senha :</label>
-          <input type="password" id="senha" v-model="senha" required />
+          <input type="password" id="senha" v-model="senha" />
         </div>
         <div class="form-group">
           <label for="email">Email :</label>
-          <input type="email" id="email" v-model="email" required />
+          <input type="email" id="email" v-model="email" />
         </div>
         <button type="submit" class="submit-button">Editar o Usuário</button>
       </form>
-      <div v-if="message" class="message">{{ message }}</div>
     </div>
   </div>
 </template>
@@ -37,7 +47,7 @@ import NavBar from '@/components/NavBar.vue';
 import NavBarUsuarios from '@/components/Usuario/NavBarUsuarios.vue';
 
 export default {
-  name: 'FormUpdateusuario',
+  name: 'FormUpdateUsuario',
   components: {
     NavBar,
     NavBarUsuarios,
@@ -47,36 +57,38 @@ export default {
       id: '',
       nome: '',
       username: '',
+      tipousuario:'',
       senha: '',
       email: '',
-      message: '',
+      message: ''
     };
   },
   methods: {
     async CreateUsuario(e) {
       e.preventDefault();
-
       const data = {
         id: this.id,
         nome: this.nome,
         username: this.username,
+        tipousuario: this.tipousuario,
         senha: this.senha,
         email: this.email,
       };
-
       const dataJson = JSON.stringify(data);
 
-      const req = await fetch('https://localhost:7248/Usuario/editar-usuario', {
+      const response = await fetch('https://localhost:7248/Usuario/editar-usuario', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: dataJson,
       });
 
-      if (req.status === 200) {
-        this.message = 'Sucesso.';
-      } else {
-        this.message = 'Erro.';
+      if (response.status === 200) {
+        this.message = 'Sucesso ao editar usuarios.';
       }
+      else {
+        this.message = 'Erro ao editar usuarios.';
+      }
+
     },
   },
 };
@@ -98,7 +110,24 @@ h1 {
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-group input,
+.form-group select {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
 }
 
 label {
@@ -134,8 +163,15 @@ input {
 }
 
 .message {
-  margin-top: 10px;
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.success {
   color: green;
-  text-align: center;
+}
+
+.error {
+  color: red;
 }
 </style>

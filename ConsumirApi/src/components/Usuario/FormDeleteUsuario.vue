@@ -4,6 +4,8 @@
     <NavBarUsuarios />
     <div class="form-container">
       <h1>Deletar Usuário</h1>
+      <div v-if="message" :class="['message', message === 'Sucesso ao deletar usuarios.' ? 'success' : 'error']">{{
+        message }}</div>
       <form @submit="deleteUsuario" class="delete-form">
         <div class="form-group">
           <label for="id">Id :</label>
@@ -11,7 +13,6 @@
         </div>
         <button type="submit" class="delete-button">Deletar Usuário</button>
       </form>
-      <div v-if="message" class="message">{{ message }}</div>
     </div>
   </div>
 </template>
@@ -35,33 +36,21 @@ export default {
   methods: {
     async deleteUsuario(e) {
       e.preventDefault();
-
       try {
-        const req = await fetch(`https://localhost:7248/Usuario/deletar-usuario?id=${this.id}`, {
+        const response = await fetch(`https://localhost:7248/Usuario/deletar-usuario?id=${this.id}`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
         });
-
-        if (!req.ok) {
+        if (!response.ok) {
           throw new Error('Erro ao deletar');
         }
-
-        const usuario = await req.json();
-        console.log('Resposta da API:', usuario);
-
-        if (usuario) {
-          this.message = 'Usuário deletado com sucesso.';
-          console.log('Sucesso');
-        } else {
-          this.message = 'Erro ao deletar usuário.';
-          console.log('Erro');
-        }
+        this.message = response.status === 200 ? 'Sucesso ao deletar usuarios.' : 'Erro ao deletar usuário.';
       } catch (error) {
-        console.error('Erro ao deletar usuário:', error);
+        this.message = 'Erro ao deletar usuário.';
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -117,8 +106,15 @@ input {
 }
 
 .message {
-  margin-top: 10px;
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.success {
   color: green;
-  text-align: center;
+}
+
+.error {
+  color: red;
 }
 </style>

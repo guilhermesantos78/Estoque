@@ -57,17 +57,19 @@ export default {
 
         if (data.username === usuario.username) {
           this.message = 'Sucesso.';
-          this.username = '';
-          this.senha = '';
 
           // Redireciona com base no tipo de usuário
           if (usuario.tipoUsuario === "Cliente") {
             this.$router.push('/InitialPageClientes');
           } else if (usuario.tipoUsuario === "Admin") {
-            this.$router.push('/InitialPage'); // Adicione a rota para Administrador
+            this.$router.push('/InitialPage'); // Redireciona para a rota para Administrador
           } else {
             this.message = 'Tipo de usuário desconhecido.';
           }
+
+          this.username = '';
+          this.senha = '';
+          
         } else {
           this.message = 'Erro nas credenciais.';
         }
