@@ -21,7 +21,7 @@ namespace Estoque.Services
         [MaxLength(14, ErrorMessage = "Quantidade de caracteres acima da máxima")]
         public string CNPJ { get; set; }
         public int ProdutoId { get; set; }
-        public int ClienteId { get; set; }
+        public int UsuarioId { get; set; }
 
     }
 }

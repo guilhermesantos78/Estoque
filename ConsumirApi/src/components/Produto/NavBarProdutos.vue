@@ -1,6 +1,7 @@
 <template>
     <nav class="nav">
         <RouterLink to="/FormGetProduto" class="nav-link">Listar</RouterLink>
+        <RouterLink to="/FormGetProdutoByUserId" class="nav-link">ListarPorUsuario</RouterLink>
         <RouterLink to="/FormPostProduto" class="nav-link">Criar</RouterLink>
         <RouterLink to="/FormUpdateProduto" class="nav-link">Editar</RouterLink>
         <RouterLink to="/FormDeleteProduto" class="nav-link">Deletar</RouterLink>

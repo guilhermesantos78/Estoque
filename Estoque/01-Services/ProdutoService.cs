@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Estoque.Entidades;
 using Estoque.Repository;
+using Microsoft.AspNetCore.Mvc;
+using System.Data.SQLite;
 
 namespace Estoque.Services
 {
@@ -43,6 +45,10 @@ namespace Estoque.Services
         public Produto BuscarProdutoPorId(int id)
         {
             return repository.BuscarProdutoPorId(id);
+        }
+        public ActionResult<IEnumerable<Produto>> GetProdutosByUsuarioId(int UsuarioId)
+        {
+            return repository.GetProdutosByUsuarioId(UsuarioId);
         }
 
     }

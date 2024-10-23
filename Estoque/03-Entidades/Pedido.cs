@@ -19,7 +19,7 @@ namespace Estoque.Entidades
         public string TipoAlteracao { get; set; } // Entrada, Saída, Ajuste
         public string NomeProduto { get; set; }
         public int ProdutoId { get; set; }
-        public int ClienteId { get; set; }
+        public int UsuarioId { get; set; }
 
     }
 }

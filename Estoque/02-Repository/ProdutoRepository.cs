@@ -5,6 +5,7 @@ using Estoque.Entidades;
 using System.Data.SQLite;
 using AutoMapper;
 using Estoque.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Estoque.Repository
 {
@@ -56,6 +57,7 @@ namespace Estoque.Repository
                     Descricao = p.Descricao,
                     QuantidadeEmEstoque = p.QuantidadeEmEstoque,
                     FornecedorId = p.FornecedorId,
+                    UsuarioId = p.UsuarioId,
                     fornecedorname = repository.BuscarFornecedorNamePorId(p.FornecedorId)
                 };
 
@@ -85,5 +87,44 @@ namespace Estoque.Repository
 
             return connection.Get<Produto>(id);
         }
+
+        public ActionResult<IEnumerable<Produto>> GetProdutosByUsuarioId(int usuarioId)
+        {
+            using var connection = new SQLiteConnection(_connectionString); // conexão com SQLite
+            connection.Open();
+
+            // Usando Dapper puro para realizar a consulta filtrada por UsuarioId
+            var query = "SELECT * FROM Produtos WHERE UsuarioId = @UsuarioId";
+            var produtos = connection.Query<Produto>(query, new { UsuarioId = usuarioId }).ToList();
+
+            if (produtos == null || !produtos.Any())
+            {
+                return NotFound("Nenhum produto encontrado para o usuário especificado."); // Utilizar NotFound ao invés de NotFoundResult
+            }
+
+            return Ok(produtos); // Retorna a lista de produtos encontrados
+        }
+
+        private ActionResult<IEnumerable<Produto>> NotFound(string mensagem)
+        {
+            // Aqui você pode retornar uma resposta personalizada para o NotFound
+            return new ContentResult
+            {
+                Content = mensagem,
+                ContentType = "text/plain",
+                StatusCode = 404
+            };
+        }
+
+        private ActionResult<IEnumerable<Produto>> Ok(List<Produto> produtos)
+        {
+            // Aqui você pode retornar a lista de produtos em um formato apropriado
+            return new JsonResult(produtos)
+            {
+                StatusCode = 200 // OK status
+            };
+        }
+
+
     }
 }

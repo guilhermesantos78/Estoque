@@ -2,7 +2,9 @@
 using Estoque.Services;
 using Estoque.Entidades;
 using Microsoft.AspNetCore.Mvc;
-using Estoque.UseCases;
+using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
+using Dapper;
 
 namespace EstoqueAPI.Controllers
 {
@@ -12,6 +14,7 @@ namespace EstoqueAPI.Controllers
     {
         private ProdutoService _service;
         private readonly IMapper _mapper;
+        private readonly string _connectionString = "Data Source=ESTOQUE.db";  // String de conexão para o banco SQLite
         public ProdutoController(IMapper mapper, IConfiguration configuration)
         {
             string ConnectionString = configuration.GetConnectionString("DefaultConnection");
@@ -55,5 +58,14 @@ namespace EstoqueAPI.Controllers
         {
             _service.Remover(id);
         }
+
+        [HttpGet("cliente/{UsuarioId}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        public ActionResult<IEnumerable<Produto>> GetProdutosByUsuarioId(int UsuarioId)
+        {
+            return _service.GetProdutosByUsuarioId(UsuarioId);
+        }
+
     }
 }
