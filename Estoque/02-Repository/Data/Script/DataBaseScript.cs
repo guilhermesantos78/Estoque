@@ -18,7 +18,8 @@ namespace Estoque.Repository.Data.Script
                     Preco REAL NOT NULL,
                     Descricao TEXT NOT NULL,
                     QuantidadeEmEstoque INTEGER NOT NULL,
-                    FornecedorId INTEGER
+                    FornecedorId INTEGER,
+                    ClienteId INTEGER
                 );
 
                 CREATE TABLE IF NOT EXISTS Fornecedores (
@@ -26,7 +27,8 @@ namespace Estoque.Repository.Data.Script
                     Nome TEXT NOT NULL,
                     Contato TEXT NOT NULL,
                     Endereco TEXT NOT NULL,
-                    CNPJ TEXT NOT NULL
+                    CNPJ TEXT NOT NULL,
+                    ClienteId INTEGER
                 );
 
                CREATE TABLE IF NOT EXISTS Usuarios(
@@ -54,6 +56,7 @@ namespace Estoque.Repository.Data.Script
                     TipoAlteracao TEXT NOT NULL,
                     NomeProduto TEXT NOT NULL,
                     ProdutoId INTEGER,
+                    ClienteId INTEGER,
                     FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
                 );
 
@@ -65,6 +68,7 @@ namespace Estoque.Repository.Data.Script
                     TipoAlteracao TEXT NOT NULL,
                     NomeProduto TEXT NOT NULL,
                     ProdutoId INTEGER,
+                    ClienteId INTEGER,
                     FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
                 );";
 
