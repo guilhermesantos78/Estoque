@@ -15,40 +15,40 @@ namespace Estoque.Repository
             _connectionString = ConnectionString;
         }
 
-        public void Adicionar(Cliente cliente)
+        public void Adicionar(Empresa empresa)
         {
             using var connection = new SQLiteConnection(_connectionString);
 
-            connection.Execute(ClienteScript.InsertCliente(), cliente);
+            connection.Execute(EmpresaScript.InsertEmpresa(), empresa);
         }
 
         public void Remover(int id)
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
-            Cliente novoCliente = BuscarClientePorId(id);
+            Empresa novaEmpresa = BuscarEmpresaPorId(id);
 
-            connection.Delete<Cliente>(novoCliente);
+            connection.Delete<Empresa>(novaEmpresa);
         }
 
-        public void Editar(Cliente editCliente)
+        public void Editar(Empresa editEmpresa)
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
 
-            connection.Update<Cliente>(editCliente);
+            connection.Update<Empresa>(editEmpresa);
         }
 
-        public List<Cliente> Listar()
+        public List<Empresa> Listar()
         {
             using var connection = new SQLiteConnection(_connectionString);// conexao
 
-            return connection.GetAll<Cliente>().ToList();
+            return connection.GetAll<Empresa>().ToList();
         }
 
-        public Cliente BuscarClientePorId(int id)
+        public Empresa BuscarEmpresaPorId(int id)
         {
             using var connection = new SQLiteConnection(_connectionString);
 
-            return connection.Get<Cliente>(id);
+            return connection.Get<Empresa>(id);
         }
 
     }

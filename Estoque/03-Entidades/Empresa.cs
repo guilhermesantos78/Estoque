@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Estoque.Entidades
 {
-    public class Cliente
+    public class Empresa
     {
         public int Id { get; set; }
         public string Nome { get; set; }

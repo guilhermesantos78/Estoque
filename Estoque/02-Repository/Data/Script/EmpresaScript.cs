@@ -1,8 +1,8 @@
 ﻿namespace Estoque.Repository
 {
-    public class ClienteScript
+    public class EmpresaScript
     {
-        public static string InsertCliente()
+        public static string InsertEmpresa()
         {
             string commandINSERTFornecedor = @"
                 INSERT INTO Clientes(Nome, Contato, Endereco, CNPJ)

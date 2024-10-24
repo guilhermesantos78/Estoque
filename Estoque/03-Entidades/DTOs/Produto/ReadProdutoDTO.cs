@@ -11,7 +11,7 @@ namespace Estoque.Entidades
         public int QuantidadeEmEstoque { get; set; }
         public ReadFornecedorDTO fornecedorname { get; set; }
         public int FornecedorId { get; set; }
-        public int UsuarioId { get; set; }
+        public int EmpresaId { get; set; }
 
     }
 }

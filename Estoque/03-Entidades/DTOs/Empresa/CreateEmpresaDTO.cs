@@ -2,7 +2,7 @@
 
 namespace Estoque.Services
 {
-    public class CreateClienteDTO
+    public class CreateEmpresaDTO
     {
         [Required(ErrorMessage = "Compo Obrigatório 'Nome' não preenchido")]
         [MinLength(2, ErrorMessage = "Quantidade de caracteres abaixo da mínima")]

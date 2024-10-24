@@ -57,7 +57,7 @@ namespace Estoque.Repository
                     Descricao = p.Descricao,
                     QuantidadeEmEstoque = p.QuantidadeEmEstoque,
                     FornecedorId = p.FornecedorId,
-                    UsuarioId = p.UsuarioId,
+                    EmpresaId = p.EmpresaId,
                     fornecedorname = repository.BuscarFornecedorNamePorId(p.FornecedorId)
                 };
 

@@ -17,14 +17,14 @@ namespace Estoque.Services
             repository = new ClienteRepository(ConnectionString);
         }
 
-        public void Adicionar(Cliente cliente)
+        public void Adicionar(Empresa empresa)
         {
-            repository.Adicionar(cliente);
+            repository.Adicionar(empresa);
         }
 
-        public void Editar(Cliente ClienteEdit)
+        public void Editar(Empresa empresaEdit)
         {
-            repository.Editar(ClienteEdit);
+            repository.Editar(empresaEdit);
         }
 
         public void Remover(int id)
@@ -32,14 +32,14 @@ namespace Estoque.Services
             repository.Remover(id);
         }
 
-        public List<Cliente> Listar()
+        public List<Empresa> Listar()
         {
             return repository.Listar();
         }
 
-        public Cliente BuscarClientePorId(int id)
+        public Empresa BuscarEmpresaPorId(int id)
         {
-            return repository.BuscarClientePorId(id);
+            return repository.BuscarEmpresaPorId(id);
         }
     }
 }

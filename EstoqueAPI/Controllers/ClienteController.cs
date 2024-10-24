@@ -18,34 +18,34 @@ namespace EstoqueAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("adicionar-cliente")] // Rota (EndPoint)
-        public void AdicionarFornecedor(CreateClienteDTO c)
+        [HttpPost("adicionar-empresa")] // Rota (EndPoint)
+        public void AdicionarFornecedor(CreateEmpresaDTO c)
         {
-            Cliente cliente = _mapper.Map<Cliente>(c);
+            Empresa empresa = _mapper.Map<Empresa>(c);
 
-            _service.Adicionar(cliente);
+            _service.Adicionar(empresa);
         }
 
-        [HttpGet("visualizar-cliente")] // Rota (EndPoint)
-        public List<Cliente> VisualizarFornecedor()
+        [HttpGet("visualizar-empresa")] // Rota (EndPoint)
+        public List<Empresa> VisualizarFornecedor()
         {
             return _service.Listar();
         }
 
-        [HttpGet("BuscarClientePorId")] // Rota (EndPoint)
-        public Cliente BuscarFornecedorPorId(int id)
+        [HttpGet("BuscarEmpresaPorId")] // Rota (EndPoint)
+        public Empresa BuscarEmpresaPorId(int id)
         {
-            return _service.BuscarClientePorId(id);
+            return _service.BuscarEmpresaPorId(id);
         }
 
-        [HttpPut("editar-cliente")] // Rota (EndPoint)
-        public void EditarCliente(Cliente cliente)
+        [HttpPut("editar-empresa")] // Rota (EndPoint)
+        public void EditarEmpresa(Empresa empresa)
         {
-            _service.Editar(cliente);
+            _service.Editar(empresa);
         }
 
-        [HttpDelete("remover-cliente")] // Rota (EndPoint)
-        public void RemoverClienter(int id)
+        [HttpDelete("remover-empresa")] // Rota (EndPoint)
+        public void RemoverEmpresa(int id)
         {
             _service.Remover(id);
         }
