@@ -7,14 +7,14 @@ namespace EstoqueAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")] // DataNotation
-    public class ClienteController
+    public class EmpresaController : ControllerBase
     {
-        private ClienteService _service;
+        private EmpresaService _service;
         private readonly IMapper _mapper;
-        public ClienteController(IMapper mapper, IConfiguration configuration)
+        public EmpresaController(IMapper mapper, IConfiguration configuration)
         {
             string ConnectionString = configuration.GetConnectionString("DefaultConnection");
-            _service = new ClienteService(ConnectionString);
+            _service = new EmpresaService(ConnectionString);
             _mapper = mapper;
         }
 

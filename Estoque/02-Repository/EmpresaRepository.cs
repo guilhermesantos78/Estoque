@@ -5,12 +5,12 @@ using System.Data.SQLite;
 
 namespace Estoque.Repository
 {
-    public class ClienteRepository
+    public class EmpresaRepository
     {
         public readonly string _connectionString; //Variável de connection string a ser preenchida
 
 
-        public ClienteRepository(string ConnectionString) //Responsavel por preencher a connection string
+        public EmpresaRepository(string ConnectionString) //Responsavel por preencher a connection string
         {
             _connectionString = ConnectionString;
         }

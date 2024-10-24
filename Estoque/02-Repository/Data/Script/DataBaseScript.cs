@@ -41,7 +41,7 @@ namespace Estoque.Repository.Data.Script
                  EmpresaId INTEGER
                 );
 
-               CREATE TABLE IF NOT EXISTS Empresa(
+               CREATE TABLE IF NOT EXISTS Empresas(
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
                     Nome TEXT NOT NULL,
                     Contato TEXT NOT NULL,

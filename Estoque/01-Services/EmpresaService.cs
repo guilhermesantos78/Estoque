@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Estoque.Services
 {
-    public class ClienteService
+    public class EmpresaService
     {
-        public ClienteRepository repository { get; set; }
+        public EmpresaRepository repository { get; set; }
 
-        public ClienteService(string ConnectionString)
+        public EmpresaService(string ConnectionString)
         {
-            repository = new ClienteRepository(ConnectionString);
+            repository = new EmpresaRepository(ConnectionString);
         }
 
         public void Adicionar(Empresa empresa)
