@@ -30,8 +30,8 @@
           <input type="text" id="FornecedorId" v-model="FornecedorId" required />
         </div>
         <div class="form-group">
-          <label for="UsuarioId">Usuario Id :</label>
-          <input type="text" id="UsuarioId" v-model="UsuarioId" required />
+          <label for="EmpresaId">Empresa Id :</label>
+          <input type="text" id="EmpresaId" v-model="EmpresaId" required />
         </div>
         <button type="submit" class="submit-btn">Editar o Produto</button>
       </form>
@@ -57,7 +57,7 @@ export default {
       Descricao: '',
       QuantidadeEmEstoque: '',
       FornecedorId: '',
-      UsuarioId: ''
+      EmpresaId: ''
     };
   },
   methods: {
@@ -70,7 +70,7 @@ export default {
         Descricao: this.Descricao,
         QuantidadeEmEstoque: this.QuantidadeEmEstoque,
         FornecedorId: this.FornecedorId,
-        UsuarioId: this.UsuarioId
+        EmpresaId: this.EmpresaId
       };
       const dataJson = JSON.stringify(data);
       const req = await fetch('https://localhost:7248/Produto/editar-produto', {

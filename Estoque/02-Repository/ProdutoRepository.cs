@@ -88,14 +88,14 @@ namespace Estoque.Repository
             return connection.Get<Produto>(id);
         }
 
-        public ActionResult<IEnumerable<Produto>> GetProdutosByUsuarioId(int usuarioId)
+        public ActionResult<IEnumerable<Produto>> GetProdutosByUsuarioId(int EmpresaId)
         {
             using var connection = new SQLiteConnection(_connectionString); // conexão com SQLite
             connection.Open();
 
             // Usando Dapper puro para realizar a consulta filtrada por UsuarioId
-            var query = "SELECT * FROM Produtos WHERE UsuarioId = @UsuarioId";
-            var produtos = connection.Query<Produto>(query, new { UsuarioId = usuarioId }).ToList();
+            var query = "SELECT * FROM Produtos WHERE EmpresaId = @EmpresaId";
+            var produtos = connection.Query<Produto>(query, new { EmpresaId = EmpresaId }).ToList();
 
             if (produtos == null || !produtos.Any())
             {

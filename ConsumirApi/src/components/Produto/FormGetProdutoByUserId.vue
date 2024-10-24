@@ -6,8 +6,8 @@
         <h1 class="page-title">Lista de Produto</h1>
         <!-- Campo de entrada para o ID do cliente -->
         <div class="form-group">
-          <label for="clienteId">ID do Cliente:</label>
-          <input v-model="clienteId" type="number" id="clienteId" placeholder="Digite o ID do Cliente" class="input-field" />
+          <label for="clienteId">empresaId:</label>
+          <input v-model="empresaId" type="number" id="empresaId" placeholder="Digite o ID da Empresa" class="input-field" />
         </div>
         <!-- Botão para carregar os produtos -->
         <div class="button-container">
@@ -16,7 +16,7 @@
         <!-- Listagem dos produtos -->
         <ul class="product-list">
           <li v-for="produto in Produtos" :key="produto.id" class="product-item">
-            Id: {{ produto.id }} - Nome: {{ produto.nome }} - Preço: {{ produto.preco }} - Descrição: {{ produto.descricao }} - FornecedorId: {{ produto.fornecedorId }} - UsuarioId: {{ produto.usuarioId }}
+            Id: {{ produto.id }} - Nome: {{ produto.nome }} - Preço: {{ produto.preco }} - Descrição: {{ produto.descricao }} - FornecedorId: {{ produto.fornecedorId }} - EmpresaId: {{ produto.empresaId }}
           </li>
         </ul>
       </div>
@@ -36,12 +36,12 @@
     data() {
       return {
         Produtos: [],  // Armazena os produtos buscados
-        clienteId: '', // V-model para o ID do cliente
+        empresaId: '', // V-model para o ID do cliente
       };
     },
     methods: {
       async listarProdutos() {
-        const apiUrl = `https://localhost:7248/Produto/cliente/${this.clienteId}`;  // Usa o clienteId no URL
+        const apiUrl = `https://localhost:7248/Produto/cliente/${this.empresaId}`;  // Usa o clienteId no URL
         try {
           const response = await fetch(apiUrl, {
             method: 'GET',

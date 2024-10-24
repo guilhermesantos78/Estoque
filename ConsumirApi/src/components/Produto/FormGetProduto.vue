@@ -9,7 +9,7 @@
       </div>
       <ul class="product-list">
         <li v-for="produto in Produtos" :key="produto.id" class="product-item">
-          Id: {{ produto.id }} - Nome: {{ produto.nome }} - Preço: {{ produto.preco }} - Descrição: {{ produto.descricao }} - FornecedorId: {{ produto.fornecedorId }}- UsuarioId: {{ produto.usuarioId }}
+          Id: {{ produto.id }} - Nome: {{ produto.nome }} - Preço: {{ produto.preco }} - Descrição: {{ produto.descricao }} - FornecedorId: {{ produto.fornecedorId }}- EmpresaId: {{ produto.empresaId }}
         </li>
       </ul>
     </div>
