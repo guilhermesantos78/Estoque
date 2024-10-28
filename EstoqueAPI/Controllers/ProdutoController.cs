@@ -12,7 +12,7 @@ namespace EstoqueAPI.Controllers
     [Route("[controller]")] // DataNotation
     public class ProdutoController : ControllerBase
     {
-        private ProdutoService _service;
+        private IProdutoService _service;
         private readonly IMapper _mapper;
         private readonly string _connectionString = "Data Source=ESTOQUE.db";  // String de conexão para o banco SQLite
         public ProdutoController(IMapper mapper, IConfiguration configuration)

@@ -10,7 +10,7 @@ namespace EstoqueAPI.Controllers
     [Route("[controller]")] // DataNotation
     public class PedidoController : ControllerBase
     {
-        private PedidoService _service;
+        private IPedidoService _service;
         private readonly IMapper _mapper;
         public PedidoController(IMapper mapper, IConfiguration configuration)
         {
@@ -42,7 +42,7 @@ namespace EstoqueAPI.Controllers
         [HttpGet("BuscarPedidoPorId")] // Rota (EndPoint)
         public Pedido BuscarPedidoPorId(int id)
         {
-            return _service.BuscarPedidoPorId(id);
+            return _service.BuscarPorId(id);
         }
 
         [HttpPut("editar-pedido")] // Rota (EndPoint)

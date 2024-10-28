@@ -8,7 +8,7 @@ using Estoque.Services;
 
 namespace Estoque.Repository
 {
-    public class PedidoRepository
+    public class PedidoRepository : IPedidoRepository
     {
         private readonly string _connectionString;
         private readonly IMapper _mapper;
@@ -29,7 +29,7 @@ namespace Estoque.Repository
         public void Remover(int id)
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
-            Pedido novoPedido = BuscarPedidoPorId(id);
+            Pedido novoPedido = BuscarPorId(id);
 
             connection.Delete<Pedido>(novoPedido);
         }
@@ -62,7 +62,7 @@ namespace Estoque.Repository
             return lista;
         }
 
-        public Pedido BuscarPedidoPorId(int id)
+        public Pedido BuscarPorId(int id)
         {
             using var connection = new SQLiteConnection(_connectionString);
 

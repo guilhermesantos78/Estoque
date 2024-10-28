@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Core.Entidades;
+using Estoque.Services;
 using Microsoft.AspNetCore.Mvc;
 using TrabalhoFinal.Services;
 
@@ -9,7 +10,7 @@ namespace API.Controllers;
 [Route("[controller]")]
 public class UsuarioController : ControllerBase
 {
-    private readonly UsuarioService _service;
+    private readonly IUsuarioService _service;
     private readonly IMapper _mapper;
     public UsuarioController(IConfiguration config, IMapper mapper)
     {

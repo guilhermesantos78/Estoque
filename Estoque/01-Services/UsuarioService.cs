@@ -1,12 +1,14 @@
 ﻿using Core.Entidades;
+using Estoque.Repository;
+using Estoque.Services;
 using Estoque.UseCases;
 using TrabalhoFinal.Repository;
 
 namespace TrabalhoFinal.Services;
 
-public class UsuarioService
+public class UsuarioService : IUsuarioService
 {
-    public UsuarioRepository repository { get; set; }
+    public IUsuarioRepository repository { get; set; }
     private UsuarioUc Uc;
     public UsuarioService(string _config)
     {
@@ -26,7 +28,7 @@ public class UsuarioService
     {
         return repository.Listar();
     }
-    public Usuario BuscarTimePorId(int id)
+    public Usuario BuscarPorId(int id)
     {
         return repository.BuscarPorId(id);
     }

@@ -6,9 +6,9 @@ using System.Data.SQLite;
 
 namespace Estoque.Services
 {
-    public class ProdutoService
+    public class ProdutoService : IProdutoService
     {
-        public ProdutoRepository repository { get; set; }
+        public IProdutoRepository repository { get; set; }
         public readonly IMapper _Mapper;
 
         public ProdutoService(IMapper _mapper, string Connection)

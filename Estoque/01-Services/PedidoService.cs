@@ -4,7 +4,7 @@ using AutoMapper;
 
 namespace Estoque.Services
 {
-    public class PedidoService
+    public class PedidoService : IPedidoService
     {
         public PedidoRepository repository { get; set; }
 
@@ -38,9 +38,9 @@ namespace Estoque.Services
             return repository.ListarInfoProduto();
         }
 
-        public Pedido BuscarPedidoPorId(int id)
+        public Pedido BuscarPorId(int id)
         {
-            return repository.BuscarPedidoPorId(id);
+            return repository.BuscarPorId(id);
         }
 
     }

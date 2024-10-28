@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Estoque.Repository
 {
-    public class ProdutoRepository
+    public class ProdutoRepository : IProdutoRepository
     {
         public readonly string _connectionString; //Variável de connection string a ser preenchida
         public readonly IMapper _mapper;

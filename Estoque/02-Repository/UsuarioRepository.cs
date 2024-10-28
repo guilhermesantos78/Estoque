@@ -6,7 +6,7 @@ using System.Data.SQLite;
 
 namespace TrabalhoFinal.Repository;
 
-public class UsuarioRepository
+public class UsuarioRepository : IUsuarioRepository
 {
     private readonly string ConnectionString;
     public UsuarioRepository(string connectioString)
