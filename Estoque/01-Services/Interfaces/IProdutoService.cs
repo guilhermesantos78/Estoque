@@ -5,12 +5,12 @@ namespace Estoque.Services
 {
     public interface IProdutoService
     {
-        public void Adicionar(Produto produto);
-        public void Remover(int id);
-        public void Editar(Produto editProduto);
-        public List<ReadProdutoDTO> Listar();
-        public List<ReadProdutoComFornecedorDTO> VisualizarProdutoInfoFornecedor();
-        public Produto BuscarProdutoPorId(int id);
-        public ActionResult<IEnumerable<Produto>> GetProdutosByUsuarioId(int EmpresaId);
+        void Adicionar(Produto produto);
+        void Remover(int id);
+        void Editar(Produto editProduto);
+        List<ReadProdutoDTO> Listar();
+        List<ReadProdutoComFornecedorDTO> VisualizarProdutoInfoFornecedor();
+        Produto BuscarProdutoPorId(int id);
+        ActionResult<IEnumerable<Produto>> GetProdutosByUsuarioId(int EmpresaId);
     }
 }

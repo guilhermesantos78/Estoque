@@ -9,6 +9,6 @@ namespace Estoque.Services
         void Editar(Usuario usuario);
         List<Usuario> Listar();
         Usuario BuscarPorId(int id);
-        public Usuario FazerLogin(UsuarioLoginDTO usuarioLogin);
+        Usuario FazerLogin(UsuarioLoginDTO usuarioLogin);
     }
 }

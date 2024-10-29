@@ -5,10 +5,10 @@ namespace Estoque.Services
 {
     public interface IEmpresaService
     {
-        public void Adicionar(Empresa empresa);
-        public void Remover(int id);
-        public void Editar(Empresa editEmpresa);
-        public List<Empresa> Listar();
-        public Empresa BuscarPorId(int id);
+        void Adicionar(Empresa empresa);
+        void Remover(int id);
+        void Editar(Empresa editEmpresa);
+        List<Empresa> Listar();
+        Empresa BuscarPorId(int id);
     }
 }

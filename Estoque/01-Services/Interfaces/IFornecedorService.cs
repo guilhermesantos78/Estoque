@@ -4,10 +4,10 @@ namespace Estoque.Services
 {
     public interface IFornecedorService
     {
-        public void Adicionar(Fornecedor fornecedor);
-        public void Remover(int id);
-        public void Editar(Fornecedor editFornecedor);
-        public List<Fornecedor> Listar();
-        public Fornecedor BuscarPorId(int id);
+        void Adicionar(Fornecedor fornecedor);
+        void Remover(int id);
+        void Editar(Fornecedor editFornecedor);
+        List<Fornecedor> Listar();
+        Fornecedor BuscarPorId(int id);
     }
 }

@@ -5,6 +5,6 @@ namespace Estoque.Repository
 {
     public interface IHistoricoPedidoRepository
     {
-        public List<ReadPedidoComProdutoDTO> VisualizarHistoricoPedidos();
+        List<ReadPedidoComProdutoDTO> VisualizarHistoricoPedidos();
     }
 }

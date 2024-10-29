@@ -3,6 +3,6 @@ namespace Estoque.Services
 {
     public interface IHistoricoPedidoService
     {
-        public List<ReadPedidoComProdutoDTO> VisualizarHistoricoPedidos();
+        List<ReadPedidoComProdutoDTO> VisualizarHistoricoPedidos();
     }
 }
