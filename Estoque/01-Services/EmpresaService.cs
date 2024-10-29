@@ -1,16 +1,11 @@
 ﻿using Estoque.Entidades;
 using Estoque.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Estoque.Services
 {
-    public class EmpresaService
+    public class EmpresaService : IEmpresaService
     {
-        public EmpresaRepository repository { get; set; }
+        public IEmpresaRepository repository { get; set; }
 
         public EmpresaService(string ConnectionString)
         {
@@ -37,9 +32,9 @@ namespace Estoque.Services
             return repository.Listar();
         }
 
-        public Empresa BuscarEmpresaPorId(int id)
+        public Empresa BuscarPorId(int id)
         {
-            return repository.BuscarEmpresaPorId(id);
+            return repository.BuscarPorId(id);
         }
     }
 }

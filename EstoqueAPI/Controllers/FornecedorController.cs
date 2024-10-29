@@ -35,7 +35,7 @@ namespace EstoqueAPI.Controllers
         [HttpGet("BuscarFornecedorPorId")] // Rota (EndPoint)
         public Fornecedor BuscarFornecedorPorId(int id)
         {
-            return _service.BuscarFornecedorPorId(id);
+            return _service.BuscarPorId(id);
         }
 
         [HttpPut("editar-fornecedor")] // Rota (EndPoint)

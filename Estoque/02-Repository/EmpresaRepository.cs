@@ -5,7 +5,7 @@ using System.Data.SQLite;
 
 namespace Estoque.Repository
 {
-    public class EmpresaRepository
+    public class EmpresaRepository : IEmpresaRepository
     {
         public readonly string _connectionString; //Variável de connection string a ser preenchida
 
@@ -25,7 +25,7 @@ namespace Estoque.Repository
         public void Remover(int id)
         {
             using var connection = new SQLiteConnection(_connectionString); // conexao
-            Empresa novaEmpresa = BuscarEmpresaPorId(id);
+            Empresa novaEmpresa = BuscarPorId(id);
 
             connection.Delete<Empresa>(novaEmpresa);
         }
@@ -44,7 +44,7 @@ namespace Estoque.Repository
             return connection.GetAll<Empresa>().ToList();
         }
 
-        public Empresa BuscarEmpresaPorId(int id)
+        public Empresa BuscarPorId(int id)
         {
             using var connection = new SQLiteConnection(_connectionString);
 

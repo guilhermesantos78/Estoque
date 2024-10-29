@@ -6,7 +6,7 @@ namespace Estoque.Services
 {
     public class PedidoService : IPedidoService
     {
-        public PedidoRepository repository { get; set; }
+        public IPedidoRepository repository { get; set; }
 
         public PedidoService(IMapper mapper, string ConnectionString)
         {

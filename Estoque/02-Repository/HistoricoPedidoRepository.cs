@@ -3,10 +3,11 @@ using Estoque.Entidades;
 using System.Data.SQLite;
 using Estoque.Services;
 using AutoMapper;
+using Estoque.Repository;
 
-namespace Estoque._02_Repository
+namespace Estoque.Repository
 {
-    public class HistoricoPedidoRepository
+    public class HistoricoPedidoRepository : IHistoricoPedidoRepository
     {
         private readonly string _connectionString;
         private readonly IMapper _mapper;
@@ -17,7 +18,7 @@ namespace Estoque._02_Repository
             _mapper = mapper;
         }
 
-        public List<ReadPedidoComProdutoDTO> ListarHistorico()
+        public List<ReadPedidoComProdutoDTO> VisualizarHistoricoPedidos()
         {
             using var connection = new SQLiteConnection(_connectionString);
             List<Pedido> pedidos = connection.GetAll<Pedido>().ToList();

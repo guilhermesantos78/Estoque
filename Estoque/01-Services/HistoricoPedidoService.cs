@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Estoque._02_Repository;
+using Estoque.Repository;
 
 namespace Estoque.Services
 {
-    public class HistoricoPedidoService
+    public class HistoricoPedidoService : IHistoricoPedidoService
     {
-        public HistoricoPedidoRepository repository { get; set; }
+        public IHistoricoPedidoRepository repository { get; set; }
 
         public HistoricoPedidoService(IMapper mapper ,string ConnectionString)
         {
@@ -14,7 +14,7 @@ namespace Estoque.Services
 
         public List<ReadPedidoComProdutoDTO> VisualizarHistoricoPedidos()
         {
-            return repository.ListarHistorico();
+            return repository.VisualizarHistoricoPedidos();
         }
     }
 }

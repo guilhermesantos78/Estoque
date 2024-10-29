@@ -2,7 +2,6 @@
 using Estoque.Entidades;
 using Estoque.Repository;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.SQLite;
 
 namespace Estoque.Services
 {

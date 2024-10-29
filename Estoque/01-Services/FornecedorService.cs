@@ -3,9 +3,9 @@ using Estoque.Entidades;
 
 namespace Estoque.Services
 {
-    public class FornecedorService
+    public class FornecedorService : IFornecedorService
     {
-        public FornecedorRepository repository { get; set; }
+        public IFornecedorRepository repository { get; set; }
 
         public FornecedorService(string ConnectionString)
         {
@@ -32,9 +32,9 @@ namespace Estoque.Services
             return repository.Listar();
         }
 
-        public Fornecedor BuscarFornecedorPorId(int id)
+        public Fornecedor BuscarPorId(int id)
         {
-            return repository.BuscarFornecedorPorId(id);
+            return repository.BuscarPorId(id);
         }
     }
 }
