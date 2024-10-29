@@ -8,7 +8,7 @@ namespace EstoqueAPI.Controllers
     [Route("[controller]")]
     public class HistoricoPedidoController : ControllerBase
     {
-        private readonly HistoricoPedidoService _service;
+        private readonly IHistoricoPedidoService _service;
         private readonly IMapper _mapper;
 
         public HistoricoPedidoController(IMapper mapper, IConfiguration configuration)

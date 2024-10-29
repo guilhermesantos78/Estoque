@@ -9,7 +9,7 @@ namespace EstoqueAPI.Controllers
     [Route("[controller]")] // DataNotation
     public class FornecedorController : ControllerBase
     {
-        private FornecedorService _service;
+        private IFornecedorService _service;
         private readonly IMapper _mapper;
         public FornecedorController(IMapper mapper, IConfiguration configuration)
         {

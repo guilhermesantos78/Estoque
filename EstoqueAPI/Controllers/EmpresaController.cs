@@ -9,7 +9,7 @@ namespace EstoqueAPI.Controllers
     [Route("[controller]")] // DataNotation
     public class EmpresaController : ControllerBase
     {
-        private EmpresaService _service;
+        private IEmpresaService _service;
         private readonly IMapper _mapper;
         public EmpresaController(IMapper mapper, IConfiguration configuration)
         {
@@ -35,7 +35,7 @@ namespace EstoqueAPI.Controllers
         [HttpGet("BuscarEmpresaPorId")] // Rota (EndPoint)
         public Empresa BuscarEmpresaPorId(int id)
         {
-            return _service.BuscarEmpresaPorId(id);
+            return _service.BuscarPorId(id);
         }
 
         [HttpPut("editar-empresa")] // Rota (EndPoint)
