@@ -2,27 +2,26 @@
   <div class="page-container">
     <NavBar />
     <button @click="mostrarCarrinho" class="cart-button">Carrinho ({{ Carrinho.length }})</button>
-    <div class="container">
+    <div class="container__center">
       <div class="Tittle">
+        <h1>Bem Vindo a nossa loja</h1>
+        <h3>Escolha um produto para seguir para o pagamento</h3>
         <div v-if="mensagem" class="message">{{ mensagem }}</div>
       </div>
       <h2>Lista de Produtos</h2>
-      <div class="products">
-        <ul class="product-list">
-          <li v-for="produto in Produtos" :key="produto.id" class="product-item">
-            {{ produto.nome }} <br><br> A partir de : {{ produto.preco }}$ <br><br>
-            Descrição: {{ produto.descricao }}
-            <button @click="adicionarAoCarrinho(produto)">Adicionar ao Carrinho</button>
-          </li>
-        </ul>
-        <button class="productsaddbutton" @click="handleClick">Clique aqui</button>
-      </div>
+      <ul class="product-list">
+        <li v-for="produto in Produtos" :key="produto.id" class="product-item">
+          Id: {{ produto.id }} - Nome: {{ produto.nome }} - Preço: {{ produto.preco }} - Descrição: {{ produto.descricao }}
+          <button @click="adicionarAoCarrinho(produto)">Adicionar ao Carrinho</button>
+        </li>
+      </ul>
+      <button @click="handleClick">Clique aqui</button>
     </div>
     <div v-if="mostrarCarrinhoModal" class="cart-modal">
       <h2>Carrinho</h2>
       <ul>
         <li v-for="item in Carrinho" :key="item.id" class="cart-item">
-          {{ item.nome }} - {{ item.preco }}$
+          {{ item.nome }} - {{ item.preco }}
           <div class="item-actions">
             <button @click="adicionarMais(item)">+</button>
             <button @click="removerDoCarrinho(item)">Remover</button>
@@ -39,15 +38,15 @@ export default {
   name: 'InitalPageClientes',
   data() {
     return {
-      Produtos: [],
-      Carrinho: [],
-      mensagem: '',
+      Produtos: [], 
+      Carrinho: [], 
+      mensagem: '', 
       mostrarCarrinhoModal: false
     };
   },
   methods: {
     async carregarProdutos() {
-      const apiUrl = 'https://localhost:7248/Produto/visualizar-produto';
+      const apiUrl = 'https://localhost:7248/Produto/visualizar-produto'; 
       try {
         const response = await fetch(apiUrl, {
           method: 'GET',
@@ -59,7 +58,7 @@ export default {
           throw new Error('Erro ao buscar os produtos');
         }
         const data = await response.json();
-        this.Produtos = data;
+        this.Produtos = data; 
       } catch (error) {
         console.error('Erro:', error);
       }
@@ -68,21 +67,21 @@ export default {
       this.Carrinho.push({ ...produto, quantidade: 1 });
       this.mensagem = `Produto ${produto.nome} adicionado ao carrinho!`;
       setTimeout(() => {
-        this.mensagem = '';
+        this.mensagem = ''; 
       }, 3000);
     },
     adicionarMais(produto) {
       produto.quantidade += 1;
       this.mensagem = `Adicionada mais uma unidade de ${produto.nome} ao carrinho!`;
       setTimeout(() => {
-        this.mensagem = '';
+        this.mensagem = ''; 
       }, 3000);
     },
     removerDoCarrinho(produto) {
       this.Carrinho = this.Carrinho.filter(item => item.id !== produto.id);
       this.mensagem = `Produto ${produto.nome} removido do carrinho.`;
       setTimeout(() => {
-        this.mensagem = '';
+        this.mensagem = ''; 
       }, 3000);
     },
     mostrarCarrinho() {
@@ -96,17 +95,12 @@ export default {
     }
   },
   mounted() {
-    this.carregarProdutos();
+    this.carregarProdutos(); 
   }
 };
 </script>
 
 <style scoped>
-.products {
-  padding-top: 50px;
-}
-
-
 .page-container {
   font-family: 'Arial', sans-serif;
   display: flex;
@@ -117,10 +111,11 @@ export default {
   min-height: 100vh;
 }
 
-.container {
+.container__center {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   padding: 20px;
 }
@@ -130,7 +125,7 @@ export default {
   margin-bottom: 20px;
 }
 
-.Tittle h2 {
+h2 {
   margin-bottom: 20px;
   color: #333;
 }
@@ -139,15 +134,13 @@ export default {
   list-style-type: none;
   padding: 0;
   width: 100%;
-  max-width: 2000px;
-  display: flex;
+  max-width: 600px;
 }
 
 .product-item {
   background-color: #ffffff;
   margin-bottom: 10px;
   padding: 15px;
-  height: 350px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -156,7 +149,7 @@ export default {
   flex-wrap: wrap;
 }
 
-.product-item button {
+button {
   padding: 10px 20px;
   background-color: #333;
   color: white;
@@ -166,7 +159,7 @@ export default {
   transition: background-color 0.3s ease;
 }
 
-.product-item button:hover {
+button:hover {
   background-color: #000;
 }
 
@@ -200,30 +193,18 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  padding: 30px;
+  padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   width: 90%;
-  min-height: 500px;
-  max-width: 1000px;
+  max-width: 600px;
   z-index: 1000;
-}
-
-.cart-modal button {
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .cart-item {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  margin-top: 20px;
 }
 
 .item-actions {
@@ -240,10 +221,6 @@ export default {
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 20px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 50px;
 }
 
 .close-button:hover {
