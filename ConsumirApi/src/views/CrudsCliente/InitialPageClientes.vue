@@ -106,6 +106,12 @@ export default {
   padding-top: 50px;
 }
 
+.productsaddbutton{
+  position: absolute;
+  right: 50%;
+  margin-top: 50px;
+  transform: translate(50%, -50%);
+}
 
 .page-container {
   font-family: 'Arial', sans-serif;
