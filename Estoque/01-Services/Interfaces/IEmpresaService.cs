@@ -1,5 +1,4 @@
-﻿
-using Estoque.Entidades;
+﻿using Estoque.Entidades;
 
 namespace Estoque.Services
 {
