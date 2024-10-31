@@ -11,11 +11,10 @@ namespace EstoqueAPI.Controllers
         private readonly IHistoricoPedidoService _service;
         private readonly IMapper _mapper;
 
-        public HistoricoPedidoController(IMapper mapper, IConfiguration configuration)
+        public HistoricoPedidoController(IMapper mapper, IHistoricoPedidoService service)
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            _service = new HistoricoPedidoService(mapper, connectionString);
             _mapper = mapper;
+            _service = service;
         }
 
         [HttpGet("VisualizarHistoricoPedidos")]

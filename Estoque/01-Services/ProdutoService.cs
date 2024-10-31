@@ -7,12 +7,12 @@ namespace Estoque.Services
 {
     public class ProdutoService : IProdutoService
     {
-        public IProdutoRepository repository { get; set; }
+        private readonly IProdutoRepository repository;
         public readonly IMapper _Mapper;
 
-        public ProdutoService(IMapper _mapper, string Connection)
+        public ProdutoService(IMapper _mapper, IProdutoRepository produtoRepository)
         {
-            repository = new ProdutoRepository(_mapper, Connection);
+            repository = produtoRepository;
             _Mapper = _mapper;
         }
 

@@ -12,11 +12,10 @@ public class UsuarioController : ControllerBase
 {
     private readonly IUsuarioService _service;
     private readonly IMapper _mapper;
-    public UsuarioController(IConfiguration config, IMapper mapper)
+    public UsuarioController( IMapper mapper, IUsuarioService service)
     {
-        string _config = config.GetConnectionString("DefaultConnection");
-        _service = new UsuarioService(_config);
         _mapper = mapper;
+        _service = service;
     }
     [HttpPost("adicionar-usuario")]
     public void AdicionarAluno(Usuario usuarioDTO)

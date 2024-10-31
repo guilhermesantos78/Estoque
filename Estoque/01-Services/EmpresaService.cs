@@ -5,11 +5,11 @@ namespace Estoque.Services
 {
     public class EmpresaService : IEmpresaService
     {
-        public IEmpresaRepository repository { get; set; }
+        private readonly IEmpresaRepository repository;
 
-        public EmpresaService(string ConnectionString)
+        public EmpresaService(IEmpresaRepository empresaRepository)
         {
-            repository = new EmpresaRepository(ConnectionString);
+            repository = empresaRepository;
         }
 
         public void Adicionar(Empresa empresa)

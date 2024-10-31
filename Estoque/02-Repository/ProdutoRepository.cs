@@ -6,19 +6,21 @@ using System.Data.SQLite;
 using AutoMapper;
 using Estoque.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace Estoque.Repository
 {
     public class ProdutoRepository : IProdutoRepository
     {
-        public readonly string _connectionString; //Variável de connection string a ser preenchida
+        public readonly string _connectionString;
         public readonly IMapper _mapper;
-        public FornecedorRepository repository { get; set; }
-        public ProdutoRepository(IMapper mapper, string ConnectionString) //Responsavel por preencher a connection string
+        private readonly IFornecedorRepository repository;
+        public ProdutoRepository(IMapper mapper, IConfiguration configuration, IFornecedorRepository fornecedorRepository) //Responsavel por preencher a connection string
         {
-            _connectionString = ConnectionString;
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
             _mapper = mapper;
-            repository = new FornecedorRepository(ConnectionString);
+            repository = fornecedorRepository;
         }
         public void Adicionar(Produto produto)
         {

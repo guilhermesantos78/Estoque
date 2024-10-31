@@ -7,9 +7,9 @@ namespace Estoque.Services
     {
         public IHistoricoPedidoRepository repository { get; set; }
 
-        public HistoricoPedidoService(IMapper mapper ,string ConnectionString)
+        public HistoricoPedidoService(IMapper mapper ,IHistoricoPedidoRepository historicoPedidoRepository)
         {
-            repository = new HistoricoPedidoRepository(ConnectionString, mapper);
+            repository = historicoPedidoRepository;
         }
 
         public List<ReadPedidoComProdutoDTO> VisualizarHistoricoPedidos()

@@ -10,13 +10,12 @@ namespace EstoqueAPI.Controllers
     [Route("[controller]")] // DataNotation
     public class PedidoController : ControllerBase
     {
-        private IPedidoService _service;
+        private readonly IPedidoService _service;
         private readonly IMapper _mapper;
-        public PedidoController(IMapper mapper, IConfiguration configuration)
+        public PedidoController(IMapper mapper, IConfiguration configuration, IPedidoService service)
         {
-            string ConnectionString = configuration.GetConnectionString("DefaultConnection");
-            _service = new PedidoService(mapper, ConnectionString);
             _mapper = mapper;
+            _service = service;
         }
 
         [HttpPost("adicionar-pedido")] // Rota (EndPoint)

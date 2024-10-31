@@ -11,11 +11,10 @@ namespace EstoqueAPI.Controllers
     {
         private IEmpresaService _service;
         private readonly IMapper _mapper;
-        public EmpresaController(IMapper mapper, IConfiguration configuration)
+        public EmpresaController(IMapper mapper, IEmpresaService service)
         {
-            string ConnectionString = configuration.GetConnectionString("DefaultConnection");
-            _service = new EmpresaService(ConnectionString);
             _mapper = mapper;
+            _service = service;
         }
 
         [HttpPost("adicionar-empresa")] // Rota (EndPoint)

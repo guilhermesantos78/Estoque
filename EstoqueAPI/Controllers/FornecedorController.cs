@@ -9,13 +9,12 @@ namespace EstoqueAPI.Controllers
     [Route("[controller]")] // DataNotation
     public class FornecedorController : ControllerBase
     {
-        private IFornecedorService _service;
+        private readonly IFornecedorService _service;
         private readonly IMapper _mapper;
-        public FornecedorController(IMapper mapper, IConfiguration configuration)
+        public FornecedorController(IMapper mapper, IFornecedorService service)
         {
-            string ConnectionString = configuration.GetConnectionString("DefaultConnection");
-            _service = new FornecedorService(ConnectionString);
             _mapper = mapper;
+            _service = service;
         }
 
         [HttpPost("adicionar-fornecedor")] // Rota (EndPoint)

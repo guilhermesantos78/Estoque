@@ -1,18 +1,15 @@
 ﻿using Core.Entidades;
 using Estoque.Repository;
 using Estoque.Services;
-using Estoque.UseCases;
-using TrabalhoFinal.Repository;
 
 namespace TrabalhoFinal.Services;
 
 public class UsuarioService : IUsuarioService
 {
-    public IUsuarioRepository repository { get; set; }
-    private UsuarioUc Uc;
-    public UsuarioService(string _config)
+    private readonly IUsuarioRepository repository;
+    public UsuarioService(IUsuarioRepository usuarioRepository)
     {
-        repository = new UsuarioRepository(_config);
+        repository = usuarioRepository;
     }
     public void Adicionar(Usuario usuario)
     {

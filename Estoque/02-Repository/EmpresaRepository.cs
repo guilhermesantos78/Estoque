@@ -1,6 +1,8 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
 using Estoque.Entidades;
+using Microsoft.Extensions.Configuration;
+using System.Configuration;
 using System.Data.SQLite;
 
 namespace Estoque.Repository
@@ -9,10 +11,9 @@ namespace Estoque.Repository
     {
         public readonly string _connectionString; //Variável de connection string a ser preenchida
 
-
-        public EmpresaRepository(string ConnectionString) //Responsavel por preencher a connection string
+        public EmpresaRepository(IConfiguration configuration) //Responsavel por preencher a connection string
         {
-            _connectionString = ConnectionString;
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
         public void Adicionar(Empresa empresa)

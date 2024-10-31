@@ -2,6 +2,7 @@
 using Dapper;
 using Dapper.Contrib.Extensions;
 using Estoque.Repository;
+using Microsoft.Extensions.Configuration;
 using System.Data.SQLite;
 
 namespace TrabalhoFinal.Repository;
@@ -9,9 +10,9 @@ namespace TrabalhoFinal.Repository;
 public class UsuarioRepository : IUsuarioRepository
 {
     private readonly string ConnectionString;
-    public UsuarioRepository(string connectioString)
+    public UsuarioRepository(IConfiguration configuration)
     {
-        ConnectionString = connectioString;
+        ConnectionString = configuration.GetConnectionString("DefaultConnection");
     }
     public void Adicionar(Usuario usuario)
     {

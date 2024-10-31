@@ -5,6 +5,8 @@ using Estoque.Entidades;
 using System.Data.SQLite;
 using AutoMapper;
 using Estoque.Services;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace Estoque.Repository
 {
@@ -13,9 +15,9 @@ namespace Estoque.Repository
         private readonly string _connectionString;
         private readonly IMapper _mapper;
 
-        public PedidoRepository(string connectionString, IMapper mapper)
+        public PedidoRepository(IConfiguration configuration, IMapper mapper)
         {
-            _connectionString = connectionString;
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
             _mapper = mapper;
         }
 

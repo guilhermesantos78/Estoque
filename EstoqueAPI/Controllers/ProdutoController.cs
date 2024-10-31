@@ -12,14 +12,12 @@ namespace EstoqueAPI.Controllers
     [Route("[controller]")] // DataNotation
     public class ProdutoController : ControllerBase
     {
-        private IProdutoService _service;
+        private readonly IProdutoService _service;
         private readonly IMapper _mapper;
-        private readonly string _connectionString = "Data Source=ESTOQUE.db";  // String de conexão para o banco SQLite
-        public ProdutoController(IMapper mapper, IConfiguration configuration)
+        public ProdutoController(IMapper mapper,  IProdutoService service)
         {
-            string ConnectionString = configuration.GetConnectionString("DefaultConnection");
-            _service = new ProdutoService(mapper, ConnectionString);
             _mapper = mapper;
+            _service = service;
         }
 
         [HttpPost("adicionar-produto")] // Rota (EndPoint)

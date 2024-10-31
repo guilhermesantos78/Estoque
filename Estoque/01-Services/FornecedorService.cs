@@ -1,15 +1,17 @@
 ﻿using Estoque.Repository;
 using Estoque.Entidades;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace Estoque.Services
 {
     public class FornecedorService : IFornecedorService
     {
-        public IFornecedorRepository repository { get; set; }
+        private readonly IFornecedorRepository repository;
 
-        public FornecedorService(string ConnectionString)
+        public FornecedorService(IFornecedorRepository fornecedorRepository)
         {
-            repository = new FornecedorRepository(ConnectionString);
+            repository = fornecedorRepository;
         }
 
         public void Adicionar(Fornecedor fornecedor)

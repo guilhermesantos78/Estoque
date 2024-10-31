@@ -10,5 +10,6 @@ namespace Estoque.Repository
         void Editar(Fornecedor editFornecedor);
         List<Fornecedor> Listar();
         Fornecedor BuscarPorId(int id);
+        ReadFornecedorDTO BuscarFornecedorNamePorId(int id);
     }
 }

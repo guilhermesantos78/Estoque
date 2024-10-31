@@ -6,11 +6,11 @@ namespace Estoque.Services
 {
     public class PedidoService : IPedidoService
     {
-        public IPedidoRepository repository { get; set; }
+        private readonly IPedidoRepository repository;
 
-        public PedidoService(IMapper mapper, string ConnectionString)
+        public PedidoService(IMapper mapper, IPedidoRepository pedidoRepository)
         {
-            repository = new PedidoRepository(ConnectionString, mapper);
+            repository = pedidoRepository;
         }
 
         public void Adicionar(Pedido pedido)
