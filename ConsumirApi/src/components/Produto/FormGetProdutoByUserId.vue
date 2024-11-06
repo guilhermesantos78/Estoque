@@ -36,12 +36,12 @@
     data() {
       return {
         Produtos: [],  // Armazena os produtos buscados
-        empresaId: '', // V-model para o ID do cliente
+        empresaId: '', // V-model para o ID do empresa
       };
     },
     methods: {
       async listarProdutos() {
-        const apiUrl = `https://localhost:7248/Produto/cliente/${this.empresaId}`;  // Usa o clienteId no URL
+        const apiUrl = `https://localhost:7248/Produto/cliente/${this.empresaId}`;  // Usa o empresaId no URL
         try {
           const response = await fetch(apiUrl, {
             method: 'GET',
