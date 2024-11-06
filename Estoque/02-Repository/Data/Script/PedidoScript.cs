@@ -11,11 +11,11 @@ namespace Estoque.Repository.Data.Script
         public static string InsertPedido()
         {
             string commandINSERTPedido = @"
-                INSERT INTO Pedidos (DataPedido, DataEntrega, QuantidadeSolicitada, TipoAlteracao ,NomeProduto, ProdutoId)
-                VALUES (@DataPedido, @DataEntrega, @QuantidadeSolicitada, @TipoAlteracao, @NomeProduto, @ProdutoId);
+                INSERT INTO Pedidos (DataPedido, DataEntrega, QuantidadeSolicitada, TipoAlteracao ,NomeProduto, ProdutoId, EmpresaId)
+                VALUES (@DataPedido, @DataEntrega, @QuantidadeSolicitada, @TipoAlteracao, @NomeProduto, @ProdutoId, @EmpresaId);
 
-                INSERT INTO HistoricoPedidos (DataPedido, DataEntrega, QuantidadeSolicitada, TipoAlteracao, NomeProduto, ProdutoId)
-                VALUES (@DataPedido, @DataEntrega, @QuantidadeSolicitada, @TipoAlteracao, @NomeProduto, @ProdutoId)";
+                INSERT INTO HistoricoPedidos (DataPedido, DataEntrega, QuantidadeSolicitada, TipoAlteracao, NomeProduto, ProdutoId, EmpresaId)
+                VALUES (@DataPedido, @DataEntrega, @QuantidadeSolicitada, @TipoAlteracao, @NomeProduto, @ProdutoId, @EmpresaId)";
 
             return commandINSERTPedido;
         }

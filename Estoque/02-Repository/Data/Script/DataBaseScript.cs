@@ -28,6 +28,7 @@ namespace Estoque.Repository.Data.Script
                     Contato TEXT NOT NULL,
                     Endereco TEXT NOT NULL,
                     CNPJ TEXT NOT NULL,
+                    ProdutoId INTEGER,
                     EmpresaId INTEGER
                 );
 
@@ -57,8 +58,7 @@ namespace Estoque.Repository.Data.Script
                     TipoAlteracao TEXT NOT NULL,
                     NomeProduto TEXT NOT NULL,
                     ProdutoId INTEGER,
-                    EmpresaId INTEGER,
-                    FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
+                    EmpresaId INTEGER
                 );
 
                 CREATE TABLE IF NOT EXISTS HistoricoPedidos (
@@ -69,8 +69,7 @@ namespace Estoque.Repository.Data.Script
                     TipoAlteracao TEXT NOT NULL,
                     NomeProduto TEXT NOT NULL,
                     ProdutoId INTEGER,
-                    EmpresaId INTEGER,
-                    FOREIGN KEY (ProdutoId) REFERENCES Produtos(Id)
+                    EmpresaId INTEGER
                 );";
 
             return commandCREATE;

@@ -39,7 +39,7 @@ namespace EstoqueAPI.Controllers
         {
             return _service.VisualizarProdutoInfoFornecedor();
         }
-        [HttpGet("BuscarProdutoPorId")] // Rota (EndPoint)
+        [HttpGet("Buscar-Por-Id")] // Rota (EndPoint)
         public Produto BuscarProdutoPorId(int id)
         {
             return _service.BuscarProdutoPorId(id);
@@ -58,8 +58,6 @@ namespace EstoqueAPI.Controllers
         }
 
         [HttpGet("cliente/{UsuarioId}")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
         public ActionResult<IEnumerable<Produto>> GetProdutosByUsuarioId(int UsuarioId)
         {
             return _service.GetProdutosByUsuarioId(UsuarioId);

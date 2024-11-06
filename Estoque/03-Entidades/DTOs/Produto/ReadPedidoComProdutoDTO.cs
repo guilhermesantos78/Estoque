@@ -10,7 +10,7 @@ namespace Estoque.Services
         public string TipoAlteracao { get; set; } // Entrada, Saída, Ajuste
         public string NomeProduto { get; set; }
         public int ProdutoId { get; set; }
-        public int UsuarioId { get; set; }
+        public int EmpresaId { get; set; }
         public Produto produto { get; set; }
     }
 }

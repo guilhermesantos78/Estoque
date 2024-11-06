@@ -11,8 +11,8 @@ namespace Estoque.Repository.Data.Script
         public static string InsertFornecedor()
         {
             string commandINSERTFornecedor = @"
-                INSERT INTO Fornecedores(Nome, Contato, Endereco, CNPJ)
-                VALUES(@Nome, @Contato, @Endereco, @CNPJ)";
+                INSERT INTO Fornecedores(Nome, Contato, Endereco, CNPJ, ProdutoId, EmpresaId)
+                VALUES(@Nome, @Contato, @Endereco, @CNPJ, @ProdutoId, @EmpresaId)";
 
             return commandINSERTFornecedor;
         }

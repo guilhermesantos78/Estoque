@@ -11,7 +11,7 @@ namespace Estoque.Services
         public string Descricao { get; set; }
         public int QuantidadeEmEstoque { get; set; }
         public int FornecedorId { get; set; }
-        public int UsuarioId { get; set; }
+        public int EmpresaId { get; set; }
         public Fornecedor fornecedor { get; set; }
     }
 }
