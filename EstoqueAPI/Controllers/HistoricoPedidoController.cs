@@ -16,7 +16,11 @@ namespace EstoqueAPI.Controllers
             _mapper = mapper;
             _service = service;
         }
-
+        /// <summary>
+        /// Endpoint para Visualizar o historico de Pedidos
+        /// </summary>
+        /// <param name="pedidoId"></param>
+        /// <returns></returns>
         [HttpGet("VisualizarHistoricoPedidos")]
         public List<ReadPedidoComProdutoDTO> VisualizarHistoricoPedidos(int pedidoId)
         {

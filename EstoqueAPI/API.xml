@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EstoqueAPI</name>
+    </assembly>
+    <members>
+        <member name="M:EstoqueAPI.Controllers.ProdutoController.AdicionarProduto(Estoque.Entidades.CreateProdutoDTO)">
+            <summary>
+            Endpoint para Adicionar um produto
+            </summary>
+            <param name="createprodutoDTO"></param>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.ProdutoController.VisualizarProduto">
+            <summary>
+            Endpoint para Visualizar um produto
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.ProdutoController.VisualizarProdutoInfoFornecedor(System.Int32)">
+            <summary>
+            Endpoint para Visualizar um produto com a informação do fornecedor
+            </summary>
+            <param name="FornecedorId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.ProdutoController.BuscarProdutoPorId(System.Int32)">
+            <summary>
+            Endpoint para buscar um produto por id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.ProdutoController.Editarproduto(Estoque.Entidades.Produto)">
+            <summary>
+            Endpoint para Editar um produto
+            </summary>
+            <param name="produto"></param>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.ProdutoController.Removerproduto(System.Int32)">
+            <summary>
+            Endpoint para Remover um produto
+            </summary>
+            <param name="id"></param>
+        </member>
+    </members>
+</doc>

@@ -17,7 +17,10 @@ namespace EstoqueAPI.Controllers
             _mapper = mapper;
             _service = service;
         }
-
+        /// <summary>
+        /// EndPoint para Adicionar um pedido
+        /// </summary>
+        /// <param name="p"></param>
         [HttpPost("adicionar-pedido")] // Rota (EndPoint)
         public void AdicionarPedido(CreatePedidoDTO p)
         {
@@ -25,31 +28,48 @@ namespace EstoqueAPI.Controllers
 
             _service.Adicionar(pedido);
         }
-
+        /// <summary>
+        /// EndPoint para Visualizar um pedido
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("visualizar-pedido")] // Rota (EndPoint)
         public List<Pedido> Listar()
         {
             return _service.Listar();
         }
-
+        /// <summary>
+        /// EndPoint para Visualizar um pedido com informação do produto
+        /// </summary>
+        /// <param name="pedidoId"></param>
+        /// <returns></returns>
         [HttpGet("VisualizarPedidoInfoProduto")] // Rota (EndPoint)
         public List<ReadPedidoComProdutoDTO> VisualizarPedidoInfoProduto(int pedidoId)
         {
             return _service.VisualizarPedidoInfoProduto();
         }
-
+        /// <summary>
+        /// EndPoint para Buscar um pedido por id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("BuscarPedidoPorId")] // Rota (EndPoint)
         public Pedido BuscarPedidoPorId(int id)
         {
             return _service.BuscarPorId(id);
         }
-
+        /// <summary>
+        /// EndPoint para Editar um pedido
+        /// </summary>
+        /// <param name="pedido"></param>
         [HttpPut("editar-pedido")] // Rota (EndPoint)
         public void EditarPedido(Pedido pedido)
         {
             _service.Editar(pedido);
         }
-
+        /// <summary>
+        /// EndPoint para Remover um pedido
+        /// </summary>
+        /// <param name="id"></param>
         [HttpDelete("remover-pedido")] // Rota (EndPoint)
         public void RemoverPedido(int id)
         {
