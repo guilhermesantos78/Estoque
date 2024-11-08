@@ -20,6 +20,7 @@ namespace EstoqueAPI.Controllers
         /// EndPoint para adicionar uma empresa
         /// </summary>
         /// <param name="c"></param>
+        /// <returns></returns>
         [HttpPost("adicionar-empresa")] // Rota (EndPoint)
         public IActionResult AdicionarEmpresa(CreateEmpresaDTO c)
         {
