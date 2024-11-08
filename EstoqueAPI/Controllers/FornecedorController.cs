@@ -21,11 +21,19 @@ namespace EstoqueAPI.Controllers
         /// </summary>
         /// <param name="f"></param>
         [HttpPost("adicionar-fornecedor")] // Rota (EndPoint)
-        public void AdicionarFornecedor(CreateFornecedorDTO f)
+        public IActionResult AdicionarFornecedor(CreateFornecedorDTO f)
         {
-            Fornecedor fornecedor = _mapper.Map<Fornecedor>(f);
 
-            _service.Adicionar(fornecedor);
+            try
+            {
+                Fornecedor fornecedor = _mapper.Map<Fornecedor>(f);
+                _service.Adicionar(fornecedor);
+                return Ok();
+            }
+            catch (Exception erro)
+            {
+                return BadRequest($"Erro ao Adicionar Fornecedor, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// Endpoint para Visualizar um fornecedor
@@ -34,7 +42,15 @@ namespace EstoqueAPI.Controllers
         [HttpGet("visualizar-fornecedor")] // Rota (EndPoint)
         public List<Fornecedor> VisualizarFornecedor()
         {
-            return _service.Listar();
+
+            try
+            {
+                return _service.Listar();
+            }
+            catch (Exception erro)
+            {
+                throw new Exception($"Erro ao Visualizar Fornecedor, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// Endpoint para Buscar um fornecedor por id
@@ -44,7 +60,15 @@ namespace EstoqueAPI.Controllers
         [HttpGet("Buscar-por-Id")] // Rota (EndPoint)
         public Fornecedor BuscarFornecedorPorId(int id)
         {
-            return _service.BuscarPorId(id);
+
+            try
+            {
+                return _service.BuscarPorId(id);
+            }
+            catch (Exception erro)
+            {
+                throw new Exception($"Erro ao Buscar Fornecedor Por Id, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// Endpoint para Editar um fornecedor
@@ -53,16 +77,32 @@ namespace EstoqueAPI.Controllers
         [HttpPut("editar-fornecedor")] // Rota (EndPoint)
         public void EditarFornecedor(Fornecedor fornecedor)
         {
-            _service.Editar(fornecedor);
+            try
+            {
+                _service.Editar(fornecedor);
+            }
+            catch (Exception erro)
+            {
+                throw new Exception($"Erro ao Editar Fornecedor, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// Endpoint para Remover um fornecedor
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("remover-fornecedor")] // Rota (EndPoint)
-        public void RemoverFornecedor(int id)
+        public IActionResult RemoverFornecedor(int id)
         {
-            _service.Remover(id);
+
+            try
+            {
+                _service.Remover(id);
+                return Ok();
+            }
+            catch (Exception erro)
+            {
+                return BadRequest($"Erro ao Remover Fornecedor, O Erro foi {erro.Message}");
+            }
         }
     }
 }

@@ -24,7 +24,14 @@ namespace EstoqueAPI.Controllers
         [HttpGet("VisualizarHistoricoPedidos")]
         public List<ReadPedidoComProdutoDTO> VisualizarHistoricoPedidos(int pedidoId)
         {
-            return _service.VisualizarHistoricoPedidos();
+            try
+            {
+                return _service.VisualizarHistoricoPedidos();
+            }
+            catch (Exception erro)
+            {
+                throw new Exception($"Erro ao Visualizar Historico Pedidos, O Erro foi {erro.Message}");
+            }
         }
     }
 }

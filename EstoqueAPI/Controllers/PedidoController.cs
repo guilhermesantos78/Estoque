@@ -22,11 +22,18 @@ namespace EstoqueAPI.Controllers
         /// </summary>
         /// <param name="p"></param>
         [HttpPost("adicionar-pedido")] // Rota (EndPoint)
-        public void AdicionarPedido(CreatePedidoDTO p)
+        public IActionResult AdicionarPedido(CreatePedidoDTO p)
         {
-            Pedido pedido = _mapper.Map<Pedido>(p);
-
-            _service.Adicionar(pedido);
+            try
+            {
+                Pedido pedido = _mapper.Map<Pedido>(p);
+                _service.Adicionar(pedido);
+                return Ok();
+            }
+            catch (Exception erro)
+            {
+                return BadRequest($"Erro ao Adicionar Pedido, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// EndPoint para Visualizar um pedido
@@ -35,7 +42,15 @@ namespace EstoqueAPI.Controllers
         [HttpGet("visualizar-pedido")] // Rota (EndPoint)
         public List<Pedido> Listar()
         {
-            return _service.Listar();
+
+            try
+            {
+                return _service.Listar();
+            }
+            catch (Exception erro)
+            {
+                throw new Exception($"Erro ao Listar Pedidos, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// EndPoint para Visualizar um pedido com informação do produto
@@ -45,7 +60,15 @@ namespace EstoqueAPI.Controllers
         [HttpGet("VisualizarPedidoInfoProduto")] // Rota (EndPoint)
         public List<ReadPedidoComProdutoDTO> VisualizarPedidoInfoProduto(int pedidoId)
         {
-            return _service.VisualizarPedidoInfoProduto();
+
+            try
+            {
+                return _service.VisualizarPedidoInfoProduto();
+            }
+            catch (Exception erro)
+            {
+                throw new Exception($"Erro ao Visualizar Pedido Info Produto, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// EndPoint para Buscar um pedido por id
@@ -55,25 +78,51 @@ namespace EstoqueAPI.Controllers
         [HttpGet("BuscarPedidoPorId")] // Rota (EndPoint)
         public Pedido BuscarPedidoPorId(int id)
         {
-            return _service.BuscarPorId(id);
+
+            try
+            {
+                return _service.BuscarPorId(id);
+            }
+            catch (Exception erro)
+            {
+                throw new Exception($"Erro ao Buscar Pedido Por Id, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// EndPoint para Editar um pedido
         /// </summary>
         /// <param name="pedido"></param>
         [HttpPut("editar-pedido")] // Rota (EndPoint)
-        public void EditarPedido(Pedido pedido)
+        public IActionResult EditarPedido(Pedido pedido)
         {
-            _service.Editar(pedido);
+            try
+            {
+                _service.Editar(pedido);
+                return Ok();
+            }
+            catch (Exception erro)
+            {
+                return BadRequest($"Erro ao Editar Pedido, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// EndPoint para Remover um pedido
         /// </summary>
         /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("remover-pedido")] // Rota (EndPoint)
-        public void RemoverPedido(int id)
+        public IActionResult RemoverPedido(int id)
         {
-            _service.Remover(id);
+
+            try
+            {
+                _service.Remover(id);
+                return Ok();
+            }
+            catch (Exception erro)
+            {
+                return BadRequest($"Erro ao Remover Pedido, O Erro foi {erro.Message}");
+            }
         }
     }
 }

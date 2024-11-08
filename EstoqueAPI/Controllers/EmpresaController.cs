@@ -21,11 +21,18 @@ namespace EstoqueAPI.Controllers
         /// </summary>
         /// <param name="c"></param>
         [HttpPost("adicionar-empresa")] // Rota (EndPoint)
-        public void AdicionarFornecedor(CreateEmpresaDTO c)
+        public IActionResult AdicionarEmpresa(CreateEmpresaDTO c)
         {
-            Empresa empresa = _mapper.Map<Empresa>(c);
-
-            _service.Adicionar(empresa);
+            try
+            {
+                Empresa empresa = _mapper.Map<Empresa>(c);
+                _service.Adicionar(empresa);
+                return Ok();
+            }
+            catch (Exception erro)
+            {
+                return BadRequest($"Erro ao Adicionar Empresa, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// EndPoint para visualizar uma empresa
@@ -34,7 +41,14 @@ namespace EstoqueAPI.Controllers
         [HttpGet("visualizar-empresa")] // Rota (EndPoint)
         public List<Empresa> VisualizarFornecedor()
         {
-            return _service.Listar();
+            try
+            {
+                return _service.Listar();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao visualizar a empresa: {ex.Message}");
+            }
         }
         /// <summary>
         /// EndPoint para buscar uma empresa por id
@@ -44,26 +58,49 @@ namespace EstoqueAPI.Controllers
         [HttpGet("BuscarEmpresaPorId")] // Rota (EndPoint)
         public Empresa BuscarEmpresaPorId(int id)
         {
-            return _service.BuscarPorId(id);
+            try
+            {
+                return _service.BuscarPorId(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao buscar a empresa por id: {ex.Message}");
+            }
         }
         /// <summary>
         /// EndPoint para Editar uma empresa
         /// </summary>
         /// <param name="empresa"></param>
         [HttpPut("editar-empresa")] // Rota (EndPoint)
-        public void EditarEmpresa(Empresa empresa)
+        public IActionResult EditarEmpresa(Empresa empresa)
         {
-            _service.Editar(empresa);
+            try
+            {
+                _service.Editar(empresa);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro ao editar empresa: {ex.Message}");
+            }
         }
         /// <summary>
         /// EndPoint para Remover uma empresa
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("remover-empresa")] // Rota (EndPoint)
-        public void RemoverEmpresa(int id)
+        public IActionResult RemoverEmpresa(int id)
         {
-            _service.Remover(id);
-        }
+            try
+            {
+                _service.Remover(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro ao remover empresa: {ex.Message}");
+            }
 
+        }
     }
 }

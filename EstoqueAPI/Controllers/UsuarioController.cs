@@ -22,9 +22,17 @@ public class UsuarioController : ControllerBase
     /// </summary>
     /// <param name="usuarioDTO"></param>
     [HttpPost("adicionar-usuario")]
-    public void AdicionarAluno(Usuario usuarioDTO)
+    public IActionResult AdicionarUsuario(Usuario usuarioDTO)
     {
-        _service.Adicionar(usuarioDTO);
+        try
+        {
+            _service.Adicionar(usuarioDTO);
+            return Ok();
+        }
+        catch (Exception erro)
+        {
+            return BadRequest($"Erro ao Adicionar Usuario, O Erro foi {erro.Message}");
+        }
     }
     /// <summary>
     /// EndPoint para fazer login com um usuario
@@ -34,8 +42,15 @@ public class UsuarioController : ControllerBase
     [HttpPost("fazer-login")]
     public Usuario FazerLogin(UsuarioLoginDTO usuarioLogin)
     {
-        Usuario usuario = _service.FazerLogin(usuarioLogin);
-        return usuario;
+        try
+        {
+            Usuario usuario = _service.FazerLogin(usuarioLogin);
+            return usuario;
+        }
+        catch (Exception erro)
+        {
+            throw new Exception($"Erro ao Fazer Login, O Erro foi {erro.Message}");
+        }
     }
     /// <summary>
     /// EndPoint para Listar uma usuario
@@ -44,24 +59,47 @@ public class UsuarioController : ControllerBase
     [HttpGet("listar-usuario")]
     public List<Usuario> ListarAluno()
     {
-        return _service.Listar();
+        try
+        {
+            return _service.Listar();
+        }
+        catch (Exception erro)
+        {
+            throw new Exception($"Erro ao Listar Aluno, O Erro foi {erro.Message}");
+        }
     }
     /// <summary>
     /// EndPoint para Editar uma usuario
     /// </summary>
     /// <param name="p"></param>
     [HttpPut("editar-usuario")]
-    public void EditarUsuario(Usuario p)
+    public IActionResult EditarUsuario(Usuario p)
     {
-        _service.Editar(p);
+        try
+        {
+            _service.Editar(p);
+            return Ok();
+        }
+        catch (Exception erro)
+        {
+            return BadRequest($"Erro ao Editar Usuario, O Erro foi {erro.Message}");
+        }
     }
     /// <summary>
     /// EndPoint para deletar uma usuario
     /// </summary>
     /// <param name="id"></param>
     [HttpDelete("deletar-usuario")]
-    public void DeletarUsuario(int id)
+    public IActionResult DeletarUsuario(int id)
     {
-        _service.Remover(id);
+        try
+        {
+            _service.Remover(id);
+            return Ok();
+        }
+        catch (Exception erro)
+        {
+            return BadRequest($"Erro ao Deletar Usuario, O Erro foi {erro.Message}");
+        }
     }
 }

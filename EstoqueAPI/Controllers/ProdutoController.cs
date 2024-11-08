@@ -25,11 +25,18 @@ namespace EstoqueAPI.Controllers
         /// <param name="createprodutoDTO"></param>
 
         [HttpPost("adicionar-produto")] // Rota (EndPoint)
-        public void AdicionarProduto(CreateProdutoDTO createprodutoDTO)
+        public IActionResult AdicionarProduto(CreateProdutoDTO createprodutoDTO)
         {
-            Produto produto = _mapper.Map<Produto>(createprodutoDTO);
-
-            _service.Adicionar(produto);
+            try
+            {
+                Produto produto = _mapper.Map<Produto>(createprodutoDTO);
+                _service.Adicionar(produto);
+                return Ok();
+            }
+            catch (Exception erro)
+            {
+                return BadRequest($"Erro ao Adicionar Produto, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// Endpoint para Visualizar um produto
@@ -38,7 +45,14 @@ namespace EstoqueAPI.Controllers
         [HttpGet("visualizar-produto")] // Rota (EndPoint)
         public List<ReadProdutoDTO> VisualizarProduto()
         {
-            return _service.Listar();
+            try
+            {
+                return _service.Listar();
+            }
+            catch (Exception erro)
+            {
+                throw new Exception($"Erro ao Visualizar Produto, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// Endpoint para Visualizar um produto com a informação do fornecedor
@@ -48,7 +62,14 @@ namespace EstoqueAPI.Controllers
         [HttpGet("VisualizarProdutoInfoFornecedor")] // Rota (EndPoint)
         public List<ReadProdutoComFornecedorDTO> VisualizarProdutoInfoFornecedor(int FornecedorId)
         {
-            return _service.VisualizarProdutoInfoFornecedor();
+            try
+            {
+                return _service.VisualizarProdutoInfoFornecedor();
+            }
+            catch (Exception erro)
+            {
+                throw new Exception($"Erro ao Visualizar Produto Info Fornecedor, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// Endpoint para buscar um produto por id
@@ -58,25 +79,48 @@ namespace EstoqueAPI.Controllers
         [HttpGet("Buscar-Por-Id")] // Rota (EndPoint)
         public Produto BuscarProdutoPorId(int id)
         {
-            return _service.BuscarProdutoPorId(id);
+            try
+            {
+                return _service.BuscarProdutoPorId(id);
+            }
+            catch (Exception erro)
+            {
+                throw new Exception($"Erro ao Buscar Produto Por Id, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// Endpoint para Editar um produto
         /// </summary>
         /// <param name="produto"></param>
         [HttpPut("editar-produto")] // Rota (EndPoint)
-        public void Editarproduto(Produto produto)
+        public IActionResult Editarproduto(Produto produto)
         {
-            _service.Editar(produto);
+            try
+            {
+                _service.Editar(produto);
+                return Ok();
+            }
+            catch (Exception erro)
+            {
+                return BadRequest($"Erro ao Editar Produto, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// Endpoint para Remover um produto
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("remover-produto")] // Rota (EndPoint)
-        public void Removerproduto(int id)
+        public IActionResult Removerproduto(int id)
         {
-            _service.Remover(id);
+            try
+            {
+                _service.Remover(id);
+                return Ok();
+            }
+            catch (Exception erro)
+            {
+                return BadRequest($"Erro ao Remover Produto, O Erro foi {erro.Message}");
+            }
         }
         /// <summary>
         /// Endpoint para Buscar um produto pelo id da empresa
@@ -86,7 +130,14 @@ namespace EstoqueAPI.Controllers
         [HttpGet("cliente/{UsuarioId}")]
         public ActionResult<IEnumerable<Produto>> GetProdutosByUsuarioId(int UsuarioId)
         {
-            return _service.GetProdutosByUsuarioId(UsuarioId);
+            try
+            {
+                return _service.GetProdutosByUsuarioId(UsuarioId);
+            }
+            catch (Exception erro)
+            {
+                throw new Exception($"Erro ao Visualizar Produtos By Usuario Id, O Erro foi {erro.Message}");
+            }
         }
 
     }
