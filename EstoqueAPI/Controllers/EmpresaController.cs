@@ -16,7 +16,7 @@ namespace EstoqueAPI.Controllers
             _mapper = mapper;
             _service = service;
         }
-        /// <summary>
+        /// <summary> 
         /// EndPoint para adicionar uma empresa
         /// </summary>
         /// <param name="c"></param>
