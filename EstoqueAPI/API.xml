@@ -4,6 +4,115 @@
         <name>EstoqueAPI</name>
     </assembly>
     <members>
+        <member name="M:EstoqueAPI.Controllers.EmpresaController.AdicionarEmpresa(Estoque.Services.CreateEmpresaDTO)">
+            <summary> 
+            EndPoint para adicionar uma empresa
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.EmpresaController.VisualizarFornecedor">
+            <summary>
+            EndPoint para visualizar uma empresa
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.EmpresaController.BuscarEmpresaPorId(System.Int32)">
+            <summary>
+            EndPoint para buscar uma empresa por id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.EmpresaController.EditarEmpresa(Estoque.Entidades.Empresa)">
+            <summary>
+            EndPoint para Editar uma empresa
+            </summary>
+            <param name="empresa"></param>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.EmpresaController.RemoverEmpresa(System.Int32)">
+            <summary>
+            EndPoint para Remover uma empresa
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.FornecedorController.AdicionarFornecedor(Estoque.Services.CreateFornecedorDTO)">
+            <summary>
+            Endpoint para Adicionar um fornecedor
+            </summary>
+            <param name="f"></param>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.FornecedorController.VisualizarFornecedor">
+            <summary>
+            Endpoint para Visualizar um fornecedor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.FornecedorController.BuscarFornecedorPorId(System.Int32)">
+            <summary>
+            Endpoint para Buscar um fornecedor por id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.FornecedorController.EditarFornecedor(Estoque.Entidades.Fornecedor)">
+            <summary>
+            Endpoint para Editar um fornecedor
+            </summary>
+            <param name="fornecedor"></param>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.FornecedorController.RemoverFornecedor(System.Int32)">
+            <summary>
+            Endpoint para Remover um fornecedor
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.HistoricoPedidoController.VisualizarHistoricoPedidos(System.Int32)">
+            <summary>
+            Endpoint para Visualizar o historico de Pedidos
+            </summary>
+            <param name="pedidoId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.PedidoController.AdicionarPedido(Estoque.Entidades.DTOs.Pedido.CreatePedidoDTO)">
+            <summary>
+            EndPoint para Adicionar um pedido
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.PedidoController.Listar">
+            <summary>
+            EndPoint para Visualizar um pedido
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.PedidoController.VisualizarPedidoInfoProduto(System.Int32)">
+            <summary>
+            EndPoint para Visualizar um pedido com informação do produto
+            </summary>
+            <param name="pedidoId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.PedidoController.BuscarPedidoPorId(System.Int32)">
+            <summary>
+            EndPoint para Buscar um pedido por id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.PedidoController.EditarPedido(Estoque.Entidades.Pedido)">
+            <summary>
+            EndPoint para Editar um pedido
+            </summary>
+            <param name="pedido"></param>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.PedidoController.RemoverPedido(System.Int32)">
+            <summary>
+            EndPoint para Remover um pedido
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:EstoqueAPI.Controllers.ProdutoController.AdicionarProduto(Estoque.Entidades.CreateProdutoDTO)">
             <summary>
             Endpoint para Adicionar um produto
@@ -39,6 +148,44 @@
         <member name="M:EstoqueAPI.Controllers.ProdutoController.Removerproduto(System.Int32)">
             <summary>
             Endpoint para Remover um produto
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.ProdutoController.GetProdutosByUsuarioId(System.Int32)">
+            <summary>
+            Endpoint para Buscar um produto pelo id da empresa
+            </summary>
+            <param name="UsuarioId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.UsuarioController.AdicionarUsuario(Core.Entidades.Usuario)">
+            <summary>
+            EndPoint para Adicionar uma usuario
+            </summary>
+            <param name="usuarioDTO"></param>
+        </member>
+        <member name="M:API.Controllers.UsuarioController.FazerLogin(Core.Entidades.UsuarioLoginDTO)">
+            <summary>
+            EndPoint para fazer login com um usuario
+            </summary>
+            <param name="usuarioLogin"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.UsuarioController.ListarAluno">
+            <summary>
+            EndPoint para Listar uma usuario
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.UsuarioController.EditarUsuario(Core.Entidades.Usuario)">
+            <summary>
+            EndPoint para Editar uma usuario
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:API.Controllers.UsuarioController.DeletarUsuario(System.Int32)">
+            <summary>
+            EndPoint para deletar uma usuario
             </summary>
             <param name="id"></param>
         </member>
