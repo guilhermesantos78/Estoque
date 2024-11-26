@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
+
+// Importações de componentes
 import HomeView from "../views/Home.vue";
-// Importação do componente GestaoCompraClientes
 import GestaoCompraClientes from "../views/CrudsCliente/GestaoCompraClientes.vue";
 
 const router = createRouter({
@@ -35,6 +36,12 @@ const router = createRouter({
       path: "/InitialPageClientes",
       name: "InitialPageClientes",
       component: () => import("../views/CrudsCliente/InitialPageClientes.vue"),
+    },
+    {
+      path: "/gestao-compra",
+      name: "GestaoCompraClientes",
+      component: GestaoCompraClientes,
+      props: true, // Passando parâmetros via props, se necessário
     },
     {
       path: "/FormDeleteUsuario",
@@ -99,17 +106,16 @@ const router = createRouter({
       component: () => import("@/components/Fornecedor/FormPostFornecedor.vue"),
     },
     {
-      path: "/gestao-compra",
-      name: "GestaoCompraClientes",
-      component: GestaoCompraClientes,
-      props: true,
-    },
-    {
       path: "/FormUpdateFornecedor",
       name: "FormUpdateFornecedor",
       component: () =>
         import("@/components/Fornecedor/FormUpdateFornecedor.vue"),
     },
+    {
+      path: "/UserPage",
+      name: "UserPage",
+      component: () => import("../views/UserPage.vue"),
+    }
   ],
 });
 

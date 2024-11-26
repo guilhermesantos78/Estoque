@@ -41,16 +41,11 @@ export default {
 
       const dataJson = JSON.stringify(data);
 
-      try {
         const req = await fetch('https://localhost:7248/Usuario/fazer-login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: dataJson,
         });
-
-        if (!req.ok) {
-          throw new Error('Erro no login');
-        }
 
         const usuario = await req.json();
         console.log('Resposta da API:', usuario);
@@ -60,23 +55,25 @@ export default {
 
           // Redireciona com base no tipo de usuário
           if (usuario.tipoUsuario === "Cliente") {
+
+            this.$store.dispatch('setUsuario', usuario);
             this.$router.push('/InitialPageClientes');
+
           } else if (usuario.tipoUsuario === "Admin") {
+
+            this.$store.dispatch('setUsuario', usuario);
             this.$router.push('/InitialPage'); // Redireciona para a rota para Administrador
+
           } else {
             this.message = 'Tipo de usuário desconhecido.';
           }
 
           this.username = '';
           this.senha = '';
-          
+
         } else {
           this.message = 'Erro nas credenciais.';
         }
-
-      } catch (error) {
-        this.message = 'Erro ao conectar à API.';
-      }
     }
   }
 };

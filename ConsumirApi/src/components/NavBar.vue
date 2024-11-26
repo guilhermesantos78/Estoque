@@ -3,6 +3,7 @@
     <RouterLink to="/CrudUsuarios" class="nav-link">Usuários</RouterLink>
     <RouterLink to="/CrudFornecedores" class="nav-link">Fornecedores</RouterLink>
     <RouterLink to="/CrudProdutos" class="nav-link">Produtos</RouterLink>
+    <RouterLink to="/UserPage" class="nav-link">Usuario</RouterLink>
     <RouterLink to="/" class="nav-link">Logout</RouterLink>
   </nav>
 </template>
