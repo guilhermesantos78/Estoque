@@ -1,14 +1,20 @@
 <template>
-<NavBar/>
+  <NavBar />
   <div class="Main__container">
     <div class="content">
       <h1 class="page__title">Lista de Produto</h1>
+      <div class="form__group">
+        <label for="clienteId">empresaId:</label>
+        <input v-model="empresaId" type="number" id="empresaId" placeholder="Digite o ID da Empresa"
+          class="input__field" />
+      </div>
       <div class="button__container">
         <button @click="listarProdutos" class="btn__load">Carregar Produto</button>
       </div>
       <ul class="product__list">
         <li v-for="produto in Produtos" :key="produto.id" class="product__item">
-          Id: {{ produto.id }} - Nome: {{ produto.nome }} - Preço: {{ produto.preco }} - Descrição: {{ produto.descricao }} - FornecedorId: {{ produto.fornecedorId }}- EmpresaId: {{ produto.empresaId }}
+          Id: {{ produto.id }} - Nome: {{ produto.nome }} - Preço: {{ produto.preco }} - Descrição: {{ produto.descricao
+          }} - FornecedorId: {{ produto.fornecedorId }} - EmpresaId: {{ produto.empresaId }}
         </li>
       </ul>
     </div>
@@ -19,18 +25,19 @@
 import NavBar from '@/components/NavBar.vue';
 
 export default {
-  name: 'FormGetProduto',
-  components:{
+  name: 'FormGetProdutoByEmpresaid',
+  components: {
     NavBar
   },
   data() {
     return {
       Produtos: [],
+      empresaId: '',
     };
   },
   methods: {
     async listarProdutos() {
-      const apiUrl = 'https://localhost:7248/Produto/visualizar-produto';
+      const apiUrl = `https://localhost:7248/Produto/cliente/${this.empresaId}`;
       try {
         const response = await fetch(apiUrl, {
           method: 'GET',
@@ -39,13 +46,13 @@ export default {
           },
         });
 
-        if(response.status === 200){
-          this.Produtos = await response.json(); // Atribui os dados ao array 'Produtos'
-          alert('Produtos Listados Com sucesso!')
+        if (!response.ok) {
+          throw new Error('Erro ao buscar os Produtos');
         }
-        else{
-          alert('Erro ao listar os produtos!')
-        }
+
+        const data = await response.json();
+        console.log(data);
+        this.Produtos = data;
       } catch (error) {
         console.error('Erro:', error);
       }
@@ -76,6 +83,19 @@ export default {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.form__group {
+  margin-bottom: 20px;
+}
+
+.input__field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
 }
 
 .button__container {
@@ -122,7 +142,7 @@ export default {
     font-size: 24px;
     margin: 15px;
   }
-  
+
   .btn__load {
     width: 100%;
     padding: 12px 0;

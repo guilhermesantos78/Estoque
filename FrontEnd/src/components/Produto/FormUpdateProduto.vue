@@ -1,38 +1,38 @@
 <template>
   <NavBar />
-  <div class="page-container">
-    <div class="form-container">
-      <h1 class="form-title">Editar Produto</h1>
-      <form @submit="EditUsuario" class="user-form">
-        <div class="form-group">
+  <div class="Main__container">
+    <div class="form__container">
+      <h1 class="form__title">Editar Produto</h1>
+      <form @submit="EditUsuario" class="user__form">
+        <div class="form__group">
           <label for="id">Id :</label>
           <input type="text" id="id" v-model="id" required />
         </div>
-        <div class="form-group">
+        <div class="form__group">
           <label for="nome">Nome :</label>
           <input type="text" id="nome" v-model="nome" required />
         </div>
-        <div class="form-group">
+        <div class="form__group">
           <label for="preco">Preço :</label>
           <input type="text" id="preco" v-model="preco" required />
         </div>
-        <div class="form-group">
+        <div class="form__group">
           <label for="Descricao">Descrição :</label>
           <input type="text" id="Descricao" v-model="Descricao" required />
         </div>
-        <div class="form-group">
+        <div class="form__group">
           <label for="QuantidadeEmEstoque">Quantidade em Estoque :</label>
           <input type="text" id="QuantidadeEmEstoque" v-model="QuantidadeEmEstoque" required />
         </div>
-        <div class="form-group">
+        <div class="form__group">
           <label for="FornecedorId">Fornecedor Id :</label>
           <input type="text" id="FornecedorId" v-model="FornecedorId" required />
         </div>
-        <div class="form-group">
+        <div class="form__group">
           <label for="EmpresaId">Empresa Id :</label>
           <input type="text" id="EmpresaId" v-model="EmpresaId" required />
         </div>
-        <button type="submit" class="submit-btn">Editar o Produto</button>
+        <button type="submit" class="submit__btn">Editar o Produto</button>
       </form>
     </div>
   </div>
@@ -81,27 +81,27 @@ export default {
 </script>
 
 <style scoped>
-.page-container {
+.Main__container {
   font-family: "Funnel Display", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  background-color: #f9f9f9;
-  min-height: 100vh;
+  justify-content: center;
+  height: 140vh;
+  width: 100%;
 }
 
-.form-container {
+.form__container {
   background-color: white;
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
+  max-width: 800px;
+  height: 700px;
   width: 100%;
-  margin-top: 30px;
 }
 
-.form-title {
+.form__title {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
@@ -109,24 +109,24 @@ export default {
   font-weight: bold;
 }
 
-.user-form {
+.user__form {
   display: flex;
   flex-direction: column;
 }
 
-.form-group {
+.form__group {
   margin-bottom: 20px;
 }
 
-.form-group label {
+.form__group label {
   font-weight: bold;
   color: #333;
   margin-bottom: 5px;
   display: block;
 }
 
-.form-group input,
-.form-group select {
+.form__group input,
+.form__group select {
   width: 95%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -135,9 +135,9 @@ export default {
   transition: border-color 0.3s ease;
 }
 
-.submit-btn {
+.submit__btn {
   padding: 12px;
-  background-color: #333;
+  background-color: rgb(0, 43, 82);
   color: white;
   border: none;
   border-radius: 5px;
@@ -146,20 +146,7 @@ export default {
   transition: background-color 0.3s ease;
 }
 
-.submit-btn:hover {
-  background-color: #000;
-}
-
-.message {
-  margin-top: 15px;
-  font-size: 16px;
-}
-
-.success {
-  color: green;
-}
-
-.error {
-  color: red;
+.submit__btn:hover {
+  background-color: #1A5276;
 }
 </style>

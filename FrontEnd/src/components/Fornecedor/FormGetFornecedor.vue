@@ -1,13 +1,13 @@
 <template>
   <NavBar />
-  <div class="main-container">
+  <div class="Main__container">
     <div class="content">
-      <h1 class="page-title">Lista de Fornecedores</h1>
-      <div class="button-container">
-        <button @click="listarFornecedor" class="btn-load">Carregar Fornecedores</button>
+      <h1 class="page__title">Lista de Fornecedores</h1>
+      <div class="button__container">
+        <button @click="listarFornecedor" class="btn__load">Carregar Fornecedores</button>
       </div>
-      <ul class="forn-list">
-        <li v-for="fornecedor in Fornecedores" :key="fornecedor.id" class="forn-item">
+      <ul class="forn__list">
+        <li v-for="fornecedor in Fornecedores" :key="fornecedor.id" class="forn__item">
           <strong>Id:</strong> {{ fornecedor.id }} - <strong>Nome:</strong> {{ fornecedor.nome }} -
           <strong>Contato:</strong> {{ fornecedor.contato }} - <strong>Endereço:</strong> {{ fornecedor.endereco }} -
           <strong>CNPJ:</strong> {{ fornecedor.cnpj }} - <strong>Produto ID:</strong> {{ fornecedor.produtoId }} -
@@ -42,15 +42,15 @@ export default {
           },
         });
 
-        if (!response.ok) {
-          throw new Error('Erro ao buscar os Fornecedores');
+        if (response.status === 200) {
+          this.Fornecedores = await response.json();
+          alert('Sucesso ao listar os fornecedores!')
         }
-
-        const data = await response.json();
-        console.log(data);
-        this.Fornecedores = data; // Atribui os dados ao array 'Fornecedores'
+        else {
+          alert('Erro ao listar os fornecedores!')
+        }
       } catch (error) {
-        console.error('Erro:', error);
+        console.error(error);
       }
     },
   },
@@ -58,7 +58,17 @@ export default {
 </script>
 
 <style scoped>
-.page-title {
+.Main__container {
+  font-family: "Funnel Display", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+}
+
+.page__title {
   font-size: 28px;
   color: #333;
   text-align: center;
@@ -67,12 +77,12 @@ export default {
   font-family: "Funnel Display", sans-serif;
 }
 
-.button-container {
+.button__container {
   text-align: center;
   margin-bottom: 20px;
 }
 
-.btn-load {
+.btn__load {
   padding: 10px 20px;
   background-color: #333;
   color: white;
@@ -83,18 +93,18 @@ export default {
   transition: background-color 0.3s ease;
 }
 
-.btn-load:hover {
+.btn__load:hover {
   background-color: #000;
 }
 
-.forn-list {
+.forn__list {
   list-style-type: none;
   padding: 0;
   margin: 0 auto;
   max-width: 600px;
 }
 
-.forn-item {
+.forn__item {
   background-color: #f9f9f9;
   margin-bottom: 10px;
   padding: 15px;
@@ -103,24 +113,10 @@ export default {
   font-family: "Funnel Display", sans-serif;
 }
 
-.forn-item strong {
+.forn__item strong {
   color: #555;
 }
 
-.message {
-  margin-top: 15px;
-  font-size: 16px;
-}
-
-.success {
-  color: green;
-}
-
-.error {
-  color: red;
-}
-
-/* Responsividade */
 @media (max-width: 600px) {
   .page-title {
     font-size: 24px;

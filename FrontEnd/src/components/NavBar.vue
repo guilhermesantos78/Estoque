@@ -4,13 +4,13 @@
       ☰
     </div>
 
-    <nav :class="{ 'sidebar': true, 'sidebar__pen': isMenuOpen }">
+    <nav :class="{ 'sidebar': true, 'sidebar__pen': isMenuOpen, 'sidebar__open': isMenuOpen }">
       <RouterLink to="/InitialPage" class="nav__link">Home</RouterLink>
       <div class="sidebar__item" @click="toggleDropdown('produtos')">
         Produtos
         <div v-if="dropdown.produtos" class="dropdown">
           <RouterLink to="/FormGetProduto" class="nav__link">Listar</RouterLink>
-          <RouterLink to="/FormGetProdutoByUserId" class="nav__link">ListarPorEmpresa</RouterLink>
+          <RouterLink to="/FormGetProdutoByEmpresaid" class="nav__link">ListarPorEmpresa</RouterLink>
           <RouterLink to="/FormPostProduto" class="nav__link">Criar</RouterLink>
           <RouterLink to="/FormUpdateProduto" class="nav__link">Editar</RouterLink>
           <RouterLink to="/FormDeleteProduto" class="nav__link">Deletar</RouterLink>
@@ -120,7 +120,13 @@ export default {
   display: block;
 }
 
-.sidebar__item:hover .dropdown {
-  display: block;
+@media (max-width: 768px) {
+  .navBar {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 200px;
+  }
 }
 </style>

@@ -77,10 +77,10 @@ const router = createRouter({
       component: () => import("@/components/Produto/FormGetProduto.vue"),
     },
     {
-      path: "/FormGetProdutoByUserId",
-      name: "FormGetProdutoByUserId",
+      path: "/FormGetProdutoByEmpresaid",
+      name: "FormGetProdutoByEmpresaid",
       component: () =>
-        import("@/components/Produto/FormGetProdutoByUserId.vue"),
+        import("@/components/Produto/FormGetProdutoByEmpresaid.vue"),
     },
     {
       path: "/FormPostProduto",

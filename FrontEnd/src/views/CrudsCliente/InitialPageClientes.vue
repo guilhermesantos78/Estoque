@@ -7,8 +7,8 @@
     <nav :class="{ 'sidebar': true, 'sidebar__open': isMenuOpen }">
       <RouterLink to="/InitialPageClientes" class="nav__link">Home</RouterLink>
 
-      <div class="sidebar__item" @click="toggleDropdown('usuarios')">
-        <button @click="mostrarCarrinho" class="cart-button">Carrinho ({{ Carrinho.length }})</button>
+      <div class="sidebar__item" @click="mostrarCarrinho">
+        <button>Carrinho ({{ Carrinho.length }})</button>
       </div>
 
       <div v-if="!usuario">
@@ -18,7 +18,7 @@
         <RouterLink to="UserPage" class="nav__link">{{ usuario.username }}</RouterLink>
       </div>
 
-      <RouterLink to="/" class="nav__link">Logout</RouterLink>
+      <RouterLink to="/" class="nav__link" @click="logout">Logout</RouterLink>
     </nav>
   </div>
 
@@ -61,7 +61,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 export default {
@@ -114,7 +113,13 @@ export default {
       this.mostrarCarrinhoModal = false;
     },
     handleClick() {
-      this.$router.push({ name: 'GestaoCompraClientes', query: { produtos: JSON.stringify(this.Carrinho) } });
+      this.$router.push({
+        name: 'GestaoCompraClientes',
+        query: { produtos: JSON.stringify(this.Carrinho) }
+      });
+    },
+    logout() {
+      this.$store.commit('setUsuario', null);
     }
   },
   mounted() {
@@ -165,6 +170,13 @@ export default {
   cursor: pointer;
 }
 
+.sidebar__item button {
+  padding: 10px 20px;
+  cursor: pointer;
+  border:3px solid #ededed;
+  border-radius: 8px;
+}
+
 .nav__link {
   display: block;
   padding: 10px 20px;
@@ -180,7 +192,7 @@ export default {
   color: #007bff;
 }
 
-.container{
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -217,10 +229,6 @@ export default {
   justify-content: space-between;
 }
 
-.product__item:hover {
-  transform: translateY(-5px);
-}
-
 .product__name {
   font-size: 1.2em;
   font-weight: bold;
@@ -240,7 +248,7 @@ export default {
 }
 
 .add__to__cart {
-  background-color: #ff6600;
+  background-color: rgb(0, 43, 82);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -251,11 +259,11 @@ export default {
 }
 
 .add__to__cart:hover {
-  background-color: #e65c00;
+  background-color: #1A5276;
 }
 
 .productsaddbutton {
-  background-color: #4CAF50;
+  background-color: rgb(0, 43, 82);
   color: white;
   border: none;
   padding: 15px 30px;
@@ -267,10 +275,9 @@ export default {
 }
 
 .productsaddbutton:hover {
-  background-color: #45a049;
+  background-color: #1A5276;
 }
 
-/* Modal do Carrinho */
 .cart-modal {
   position: fixed;
   top: 50%;
@@ -282,6 +289,7 @@ export default {
   border-radius: 10px;
   z-index: 1000;
   width: 300px;
+  height: auto;
 }
 
 .cart-item {
@@ -292,7 +300,7 @@ export default {
 }
 
 .item-actions button {
-  background-color: #007BFF;
+  background-color: rgb(0, 43, 82);
   color: white;
   border: none;
   padding: 5px;
@@ -303,7 +311,7 @@ export default {
 }
 
 .item-actions button:hover {
-  background-color: #0056b3;
+  background-color: #1A5276;
 }
 
 .cart-total {
@@ -328,7 +336,6 @@ export default {
   background-color: #c82333;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .product__item {
     width: 100%;

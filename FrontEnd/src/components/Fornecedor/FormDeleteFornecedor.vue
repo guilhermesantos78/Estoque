@@ -1,17 +1,16 @@
 <template>
   <NavBar />
-  <div class="form-container">
-    <h1>Deletar Fornecedor</h1>
-    <div v-if="message" :class="['message', message === 'Fornecedor deletado com sucesso.' ? 'success' : 'error']">
-      {{ message }}
+  <div class="Main__container">
+    <div class="form__container">
+      <h1>Deletar Fornecedor</h1>
+      <form @submit="deleteFornecedor" class="delete__form">
+        <div class="form__group">
+          <label for="id">Id :</label>
+          <input type="text" id="id" v-model="id" required />
+        </div>
+        <button type="submit" class="delete__button">Deletar Fornecedor</button>
+      </form>
     </div>
-    <form @submit="deleteFornecedor" class="delete-form">
-      <div class="form-group">
-        <label for="id">Id :</label>
-        <input type="text" id="id" v-model="id" required />
-      </div>
-      <button type="submit" class="delete-button">Deletar Fornecedor</button>
-    </form>
   </div>
 </template>
 
@@ -33,17 +32,20 @@ export default {
     async deleteFornecedor(e) {
       e.preventDefault();
       try {
-        const req = await fetch(`https://localhost:7248/Fornecedor/remover-fornecedor?id=${this.id}`, {
+        const response = await fetch(`https://localhost:7248/Fornecedor/remover-fornecedor?id=${this.id}`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' }
         });
-        if (!req.ok) {
-          throw new Error('Erro ao deletar');
+
+        if (response.status === 200) {
+          alert('Fornecedor deletado com sucesso!')
         }
-        this.message = req.status === 200 ? 'Fornecedor deletado com sucesso.' : 'Erro ao deletar Fornecedor.';
+        else {
+          alert('Erro ao deletar o fornecedor!')
+        }
+
       } catch (error) {
-        this.message = 'Erro ao deletar Fornecedor.';
-        console.error('Erro ao deletar Fornecedor:', error);
+        console.log(error)
       }
     }
   }
@@ -51,7 +53,17 @@ export default {
 </script>
 
 <style scoped>
-.form-container {
+.Main__container {
+  font-family: "Funnel Display", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.form__container {
   max-width: 400px;
   margin: 40px auto;
   padding: 20px;
@@ -60,13 +72,13 @@ export default {
   background-color: #ffffff;
 }
 
-.form-container h1 {
+.form__container h1 {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
 }
 
-.form-group {
+.form__group {
   margin-bottom: 15px;
 }
 
@@ -86,7 +98,7 @@ input {
   transition: border-color 0.3s;
 }
 
-.delete-button {
+.delete__button {
   background-color: #ff0000;
   color: white;
   padding: 10px;
@@ -98,20 +110,7 @@ input {
   transition: background-color 0.3s;
 }
 
-.delete-button:hover {
+.delete__button:hover {
   background-color: #d10000;
-}
-
-.message {
-  margin-top: 15px;
-  font-size: 16px;
-}
-
-.success {
-  color: green;
-}
-
-.error {
-  color: red;
 }
 </style>

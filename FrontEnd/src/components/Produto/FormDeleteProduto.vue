@@ -1,18 +1,15 @@
 <template>
-<NavBar/>
-  <div class="page-container">
-    <div class="form-container">
-      <h1 class="form-title">Deletar Produto</h1>
-      <form @submit="deleteUsuario" class="user-form">
-        <div class="form-group">
+  <NavBar />
+  <div class="Main__container">
+    <div class="form__container">
+      <h1 class="form__title">Deletar Produto</h1>
+      <form @submit="deleteUsuario" class="user__form">
+        <div class="form__group">
           <label for="id">Id :</label>
           <input type="password" id="id" v-model="id" required />
         </div>
-        <button type="submit" class="delete-button">Deletar Produto</button>
+        <button type="submit" class="delete__button">Deletar Produto</button>
       </form>
-      <div v-if="message" :class="['message', message === 'Produto deletado com sucesso.' ? 'success' : 'error']">
-        {{ message }}
-      </div>
     </div>
   </div>
 </template>
@@ -23,37 +20,31 @@ import NavBar from '@/components/NavBar.vue';
 
 export default {
   name: 'FormDeleteProduto',
-  components:{
+  components: {
     NavBar
   },
   data() {
     return {
-      id: '',
-      message: ''
+      id: ''
     };
   },
   methods: {
     async deleteUsuario(e) {
       e.preventDefault();
       try {
-        const req = await fetch(`https://localhost:7248/Produto/remover-produto?id=${this.id}`, {
+        const response = await fetch(`https://localhost:7248/Produto/remover-produto?id=${this.id}`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' }
         });
-        if (!req.ok) {
-          throw new Error('Erro ao deletar');
+
+        if (response.status === 200) {
+          alert('Produto deletado com sucesso!');
         }
-        const produto = await req.json();
-        console.log('Resposta da API:', produto);
-        if (produto) {
-          this.message = 'Produto deletado com sucesso.';
-          console.log('Sucesso');
-        } else {
-          this.message = 'Erro ao deletar Produto.';
-          console.log('Erro');
+        else {
+          alert('Erro ao deletar Produto!');
         }
       } catch (error) {
-        console.error('Erro ao deletar Produto:', error);
+        console.error(error);
       }
     }
   }
@@ -61,17 +52,17 @@ export default {
 </script>
 
 <style scoped>
-.page-container {
+.Main__container {
   font-family: "Funnel Display", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  background-color: #f9f9f9;
-  min-height: 100vh;
+  justify-content: center;
+  height: 80vh;
+  width: 100%;
 }
 
-.form-container {
+.form__container {
   background-color: white;
   padding: 40px;
   border-radius: 10px;
@@ -81,7 +72,7 @@ export default {
   margin-top: 30px;
 }
 
-.form-title {
+.form__title {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
@@ -89,24 +80,24 @@ export default {
   font-weight: bold;
 }
 
-.user-form {
+.user__form {
   display: flex;
   flex-direction: column;
 }
 
-.form-group {
+.form__group {
   margin-bottom: 20px;
 }
 
-.form-group label {
+.form__group label {
   font-weight: bold;
   color: #333;
   margin-bottom: 5px;
   display: block;
 }
 
-.form-group input,
-.form-group select {
+.form__group input,
+.form__group select {
   width: 95%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -115,7 +106,7 @@ export default {
   transition: border-color 0.3s ease;
 }
 
-.delete-button {
+.delete__button {
   background-color: #ff0000;
   color: white;
   padding: 10px;
@@ -127,20 +118,7 @@ export default {
   transition: background-color 0.3s;
 }
 
-.delete-button:hover {
+.delete__button:hover {
   background-color: #d10000;
-}
-
-.message {
-  margin-top: 15px;
-  font-size: 16px;
-}
-
-.success {
-  color: green;
-}
-
-.error {
-  color: red;
 }
 </style>

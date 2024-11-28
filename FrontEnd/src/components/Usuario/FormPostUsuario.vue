@@ -1,37 +1,27 @@
 <template>
   <NavBar />
   <div class="Main__container">
-    <div class="page__container">
-      <div class="form__container">
-        <h1 class="form__title">Cadastrar Usuário</h1>
-        <form @submit="CreateUsuario" class="user__form">
-          <div class="form__group">
-            <label for="nome">Nome :</label>
-            <input type="text" id="nome" v-model="nome" required />
-          </div>
-          <div class="form__group">
-            <label for="username">Username :</label>
-            <input type="text" id="username" v-model="username" required />
-          </div>
-          <div class="form__group">
-            <label for="tipousuario">Tipo de Usuário :</label>
-            <select id="tipousuario" v-model="tipousuario" required>
-              <option value="" disabled>Selecione...</option>
-              <option value="admin">Admin</option>
-              <option value="cliente">Cliente</option>
-            </select>
-          </div>
-          <div class="form__group">
-            <label for="senha">Senha :</label>
-            <input type="password" id="senha" v-model="senha" required />
-          </div>
-          <div class="form__group">
-            <label for="email">Email :</label>
-            <input type="email" id="email" v-model="email" required />
-          </div>
-          <button type="submit" class="submit__btn">Cadastrar Usuário</button>
-        </form>
-      </div>
+    <div class="form__container">
+      <h1 class="form__title">Cadastrar Usuário</h1>
+      <form @submit="CreateUsuario" class="user__form">
+        <div class="form__group">
+          <label for="nome">Nome :</label>
+          <input type="text" id="nome" v-model="nome" required />
+        </div>
+        <div class="form__group">
+          <label for="username">Username :</label>
+          <input type="text" id="username" v-model="username" required />
+        </div>
+        <div class="form__group">
+          <label for="senha">Senha :</label>
+          <input type="password" id="senha" v-model="senha" required />
+        </div>
+        <div class="form__group">
+          <label for="email">Email :</label>
+          <input type="email" id="email" v-model="email" required />
+        </div>
+        <button type="submit" class="submit__btn">Cadastrar Usuário</button>
+      </form>
     </div>
   </div>
 </template>
@@ -48,7 +38,7 @@ export default {
     return {
       nome: '',
       username: '',
-      tipousuario: '',
+      tipousuario: 'Cliente',
       senha: '',
       email: '',
     };
@@ -92,16 +82,7 @@ export default {
   justify-content: center;
   height: 80vh;
   width: 100%;
-}
-
-.page__container {
   font-family: "Funnel Display", sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #f9f9f9;
-  min-height: 100vh;
 }
 
 .form__container {
