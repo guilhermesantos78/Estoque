@@ -25,7 +25,8 @@
 
     <div class="product-section">
       <h3>Seus Produtos</h3>
-      <ul class="product-list">
+      <p v-if="produtos.length === 0">Você não adicionou nenhum produto ao carrinho</p>
+      <ul class="product-list" v-else>
         <li v-for="produto in produtos" :key="produto.id" class="product-item">
           <strong>{{ produto.nome }}</strong>
           <p>A partir de: <span class="price">{{ formatPreco(produto.preco) }}</span></p>
@@ -33,6 +34,7 @@
         </li>
       </ul>
     </div>
+
 
     <div class="address-section">
       <h3>Endereço de Entrega</h3>
@@ -244,17 +246,19 @@ export default {
 }
 
 .submit-button {
-  background-color: #28a745;
+  background-color: rgb(0, 43, 82);
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  transition: .3s;
 }
 
 .submit-button:hover {
-  background-color: #218838;
+  background-color: #1A5276;
+  transform: scale(1.06);
 }
 
 .confirmation-modal {

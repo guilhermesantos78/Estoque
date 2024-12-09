@@ -11,8 +11,8 @@ namespace Estoque.Repository
         public static string InsertUsuario()
         {
             string commandINSERTFornecedor = @"
-                INSERT INTO Usuarios(Nome, Username, TipoUsuario, Senha, Email)
-                VALUES(@Nome, @Username, @TipoUsuario, @Senha, @Email)";
+                INSERT INTO Usuarios(Nome, Username, TipoUsuario, Senha, Email, EmpresaId)
+                VALUES(@Nome, @Username, @TipoUsuario, @Senha, @Email, @EmpresaId)";
 
             return commandINSERTFornecedor;
         }

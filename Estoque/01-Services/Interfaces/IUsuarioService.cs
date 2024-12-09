@@ -1,4 +1,5 @@
 ﻿using Core.Entidades;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Estoque.Services
 {
@@ -10,5 +11,6 @@ namespace Estoque.Services
         List<Usuario> Listar();
         Usuario BuscarPorId(int id);
         Usuario FazerLogin(UsuarioLoginDTO usuarioLogin);
+        ActionResult<IEnumerable<Usuario>> GetUsuarioByEmpresaId(int UsuarioId);
     }
 }

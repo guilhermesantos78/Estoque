@@ -124,5 +124,24 @@ namespace EstoqueAPI.Controllers
                 return BadRequest($"Erro ao Remover Pedido, O Erro foi {erro.Message}");
             }
         }
+
+        /// <summary>
+        /// Endpoint para Buscar um produto pelo id da empresa
+        /// </summary>
+        /// <param name="UsuarioId"></param>
+        /// <returns></returns>
+        [HttpGet("pedido/{UsuarioId}")]
+        public ActionResult<IEnumerable<Pedido>> GetProdutosByEmpresaId(int UsuarioId)
+        {
+            try
+            {
+                return _service.GetPedidosByEmpresaId(UsuarioId);
+            }
+            catch (Exception erro)
+            {
+                throw new Exception($"Erro ao Visualizar Pedido By Usuario Id, O Erro foi {erro.Message}");
+            }
+        }
+
     }
 }

@@ -4,6 +4,7 @@ using Estoque.Repository.Data.Script;
 using Estoque.Entidades;
 using System.Data.SQLite;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Estoque.Repository
 {
@@ -63,6 +64,44 @@ namespace Estoque.Repository
 
             return fornecedor;
         }
+
+        public ActionResult<IEnumerable<Fornecedor>> GetFornecedorByEmpresaId(int EmpresaId)
+        {
+            using var connection = new SQLiteConnection(_connectionString); // conexão com SQLite
+            connection.Open();
+
+            // Usando Dapper puro para realizar a consulta filtrada por EmpresaId
+            string query = "SELECT * FROM Fornecedores WHERE EmpresaId = @EmpresaId";
+            List<Fornecedor> Fornecedores = connection.Query<Fornecedor>(query, new { EmpresaId = EmpresaId }).ToList();
+
+            if (Fornecedores == null || !Fornecedores.Any())
+            {
+                return NotFound("Nenhum produto encontrado para o usuário especificado."); // Utilizar NotFound ao invés de NotFoundResult
+            }
+
+            return Ok(Fornecedores); // Retorna a lista de produtos encontrados
+        }
+
+        private ActionResult<IEnumerable<Fornecedor>> NotFound(string mensagem)
+        {
+            // Aqui você pode retornar uma resposta personalizada para o NotFound
+            return new ContentResult
+            {
+                Content = mensagem,
+                ContentType = "text/plain",
+                StatusCode = 404
+            };
+        }
+
+        private ActionResult<IEnumerable<Fornecedor>> Ok(List<Fornecedor> Fornecedores)
+        {
+            // Aqui você pode retornar a lista de produtos em um formato apropriado
+            return new JsonResult(Fornecedores)
+            {
+                StatusCode = 200 // OK status
+            };
+        }
+
 
     }
 }

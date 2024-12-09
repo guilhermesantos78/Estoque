@@ -1,4 +1,5 @@
 ﻿using Estoque.Entidades;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Estoque.Repository
 {
@@ -9,5 +10,6 @@ namespace Estoque.Repository
         void Editar(Empresa editEmpresa);
         List<Empresa> Listar();
         Empresa BuscarPorId(int id);
+        ActionResult<IEnumerable<Empresa>> GetEmpresaByEmpresaId(int EmpresaId);
     }
 }

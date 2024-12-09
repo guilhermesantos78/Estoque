@@ -14,7 +14,7 @@ namespace EstoqueAPI.Controllers
     {
         private readonly IProdutoService _service;
         private readonly IMapper _mapper;
-        public ProdutoController(IMapper mapper,  IProdutoService service)
+        public ProdutoController(IMapper mapper, IProdutoService service)
         {
             _mapper = mapper;
             _service = service;
@@ -128,11 +128,11 @@ namespace EstoqueAPI.Controllers
         /// <param name="UsuarioId"></param>
         /// <returns></returns>
         [HttpGet("cliente/{UsuarioId}")]
-        public ActionResult<IEnumerable<Produto>> GetProdutosByUsuarioId(int UsuarioId)
+        public ActionResult<IEnumerable<Produto>> GetProdutosByEmpresaId(int UsuarioId)
         {
             try
             {
-                return _service.GetProdutosByUsuarioId(UsuarioId);
+                return _service.GetProdutosByEmpresaId(UsuarioId);
             }
             catch (Exception erro)
             {

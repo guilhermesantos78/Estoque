@@ -322,6 +322,7 @@ export default {
 
 .close-button {
   position: absolute;
+  border: none;
   bottom: 20px;
   right: 20px;
   background-color: #dc3545;

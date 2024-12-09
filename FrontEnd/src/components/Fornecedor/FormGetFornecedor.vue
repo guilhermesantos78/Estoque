@@ -29,11 +29,22 @@ export default {
   data() {
     return {
       Fornecedores: [],
+      empresaId:''
     };
+  },
+  mounted() {
+    this.empresaId = this.usuario.empresaId; // Acessar o usuario via this.usuario
+    console.log(this.usuario);
+  },
+  computed: {
+    // Acessando o usuario via Vuex
+    usuario() {
+      return this.$store.getters.getUsuario; // Supondo que o getter 'getUsuario' retorna os dados do usuário
+    }
   },
   methods: {
     async listarFornecedor() {
-      const apiUrl = 'https://localhost:7248/Fornecedor/visualizar-fornecedor';
+      const apiUrl = `https://localhost:7248/Fornecedor/cliente/${this.empresaId}`;
       try {
         const response = await fetch(apiUrl, {
           method: 'GET',

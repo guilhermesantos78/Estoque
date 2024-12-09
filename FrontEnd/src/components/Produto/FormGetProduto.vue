@@ -1,14 +1,18 @@
 <template>
-<NavBar/>
+  <NavBar />
   <div class="Main__container">
     <div class="content">
       <h1 class="page__title">Lista de Produto</h1>
+
+      <!-- Não precisamos de campo de input para empresaId aqui -->
       <div class="button__container">
         <button @click="listarProdutos" class="btn__load">Carregar Produto</button>
       </div>
+
       <ul class="product__list">
         <li v-for="produto in Produtos" :key="produto.id" class="product__item">
-          Id: {{ produto.id }} - Nome: {{ produto.nome }} - Preço: {{ produto.preco }} - Descrição: {{ produto.descricao }} - FornecedorId: {{ produto.fornecedorId }}- EmpresaId: {{ produto.empresaId }}
+          Id: {{ produto.id }} - Nome: {{ produto.nome }} - Preço: {{ produto.preco }} - Descrição: {{ produto.descricao }}
+          - FornecedorId: {{ produto.fornecedorId }} - EmpresaId: {{ produto.empresaId }}
         </li>
       </ul>
     </div>
@@ -20,17 +24,29 @@ import NavBar from '@/components/NavBar.vue';
 
 export default {
   name: 'FormGetProduto',
-  components:{
-    NavBar
+  components: {
+    NavBar,
   },
   data() {
     return {
       Produtos: [],
+      empresaId: ''
     };
+  },
+  mounted() {
+    this.empresaId = this.usuario.empresaId; // Acessar o usuario via this.usuario
+    console.log(this.usuario);
+  },
+  computed: {
+    // Acessando o usuario via Vuex
+    usuario() {
+      return this.$store.getters.getUsuario; // Supondo que o getter 'getUsuario' retorna os dados do usuário
+    }
   },
   methods: {
     async listarProdutos() {
-      const apiUrl = 'https://localhost:7248/Produto/visualizar-produto';
+      const apiUrl = `https://localhost:7248/Produto/cliente/${this.empresaId}`;
+
       try {
         const response = await fetch(apiUrl, {
           method: 'GET',
@@ -39,15 +55,13 @@ export default {
           },
         });
 
-        if(response.status === 200){
-          this.Produtos = await response.json(); // Atribui os dados ao array 'Produtos'
-          alert('Produtos Listados Com sucesso!')
-        }
-        else{
-          alert('Erro ao listar os produtos!')
-        }
+        console.log(response.status)
+        const data = await response.json();
+        console.log(data);
+        this.Produtos = data;
       } catch (error) {
         console.error('Erro:', error);
+        this.errorMessage = error.message;  // Mostra o erro na tela
       }
     },
   },
@@ -117,12 +131,19 @@ export default {
   color: #555;
 }
 
+.error-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
 @media (max-width: 600px) {
   .page__title {
     font-size: 24px;
     margin: 15px;
   }
-  
+
   .btn__load {
     width: 100%;
     padding: 12px 0;

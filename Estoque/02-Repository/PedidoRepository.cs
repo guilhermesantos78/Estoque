@@ -7,6 +7,7 @@ using AutoMapper;
 using Estoque.Services;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Estoque.Repository
 {
@@ -70,5 +71,44 @@ namespace Estoque.Repository
 
             return connection.Get<Pedido>(id);
         }
+
+        public ActionResult<IEnumerable<Pedido>> GetPedidosByEmpresaId(int EmpresaId)
+        {
+            using var connection = new SQLiteConnection(_connectionString); // conexão com SQLite
+            connection.Open();
+
+            // Usando Dapper puro para realizar a consulta filtrada por EmpresaId
+            string query = "SELECT * FROM Pedidos WHERE EmpresaId = @EmpresaId";
+            List<Pedido> Pedidos = connection.Query<Pedido>(query, new { EmpresaId = EmpresaId }).ToList();
+
+            if (Pedidos == null || !Pedidos.Any())
+            {
+                return NotFound("Nenhum produto encontrado para o usuário especificado."); // Utilizar NotFound ao invés de NotFoundResult
+            }
+
+            return Ok(Pedidos); // Retorna a lista de produtos encontrados
+        }
+
+        private ActionResult<IEnumerable<Pedido>> NotFound(string mensagem)
+        {
+            // Aqui você pode retornar uma resposta personalizada para o NotFound
+            return new ContentResult
+            {
+                Content = mensagem,
+                ContentType = "text/plain",
+                StatusCode = 404
+            };
+        }
+
+        private ActionResult<IEnumerable<Pedido>> Ok(List<Pedido> Pedidos)
+        {
+            // Aqui você pode retornar a lista de produtos em um formato apropriado
+            return new JsonResult(Pedidos)
+            {
+                StatusCode = 200 // OK status
+            };
+        }
+
+
     }
 }

@@ -36,6 +36,13 @@
             </summary>
             <param name="id"></param>
         </member>
+        <member name="M:EstoqueAPI.Controllers.EmpresaController.GetProdutosByEmpresaId(System.Int32)">
+            <summary>
+            Endpoint para Buscar um produto pelo id da empresa
+            </summary>
+            <param name="UsuarioId"></param>
+            <returns></returns>
+        </member>
         <member name="M:EstoqueAPI.Controllers.FornecedorController.AdicionarFornecedor(Estoque.Services.CreateFornecedorDTO)">
             <summary>
             Endpoint para Adicionar um fornecedor
@@ -66,6 +73,13 @@
             Endpoint para Remover um fornecedor
             </summary>
             <param name="id"></param>
+        </member>
+        <member name="M:EstoqueAPI.Controllers.FornecedorController.GetFornecedorByEmpresaId(System.Int32)">
+            <summary>
+            Endpoint para Buscar um produto pelo id da empresa
+            </summary>
+            <param name="UsuarioId"></param>
+            <returns></returns>
         </member>
         <member name="M:EstoqueAPI.Controllers.HistoricoPedidoController.VisualizarHistoricoPedidos(System.Int32)">
             <summary>
@@ -113,6 +127,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:EstoqueAPI.Controllers.PedidoController.GetProdutosByEmpresaId(System.Int32)">
+            <summary>
+            Endpoint para Buscar um produto pelo id da empresa
+            </summary>
+            <param name="UsuarioId"></param>
+            <returns></returns>
+        </member>
         <member name="M:EstoqueAPI.Controllers.ProdutoController.AdicionarProduto(Estoque.Entidades.CreateProdutoDTO)">
             <summary>
             Endpoint para Adicionar um produto
@@ -151,7 +172,7 @@
             </summary>
             <param name="id"></param>
         </member>
-        <member name="M:EstoqueAPI.Controllers.ProdutoController.GetProdutosByUsuarioId(System.Int32)">
+        <member name="M:EstoqueAPI.Controllers.ProdutoController.GetProdutosByEmpresaId(System.Int32)">
             <summary>
             Endpoint para Buscar um produto pelo id da empresa
             </summary>
@@ -188,6 +209,13 @@
             EndPoint para deletar uma usuario
             </summary>
             <param name="id"></param>
+        </member>
+        <member name="M:API.Controllers.UsuarioController.GetUsuarioByEmpresaId(System.Int32)">
+            <summary>
+            Endpoint para Buscar um produto pelo id da empresa
+            </summary>
+            <param name="UsuarioId"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

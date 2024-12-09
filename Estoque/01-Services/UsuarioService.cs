@@ -1,6 +1,8 @@
 ﻿using Core.Entidades;
+using Estoque.Entidades;
 using Estoque.Repository;
 using Estoque.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TrabalhoFinal.Services;
 
@@ -47,4 +49,10 @@ public class UsuarioService : IUsuarioService
 
         return null;
     }
+
+    public ActionResult<IEnumerable<Usuario>> GetUsuarioByEmpresaId(int EmpresaId)
+    {
+        return repository.GetUsuarioByEmpresaId(EmpresaId);
+    }
+
 }

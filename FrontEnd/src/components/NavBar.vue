@@ -10,7 +10,6 @@
         Produtos
         <div v-if="dropdown.produtos" class="dropdown">
           <RouterLink to="/FormGetProduto" class="nav__link">Listar</RouterLink>
-          <RouterLink to="/FormGetProdutoByEmpresaid" class="nav__link">ListarPorEmpresa</RouterLink>
           <RouterLink to="/FormPostProduto" class="nav__link">Criar</RouterLink>
           <RouterLink to="/FormUpdateProduto" class="nav__link">Editar</RouterLink>
           <RouterLink to="/FormDeleteProduto" class="nav__link">Deletar</RouterLink>
@@ -37,7 +36,7 @@
         </div>
       </div>
 
-      <RouterLink to="/" class="nav__link">Logout</RouterLink>
+      <RouterLink to="/" class="nav__link" @click="logout">Logout</RouterLink>
     </nav>
   </div>
 </template>
@@ -61,6 +60,9 @@ export default {
     },
     toggleDropdown(menu) {
       this.dropdown[menu] = !this.dropdown[menu];
+    },
+    logout() {
+      this.$store.commit('setUsuario', null);
     }
   }
 }

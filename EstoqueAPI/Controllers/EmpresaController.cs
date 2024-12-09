@@ -103,5 +103,25 @@ namespace EstoqueAPI.Controllers
             }
 
         }
+
+
+
+        /// <summary>
+        /// Endpoint para Buscar um produto pelo id da empresa
+        /// </summary>
+        /// <param name="UsuarioId"></param>
+        /// <returns></returns>
+        [HttpGet("empresa/{UsuarioId}")]
+        public ActionResult<IEnumerable<Empresa>> GetProdutosByEmpresaId(int UsuarioId)
+        {
+            try
+            {
+                return _service.GetEmpresaByEmpresaId(UsuarioId);
+            }
+            catch (Exception erro)
+            {
+                throw new Exception($"Erro ao Visualizar Empresa By Usuario Id, O Erro foi {erro.Message}");
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Estoque.Repository;
 using Estoque.Entidades;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Estoque.Services
 {
@@ -41,6 +42,11 @@ namespace Estoque.Services
         public Pedido BuscarPorId(int id)
         {
             return repository.BuscarPorId(id);
+        }
+
+        public ActionResult<IEnumerable<Pedido>> GetPedidosByEmpresaId(int EmpresaId)
+        {
+            return repository.GetPedidosByEmpresaId(EmpresaId);
         }
 
     }

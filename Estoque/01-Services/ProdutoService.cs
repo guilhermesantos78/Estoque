@@ -45,9 +45,9 @@ namespace Estoque.Services
         {
             return repository.BuscarProdutoPorId(id);
         }
-        public ActionResult<IEnumerable<Produto>> GetProdutosByUsuarioId(int UsuarioId)
+        public ActionResult<IEnumerable<Produto>> GetProdutosByEmpresaId(int EmpresaId)
         {
-            return repository.GetProdutosByUsuarioId(UsuarioId);
+            return repository.GetProdutosByEmpresaId(EmpresaId);
         }
 
     }

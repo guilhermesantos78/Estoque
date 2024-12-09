@@ -1,6 +1,7 @@
 ﻿
 using Estoque.Entidades;
 using Estoque.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Estoque.Repository
 {
@@ -12,5 +13,6 @@ namespace Estoque.Repository
         List<Pedido> Listar();
         List<ReadPedidoComProdutoDTO> ListarInfoProduto();
         Pedido BuscarPorId(int id);
+        ActionResult<IEnumerable<Pedido>> GetPedidosByEmpresaId(int EmpresaId);
     }
 }

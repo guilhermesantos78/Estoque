@@ -1,7 +1,9 @@
 ﻿using Core.Entidades;
 using Dapper;
 using Dapper.Contrib.Extensions;
+using Estoque.Entidades;
 using Estoque.Repository;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Data.SQLite;
 
@@ -41,4 +43,42 @@ public class UsuarioRepository : IUsuarioRepository
         using var connection = new SQLiteConnection(ConnectionString);
         return connection.Get<Usuario>(id);
     }
+
+    public ActionResult<IEnumerable<Usuario>> GetUsuarioByEmpresaId(int EmpresaId)
+    {
+        using var connection = new SQLiteConnection(ConnectionString); // conexão com SQLite
+        connection.Open();
+
+        // Usando Dapper puro para realizar a consulta filtrada por EmpresaId
+        string query = "SELECT * FROM Usuarios WHERE EmpresaId = @EmpresaId";
+        List<Usuario> Usuarios = connection.Query<Usuario>(query, new { EmpresaId = EmpresaId }).ToList();
+
+        if (Usuarios == null || !Usuarios.Any())
+        {
+            return NotFound("Nenhum produto encontrado para o usuário especificado."); // Utilizar NotFound ao invés de NotFoundResult
+        }
+
+        return Ok(Usuarios); // Retorna a lista de produtos encontrados
+    }
+
+    private ActionResult<IEnumerable<Usuario>> NotFound(string mensagem)
+    {
+        // Aqui você pode retornar uma resposta personalizada para o NotFound
+        return new ContentResult
+        {
+            Content = mensagem,
+            ContentType = "text/plain",
+            StatusCode = 404
+        };
+    }
+
+    private ActionResult<IEnumerable<Usuario>> Ok(List<Usuario> Usuarios)
+    {
+        // Aqui você pode retornar a lista de produtos em um formato apropriado
+        return new JsonResult(Usuarios)
+        {
+            StatusCode = 200 // OK status
+        };
+    }
+
 }

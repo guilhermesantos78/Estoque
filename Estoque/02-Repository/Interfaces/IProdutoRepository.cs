@@ -13,6 +13,6 @@ namespace Estoque.Repository
         List<ReadProdutoDTO> Listar();
         List<ReadProdutoComFornecedorDTO> VisualizarProdutoInfoFornecedor();
         Produto BuscarProdutoPorId(int id);
-        ActionResult<IEnumerable<Produto>> GetProdutosByUsuarioId(int EmpresaId);
+        ActionResult<IEnumerable<Produto>> GetProdutosByEmpresaId(int EmpresaId);
     }
 }

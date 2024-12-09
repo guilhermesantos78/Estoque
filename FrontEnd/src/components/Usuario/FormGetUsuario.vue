@@ -29,12 +29,23 @@ export default {
   },
   data() {
     return {
-      usuarios: []
+      usuarios: [],
+      empresaId:''
     };
+  },
+  mounted() {
+    this.empresaId = this.usuario.empresaId; // Acessar o usuario via this.usuario
+    console.log(this.usuario);
+  },
+  computed: {
+    // Acessando o usuario via Vuex
+    usuario() {
+      return this.$store.getters.getUsuario; // Supondo que o getter 'getUsuario' retorna os dados do usuário
+    }
   },
   methods: {
     async listarUsuarios() {
-      const apiUrl = 'https://localhost:7248/Usuario/listar-usuario';
+      const apiUrl = `https://localhost:7248/Usuario/cliente/${this.empresaId}`;
       try {
         const response = await fetch(apiUrl, {
           method: 'GET',

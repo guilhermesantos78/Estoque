@@ -2,6 +2,7 @@
 using Estoque.Entidades;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Estoque.Services
 {
@@ -38,5 +39,12 @@ namespace Estoque.Services
         {
             return repository.BuscarPorId(id);
         }
+
+
+        public ActionResult<IEnumerable<Fornecedor>> GetFornecedorByEmpresaId(int EmpresaId)
+        {
+            return repository.GetFornecedorByEmpresaId(EmpresaId);
+        }
+
     }
 }

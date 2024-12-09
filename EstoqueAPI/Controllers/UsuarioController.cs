@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Core.Entidades;
+using Estoque.Entidades;
 using Estoque.Services;
 using Microsoft.AspNetCore.Mvc;
 using TrabalhoFinal.Services;
@@ -100,6 +101,26 @@ public class UsuarioController : ControllerBase
         catch (Exception erro)
         {
             return BadRequest($"Erro ao Deletar Usuario, O Erro foi {erro.Message}");
+        }
+    }
+
+
+
+    /// <summary>
+    /// Endpoint para Buscar um produto pelo id da empresa
+    /// </summary>
+    /// <param name="UsuarioId"></param>
+    /// <returns></returns>
+    [HttpGet("usuario/{UsuarioId}")]
+    public ActionResult<IEnumerable<Usuario>> GetUsuarioByEmpresaId(int UsuarioId)
+    {
+        try
+        {
+            return _service.GetUsuarioByEmpresaId(UsuarioId);
+        }
+        catch (Exception erro)
+        {
+            throw new Exception($"Erro ao Visualizar Usuario By Usuario Id, O Erro foi {erro.Message}");
         }
     }
 }
