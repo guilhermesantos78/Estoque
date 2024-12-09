@@ -15,7 +15,7 @@
         <RouterLink to="FormLoginUsuario" class="nav__link">Log in</RouterLink>
       </div>
       <div v-else>
-        <RouterLink to="UserPage" class="nav__link">{{ usuario.username }}</RouterLink>
+        <RouterLink to="UserPageClientes" class="nav__link">{{ usuario.username }}</RouterLink>
       </div>
 
       <RouterLink to="/" class="nav__link" @click="logout">Logout</RouterLink>

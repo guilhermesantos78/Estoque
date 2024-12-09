@@ -35,9 +35,14 @@ export default {
       empresaId: '',
     };
   },
+  computed: {
+    usuario() {
+      return this.$store.getters.getUsuario; // Acessando o usuário do Vuex Store
+    }
+  },
   methods: {
     async listarProdutos() {
-      const apiUrl = `https://localhost:7248/Produto/cliente/${this.empresaId}`;
+      const apiUrl = `https://localhost:7248/Produto/cliente/${this.usuario.Id}`;
       try {
         const response = await fetch(apiUrl, {
           method: 'GET',

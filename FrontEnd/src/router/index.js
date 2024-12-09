@@ -118,7 +118,12 @@ const router = createRouter({
       path: "/UserPage",
       name: "UserPage",
       component: () => import("../views/UserPage.vue"),
-    }
+    },
+    {
+      path: "/UserPageClientes",
+      name: "UserPageClientes",
+      component: () => import("../views/CrudsCliente/UserPageClientes.vue"),
+    },
   ],
 });
 
