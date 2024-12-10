@@ -23,11 +23,12 @@ public class UsuarioController : ControllerBase
     /// </summary>
     /// <param name="usuarioDTO"></param>
     [HttpPost("adicionar-usuario")]
-    public IActionResult AdicionarUsuario(Usuario usuarioDTO)
+    public IActionResult AdicionarUsuario([FromBody] Usuario usuarioDTO)
     {
         try
         {
-            _service.Adicionar(usuarioDTO);
+            Usuario usuario = _mapper.Map<Usuario>(usuarioDTO); // Mapeando DTO para a entidade
+            _service.Adicionar(usuario);
             return Ok();
         }
         catch (Exception erro)
@@ -35,24 +36,30 @@ public class UsuarioController : ControllerBase
             return BadRequest($"Erro ao Adicionar Usuario, O Erro foi {erro.Message}");
         }
     }
+
     /// <summary>
     /// EndPoint para fazer login com um usuario
     /// </summary>
     /// <param name="usuarioLogin"></param>
     /// <returns></returns>
     [HttpPost("fazer-login")]
-    public Usuario FazerLogin(UsuarioLoginDTO usuarioLogin)
+    public ActionResult<Usuario> FazerLogin([FromBody] UsuarioLoginDTO usuarioLogin)
     {
         try
         {
             Usuario usuario = _service.FazerLogin(usuarioLogin);
-            return usuario;
+            if (usuario == null)
+            {
+                return Unauthorized("Credenciais inválidas");
+            }
+            return Ok(usuario);
         }
         catch (Exception erro)
         {
-            throw new Exception($"Erro ao Fazer Login, O Erro foi {erro.Message}");
+            return BadRequest($"Erro ao Fazer Login, O Erro foi {erro.Message}");
         }
     }
+
     /// <summary>
     /// EndPoint para Listar uma usuario
     /// </summary>
@@ -74,12 +81,16 @@ public class UsuarioController : ControllerBase
     /// </summary>
     /// <param name="p"></param>
     [HttpPut("editar-usuario")]
-    public IActionResult EditarUsuario(Usuario usuario, [FromQuery] int EmpresaId)
+    public IActionResult EditarUsuario([FromBody] Usuario usuario, [FromQuery] int EmpresaId)
     {
         try
         {
-            int userId = usuario.Id;
-            Usuario user = ListarUsuarioPorId(userId);
+            var user = _service.BuscarPorId(usuario.Id);
+            if (user == null)
+            {
+                return NotFound("Usuário não encontrado.");
+            }
+
             if (user.EmpresaId == EmpresaId)
             {
                 _service.Editar(usuario);
@@ -87,7 +98,7 @@ public class UsuarioController : ControllerBase
             }
             else
             {
-                throw new Exception($"Erro ao Editar Usuario, Não ha um usuario cadastrado com esse id");
+                return Unauthorized("Você não tem permissão para editar este usuário.");
             }
         }
         catch (Exception erro)
@@ -95,6 +106,7 @@ public class UsuarioController : ControllerBase
             return BadRequest($"Erro ao Editar Usuario, O Erro foi {erro.Message}");
         }
     }
+
     /// <summary>
     /// EndPoint para deletar uma usuario
     /// </summary>
@@ -104,7 +116,7 @@ public class UsuarioController : ControllerBase
     {
         try
         {
-            Usuario user = ListarUsuarioPorId(id);
+            Usuario user = _service.BuscarPorId(id); // Alterar para BuscarPorId
             if (user.EmpresaId == EmpresaId)
             {
                 _service.Remover(id);
@@ -112,7 +124,7 @@ public class UsuarioController : ControllerBase
             }
             else
             {
-                return BadRequest($"Erro ao Fornecedor Usuario. voce nao tem um Usuario com esse id Cadastrado");
+                return BadRequest("Você não tem permissão para remover este usuário.");
             }
         }
         catch (Exception erro)
@@ -125,7 +137,8 @@ public class UsuarioController : ControllerBase
     /// EndPoint para Listar uma usuario
     /// </summary>
     /// <returns></returns>
-    [HttpGet("listar-usuario")]
+    // Alterar o método ListarUsuarioPorId para uma rota diferente
+    [HttpGet("listar-usuario/{id}")]
     public Usuario ListarUsuarioPorId(int Id)
     {
         try
@@ -134,9 +147,10 @@ public class UsuarioController : ControllerBase
         }
         catch (Exception erro)
         {
-            throw new Exception($"Erro ao Listar Aluno, O Erro foi {erro.Message}");
+            throw new Exception($"Erro ao Listar Usuario, O Erro foi {erro.Message}");
         }
     }
+
 
 
 

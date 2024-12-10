@@ -43,17 +43,23 @@ namespace EstoqueAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("visualizar-produto")] // Rota (EndPoint)
-        public List<ReadProdutoDTO> VisualizarProduto()
+        public ActionResult<List<ReadProdutoDTO>> VisualizarProduto()
         {
             try
             {
-                return _service.Listar();
+                var produtos = _service.Listar();
+                if (produtos == null || !produtos.Any())
+                {
+                    return NotFound("Nenhum produto encontrado.");
+                }
+                return Ok(produtos);
             }
             catch (Exception erro)
             {
-                throw new Exception($"Erro ao Visualizar Produto, O Erro foi {erro.Message}");
+                return BadRequest($"Erro ao Visualizar Produto, O Erro foi {erro.Message}");
             }
         }
+
         /// <summary>
         /// Endpoint para Visualizar um produto com a informação do fornecedor
         /// </summary>
@@ -71,34 +77,41 @@ namespace EstoqueAPI.Controllers
                 throw new Exception($"Erro ao Visualizar Produto Info Fornecedor, O Erro foi {erro.Message}");
             }
         }
+
         /// <summary>
         /// Endpoint para buscar um produto por id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("Buscar-Por-Id")] // Rota (EndPoint)
-        public Produto BuscarProdutoPorId(int id)
+        public ActionResult<Produto> BuscarProdutoPorId(int id)
         {
             try
             {
-                return _service.BuscarProdutoPorId(id);
+                var produto = _service.BuscarProdutoPorId(id);
+                if (produto == null)
+                {
+                    return NotFound($"Produto com ID {id} não encontrado.");
+                }
+                return Ok(produto);
             }
             catch (Exception erro)
             {
-                throw new Exception($"Erro ao Buscar Produto Por Id, O Erro foi {erro.Message}");
+                return BadRequest($"Erro ao Buscar Produto Por Id, O Erro foi {erro.Message}");
             }
         }
+
         /// <summary>
         /// Endpoint para Editar um produto
         /// </summary>
         /// <param name="produto"></param>
         [HttpPut("editar-produto")] // Rota (EndPoint)
-        public IActionResult Editarproduto(Produto produto,[FromQuery] int EmpresaId)
+        public IActionResult Editarproduto([FromBody] Produto produto, [FromQuery] int EmpresaId)
         {
             try
             {
-                int prodeditId = produto.Id;
-                Produto prod = BuscarProdutoPorId(prodeditId);
+                int prodId = produto.Id;
+                Produto prod = _service.BuscarProdutoPorId(prodId);
 
                 if (EmpresaId == prod.EmpresaId)
                 {
@@ -120,27 +133,30 @@ namespace EstoqueAPI.Controllers
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("remover-produto")] // Rota (EndPoint)
-        public IActionResult Removerproduto(int id, [FromQuery] int EmpresaId)
+        public IActionResult RemoverProduto(int id, [FromQuery] int EmpresaId)
         {
             try
             {
-                Produto prod = BuscarProdutoPorId(id);
+                Produto produto = _service.BuscarProdutoPorId(id);
+                if (produto == null)
+                {
+                    return NotFound($"Produto com ID {id} não encontrado.");
+                }
 
-                if (EmpresaId == prod.EmpresaId)
+                if (produto.EmpresaId != EmpresaId)
                 {
-                    _service.Remover(id);
-                    return Ok();
+                    return BadRequest("Você não tem permissão para remover este produto.");
                 }
-                else
-                {
-                    return BadRequest($"Erro ao Remover Produto. voce nao tem um produto com esse id Cadastrado");
-                }
+
+                _service.Remover(id);
+                return Ok($"Produto com ID {id} removido com sucesso.");
             }
             catch (Exception erro)
             {
                 return BadRequest($"Erro ao Remover Produto, O Erro foi {erro.Message}");
             }
         }
+
         /// <summary>
         /// Endpoint para Buscar um produto pelo id da empresa
         /// </summary>

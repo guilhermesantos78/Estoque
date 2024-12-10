@@ -39,48 +39,58 @@ namespace EstoqueAPI.Controllers
         /// Endpoint para Visualizar um fornecedor
         /// </summary>
         /// <returns></returns>
-        [HttpGet("visualizar-fornecedor")] // Rota (EndPoint)
-        public List<Fornecedor> VisualizarFornecedor()
+        [HttpGet("visualizar-fornecedor")]
+        public ActionResult<List<Fornecedor>> VisualizarFornecedor()
         {
-
             try
             {
-                return _service.Listar();
+                var fornecedores = _service.Listar();
+                if (fornecedores == null || !fornecedores.Any())
+                {
+                    return NotFound("Nenhum fornecedor encontrado.");
+                }
+                return Ok(fornecedores);
             }
             catch (Exception erro)
             {
-                throw new Exception($"Erro ao Visualizar Fornecedor, O Erro foi {erro.Message}");
+                return BadRequest($"Erro ao visualizar fornecedores, O erro foi: {erro.Message}");
             }
         }
+
         /// <summary>
         /// Endpoint para Buscar um fornecedor por id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("Buscar-por-Id")] // Rota (EndPoint)
-        public Fornecedor BuscarFornecedorPorId(int id)
+        public ActionResult<Fornecedor> BuscarFornecedorPorId(int id)
         {
-
             try
             {
-                return _service.BuscarPorId(id);
+                var fornecedor = _service.BuscarPorId(id);
+                if (fornecedor == null)
+                {
+                    return NotFound("Fornecedor não encontrado.");
+                }
+                return Ok(fornecedor);
             }
             catch (Exception erro)
             {
                 throw new Exception($"Erro ao Buscar Fornecedor Por Id, O Erro foi {erro.Message}");
             }
         }
+
         /// <summary>
         /// Endpoint para Editar um fornecedor
         /// </summary>
         /// <param name="fornecedor"></param>
         [HttpPut("editar-fornecedor")] // Rota (EndPoint)
-        public void EditarFornecedor(Fornecedor fornecedor, int EmpresaId)
+        public void EditarFornecedor([FromBody] Fornecedor fornecedor, [FromQuery] int EmpresaId)
         {
             try
             {
                 int fornId = fornecedor.Id;
-                Fornecedor forn = BuscarFornecedorPorId(fornId);
+                Fornecedor forn = BuscarFornecedorPorId(fornId).Value;
 
                 if (forn.EmpresaId == EmpresaId)
                 {
@@ -99,26 +109,27 @@ namespace EstoqueAPI.Controllers
         [HttpDelete("remover-fornecedor")] // Rota (EndPoint)
         public IActionResult RemoverFornecedor(int id, [FromQuery] int EmpresaId)
         {
-
             try
             {
-                Fornecedor forn = BuscarFornecedorPorId(id);
-                if (forn.EmpresaId == EmpresaId)
+                Fornecedor fornecedor = BuscarFornecedorPorId(id).Value;
+                if (fornecedor == null)
                 {
-                    _service.Remover(id);
-                    return Ok();
+                    return NotFound($"Fornecedor com ID {id} não encontrado.");
                 }
-                else
+                if (fornecedor.EmpresaId != EmpresaId)
                 {
-                    return BadRequest($"Erro ao Fornecedor Produto. voce nao tem um Fornecedor com esse id Cadastrado");
+                    return BadRequest("Você não tem permissão para remover este fornecedor.");
                 }
 
+                _service.Remover(id);
+                return Ok($"Fornecedor com ID {id} removido com sucesso.");
             }
             catch (Exception erro)
             {
                 return BadRequest($"Erro ao Remover Fornecedor, O Erro foi {erro.Message}");
             }
         }
+
 
         /// <summary>
         /// Endpoint para Buscar um produto pelo id da empresa
