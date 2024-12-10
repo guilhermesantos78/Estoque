@@ -46,6 +46,11 @@ export default {
       email: ''
     };
   },
+  computed: {
+    usuario() {
+      return this.$store.getters.getUsuario; // Acessando o usuário do Vuex Store
+    }
+  },
   methods: {
     async CreateUsuario(e) {
       e.preventDefault();
@@ -59,7 +64,7 @@ export default {
       };
       const dataJson = JSON.stringify(data);
 
-      const response = await fetch('https://localhost:7248/Usuario/editar-usuario', {
+      const response = await fetch(`https://localhost:7248/Usuario/editar-usuario?EmpresaId=${this.usuario.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: dataJson,

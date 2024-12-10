@@ -93,12 +93,22 @@ namespace EstoqueAPI.Controllers
         /// </summary>
         /// <param name="produto"></param>
         [HttpPut("editar-produto")] // Rota (EndPoint)
-        public IActionResult Editarproduto(Produto produto)
+        public IActionResult Editarproduto(Produto produto,[FromQuery] int EmpresaId)
         {
             try
             {
-                _service.Editar(produto);
-                return Ok();
+                int prodeditId = produto.Id;
+                Produto prod = BuscarProdutoPorId(prodeditId);
+
+                if (EmpresaId == prod.EmpresaId)
+                {
+                    _service.Editar(produto);
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest($"Erro ao Remover Produto. voce nao tem um produto com esse id Cadastrado");
+                }
             }
             catch (Exception erro)
             {
@@ -110,12 +120,21 @@ namespace EstoqueAPI.Controllers
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("remover-produto")] // Rota (EndPoint)
-        public IActionResult Removerproduto(int id)
+        public IActionResult Removerproduto(int id, [FromQuery] int EmpresaId)
         {
             try
             {
-                _service.Remover(id);
-                return Ok();
+                Produto prod = BuscarProdutoPorId(id);
+
+                if (EmpresaId == prod.EmpresaId)
+                {
+                    _service.Remover(id);
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest($"Erro ao Remover Produto. voce nao tem um produto com esse id Cadastrado");
+                }
             }
             catch (Exception erro)
             {

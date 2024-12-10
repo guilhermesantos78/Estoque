@@ -46,6 +46,11 @@ export default {
   components: {
     NavBar
   },
+  computed: {
+    usuario() {
+      return this.$store.getters.getUsuario; // Acessando o usuário do Vuex Store
+    }
+  },
   data() {
     return {
       id: '',
@@ -70,7 +75,7 @@ export default {
         EmpresaId: this.EmpresaId
       };
       const dataJson = JSON.stringify(data);
-      const req = await fetch('https://localhost:7248/Produto/editar-produto', {
+      const req = await fetch(`https://localhost:7248/Produto/editar-produto?EmpresaId=${this.usuario.id}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: dataJson,

@@ -13,7 +13,7 @@ public class UsuarioController : ControllerBase
 {
     private readonly IUsuarioService _service;
     private readonly IMapper _mapper;
-    public UsuarioController( IMapper mapper, IUsuarioService service)
+    public UsuarioController(IMapper mapper, IUsuarioService service)
     {
         _mapper = mapper;
         _service = service;
@@ -58,7 +58,7 @@ public class UsuarioController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet("listar-usuario")]
-    public List<Usuario> ListarAluno()
+    public List<Usuario> ListarUsuario()
     {
         try
         {
@@ -74,12 +74,21 @@ public class UsuarioController : ControllerBase
     /// </summary>
     /// <param name="p"></param>
     [HttpPut("editar-usuario")]
-    public IActionResult EditarUsuario(Usuario p)
+    public IActionResult EditarUsuario(Usuario usuario, [FromQuery] int EmpresaId)
     {
         try
         {
-            _service.Editar(p);
-            return Ok();
+            int userId = usuario.Id;
+            Usuario user = ListarUsuarioPorId(userId);
+            if (user.EmpresaId == EmpresaId)
+            {
+                _service.Editar(usuario);
+                return Ok();
+            }
+            else
+            {
+                throw new Exception($"Erro ao Editar Usuario, Não ha um usuario cadastrado com esse id");
+            }
         }
         catch (Exception erro)
         {
@@ -91,16 +100,41 @@ public class UsuarioController : ControllerBase
     /// </summary>
     /// <param name="id"></param>
     [HttpDelete("deletar-usuario")]
-    public IActionResult DeletarUsuario(int id)
+    public IActionResult DeletarUsuario(int id, [FromQuery] int EmpresaId)
     {
         try
         {
-            _service.Remover(id);
-            return Ok();
+            Usuario user = ListarUsuarioPorId(id);
+            if (user.EmpresaId == EmpresaId)
+            {
+                _service.Remover(id);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest($"Erro ao Fornecedor Usuario. voce nao tem um Usuario com esse id Cadastrado");
+            }
         }
         catch (Exception erro)
         {
             return BadRequest($"Erro ao Deletar Usuario, O Erro foi {erro.Message}");
+        }
+    }
+
+    /// <summary>
+    /// EndPoint para Listar uma usuario
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet("listar-usuario")]
+    public Usuario ListarUsuarioPorId(int Id)
+    {
+        try
+        {
+            return _service.BuscarPorId(Id);
+        }
+        catch (Exception erro)
+        {
+            throw new Exception($"Erro ao Listar Aluno, O Erro foi {erro.Message}");
         }
     }
 

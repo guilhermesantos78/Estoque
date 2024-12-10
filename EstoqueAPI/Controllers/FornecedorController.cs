@@ -75,11 +75,17 @@ namespace EstoqueAPI.Controllers
         /// </summary>
         /// <param name="fornecedor"></param>
         [HttpPut("editar-fornecedor")] // Rota (EndPoint)
-        public void EditarFornecedor(Fornecedor fornecedor)
+        public void EditarFornecedor(Fornecedor fornecedor, int EmpresaId)
         {
             try
             {
-                _service.Editar(fornecedor);
+                int fornId = fornecedor.Id;
+                Fornecedor forn = BuscarFornecedorPorId(fornId);
+
+                if (forn.EmpresaId == EmpresaId)
+                {
+                    _service.Editar(fornecedor);
+                }
             }
             catch (Exception erro)
             {
@@ -91,13 +97,22 @@ namespace EstoqueAPI.Controllers
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("remover-fornecedor")] // Rota (EndPoint)
-        public IActionResult RemoverFornecedor(int id)
+        public IActionResult RemoverFornecedor(int id, [FromQuery] int EmpresaId)
         {
 
             try
             {
-                _service.Remover(id);
-                return Ok();
+                Fornecedor forn = BuscarFornecedorPorId(id);
+                if (forn.EmpresaId == EmpresaId)
+                {
+                    _service.Remover(id);
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest($"Erro ao Fornecedor Produto. voce nao tem um Fornecedor com esse id Cadastrado");
+                }
+
             }
             catch (Exception erro)
             {

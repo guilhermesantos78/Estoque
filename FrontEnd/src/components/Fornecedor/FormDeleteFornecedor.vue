@@ -28,11 +28,16 @@ export default {
       message: ''
     };
   },
+  computed: {
+    usuario() {
+      return this.$store.getters.getUsuario; // Acessando o usuário do Vuex Store
+    }
+  },
   methods: {
     async deleteFornecedor(e) {
       e.preventDefault();
       try {
-        const response = await fetch(`https://localhost:7248/Fornecedor/remover-fornecedor?id=${this.id}`, {
+        const response = await fetch(`https://localhost:7248/Fornecedor/remover-fornecedor?id=${this.id}&EmpresaId=${this.usuario.id}`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' }
         });

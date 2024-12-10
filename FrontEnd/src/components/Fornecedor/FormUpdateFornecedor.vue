@@ -58,6 +58,11 @@ export default {
       message: ''
     };
   },
+  computed: {
+    usuario() {
+      return this.$store.getters.getUsuario; // Acessando o usuário do Vuex Store
+    }
+  },
   methods: {
     async EditFornecedor(e) {
       e.preventDefault();
@@ -71,7 +76,7 @@ export default {
         nomeProduto: this.nomeProduto
       };
       const dataJson = JSON.stringify(data);
-      const response = await fetch('https://localhost:7248/Fornecedor/editar-fornecedor', {
+      const response = await fetch(`https://localhost:7248/Fornecedor/editar-fornecedor?EmpresaId=${this.usuario.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: dataJson,

@@ -160,13 +160,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:EstoqueAPI.Controllers.ProdutoController.Editarproduto(Estoque.Entidades.Produto)">
+        <member name="M:EstoqueAPI.Controllers.ProdutoController.Editarproduto(Estoque.Entidades.Produto,System.Int32)">
             <summary>
             Endpoint para Editar um produto
             </summary>
             <param name="produto"></param>
         </member>
-        <member name="M:EstoqueAPI.Controllers.ProdutoController.Removerproduto(System.Int32)">
+        <member name="M:EstoqueAPI.Controllers.ProdutoController.Removerproduto(System.Int32,System.Int32)">
             <summary>
             Endpoint para Remover um produto
             </summary>
