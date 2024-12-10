@@ -57,6 +57,11 @@ export default {
       EmpresaId: ''
     };
   },
+  computed: {
+    usuario() {
+      return this.$store.getters.getUsuario; // Acessando o usuário do Vuex Store
+    }
+  },
   methods: {
     async CreateUsuario(e) {
       e.preventDefault();
@@ -67,7 +72,7 @@ export default {
         Descricao: this.Descricao,
         QuantidadeEmEstoque: this.QuantidadeEmEstoque,
         FornecedorId: this.FornecedorId,
-        EmpresaId: this.EmpresaId
+        EmpresaId: this.usuario.id
       };
       const dataJson = JSON.stringify(data);
 

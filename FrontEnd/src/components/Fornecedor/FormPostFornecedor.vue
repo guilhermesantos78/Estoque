@@ -67,7 +67,8 @@ export default {
         endereco: this.endereco,
         cnpj: this.cnpj,
         produtoId: this.produtoId,
-        nomeProduto: this.nomeProduto
+        nomeProduto: this.nomeProduto,
+        EmpresaId: this.usuario.id
       };
       const dataJson = JSON.stringify(data);
 

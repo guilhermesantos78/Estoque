@@ -62,13 +62,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:EstoqueAPI.Controllers.FornecedorController.EditarFornecedor(Estoque.Entidades.Fornecedor)">
+        <member name="M:EstoqueAPI.Controllers.FornecedorController.EditarFornecedor(Estoque.Entidades.Fornecedor,System.Int32)">
             <summary>
             Endpoint para Editar um fornecedor
             </summary>
             <param name="fornecedor"></param>
         </member>
-        <member name="M:EstoqueAPI.Controllers.FornecedorController.RemoverFornecedor(System.Int32)">
+        <member name="M:EstoqueAPI.Controllers.FornecedorController.RemoverFornecedor(System.Int32,System.Int32)">
             <summary>
             Endpoint para Remover um fornecedor
             </summary>
@@ -192,23 +192,29 @@
             <param name="usuarioLogin"></param>
             <returns></returns>
         </member>
-        <member name="M:API.Controllers.UsuarioController.ListarAluno">
+        <member name="M:API.Controllers.UsuarioController.ListarUsuario">
             <summary>
             EndPoint para Listar uma usuario
             </summary>
             <returns></returns>
         </member>
-        <member name="M:API.Controllers.UsuarioController.EditarUsuario(Core.Entidades.Usuario)">
+        <member name="M:API.Controllers.UsuarioController.EditarUsuario(Core.Entidades.Usuario,System.Int32)">
             <summary>
             EndPoint para Editar uma usuario
             </summary>
             <param name="p"></param>
         </member>
-        <member name="M:API.Controllers.UsuarioController.DeletarUsuario(System.Int32)">
+        <member name="M:API.Controllers.UsuarioController.DeletarUsuario(System.Int32,System.Int32)">
             <summary>
             EndPoint para deletar uma usuario
             </summary>
             <param name="id"></param>
+        </member>
+        <member name="M:API.Controllers.UsuarioController.ListarUsuarioPorId(System.Int32)">
+            <summary>
+            EndPoint para Listar uma usuario
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:API.Controllers.UsuarioController.GetUsuarioByEmpresaId(System.Int32)">
             <summary>
