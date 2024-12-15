@@ -1,5 +1,6 @@
 using CRUD.Repositorios.Data;
 using Estoque.Repository;
+using Estoque.Repository.Data.Script;
 using Estoque.Services;
 using EstoqueAPI;
 using Microsoft.OpenApi.Models;
@@ -30,6 +31,7 @@ builder.Services.AddSwaggerGen(options =>
 
 // Inicialização do banco de dados
 InicializadorBd.Inicializar(); // Certifique-se de que o método 'Inicializar' esteja implementado corretamente
+DataBaseScript.CheckAndInsertData();
 
 // Adicionando o AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));

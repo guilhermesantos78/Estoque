@@ -8,5 +8,6 @@
         public string TipoUsuario { get; set; }
         public string Senha { get; set; }
         public string Email { get; set; }
+        public int EmpresaId { get; set; }
     }
 }

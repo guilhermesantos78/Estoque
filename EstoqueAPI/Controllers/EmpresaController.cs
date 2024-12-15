@@ -19,14 +19,14 @@ namespace EstoqueAPI.Controllers
         /// <summary> 
         /// EndPoint para adicionar uma empresa
         /// </summary>
-        /// <param name="c"></param>
+        /// <param name="EmpresaDTO"></param>
         /// <returns></returns>
         [HttpPost("adicionar-empresa")] // Rota (EndPoint)
-        public IActionResult AdicionarEmpresa(CreateEmpresaDTO c)
+        public IActionResult AdicionarEmpresa(CreateEmpresaDTO EmpresaDTO)
         {
             try
             {
-                Empresa empresa = _mapper.Map<Empresa>(c);
+                Empresa empresa = _mapper.Map<Empresa>(EmpresaDTO);
                 _service.Adicionar(empresa);
                 return Ok();
             }

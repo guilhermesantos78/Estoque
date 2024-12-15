@@ -19,14 +19,14 @@ namespace EstoqueAPI.Controllers
         /// <summary>
         /// Endpoint para Adicionar um fornecedor
         /// </summary>
-        /// <param name="f"></param>
+        /// <param name="FornecedorDTO"></param>
+        /// <returns></returns>
         [HttpPost("adicionar-fornecedor")] // Rota (EndPoint)
-        public IActionResult AdicionarFornecedor(CreateFornecedorDTO f)
+        public IActionResult AdicionarFornecedor(CreateFornecedorDTO FornecedorDTO)
         {
-
             try
             {
-                Fornecedor fornecedor = _mapper.Map<Fornecedor>(f);
+                Fornecedor fornecedor = _mapper.Map<Fornecedor>(FornecedorDTO);
                 _service.Adicionar(fornecedor);
                 return Ok();
             }
@@ -42,7 +42,6 @@ namespace EstoqueAPI.Controllers
         [HttpGet("visualizar-fornecedor")] // Rota (EndPoint)
         public List<Fornecedor> VisualizarFornecedor()
         {
-
             try
             {
                 return _service.Listar();
@@ -93,7 +92,6 @@ namespace EstoqueAPI.Controllers
         [HttpDelete("remover-fornecedor")] // Rota (EndPoint)
         public IActionResult RemoverFornecedor(int id)
         {
-
             try
             {
                 _service.Remover(id);
