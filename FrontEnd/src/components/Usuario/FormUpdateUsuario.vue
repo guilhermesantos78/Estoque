@@ -61,6 +61,7 @@ export default {
         tipousuario: this.tipousuario,
         senha: this.senha,
         email: this.email,
+        empresaId: this.usuario.id
       };
       const dataJson = JSON.stringify(data);
 

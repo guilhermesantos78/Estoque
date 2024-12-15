@@ -43,6 +43,11 @@ export default {
       email: '',
     };
   },
+  computed: {
+    usuario() {
+      return this.$store.getters.getUsuario; // Acessando o usuário do Vuex Store
+    }
+  },
   methods: {
     async CreateUsuario(e) {
       e.preventDefault();
@@ -50,7 +55,7 @@ export default {
       const data = {
         nome: this.nome,
         username: this.username,
-        tipousuario: this.tipousuario,
+        tipousuario: 'Admin',
         senha: this.senha,
         email: this.email,
         EmpresaId: this.usuario.id

@@ -57,12 +57,13 @@ namespace EstoqueAPI.Controllers
             }
         }
 
+
         /// <summary>
         /// Endpoint para Buscar um fornecedor por id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("Buscar-por-Id")] // Rota (EndPoint)
+        [HttpGet("Buscar-por-Id")]
         public ActionResult<Fornecedor> BuscarFornecedorPorId(int id)
         {
             try
@@ -76,9 +77,10 @@ namespace EstoqueAPI.Controllers
             }
             catch (Exception erro)
             {
-                throw new Exception($"Erro ao Buscar Fornecedor Por Id, O Erro foi {erro.Message}");
+                return BadRequest($"Erro ao Buscar Fornecedor Por Id, O Erro foi {erro.Message}");
             }
         }
+
 
         /// <summary>
         /// Endpoint para Editar um fornecedor
@@ -106,23 +108,19 @@ namespace EstoqueAPI.Controllers
         /// Endpoint para Remover um fornecedor
         /// </summary>
         /// <param name="id"></param>
-        [HttpDelete("remover-fornecedor")] // Rota (EndPoint)
+        [HttpDelete("remover-fornecedor")]
         public IActionResult RemoverFornecedor(int id, [FromQuery] int EmpresaId)
         {
             try
             {
                 Fornecedor fornecedor = BuscarFornecedorPorId(id).Value;
-                if (fornecedor == null)
-                {
-                    return NotFound($"Fornecedor com ID {id} não encontrado.");
-                }
-                if (fornecedor.EmpresaId != EmpresaId)
-                {
-                    return BadRequest("Você não tem permissão para remover este fornecedor.");
-                }
 
-                _service.Remover(id);
-                return Ok($"Fornecedor com ID {id} removido com sucesso.");
+                if (fornecedor.EmpresaId == EmpresaId)
+                {
+                    _service.Remover(id);
+                    return Ok($"Fornecedor com ID {id} removido com sucesso.");
+                }
+                return Unauthorized("Empresa não tem permissão para remover esse fornecedor.");
             }
             catch (Exception erro)
             {
@@ -131,17 +129,18 @@ namespace EstoqueAPI.Controllers
         }
 
 
+
         /// <summary>
         /// Endpoint para Buscar um produto pelo id da empresa
         /// </summary>
-        /// <param name="UsuarioId"></param>
+        /// <param name="EmpresaId"></param>
         /// <returns></returns>
-        [HttpGet("fornecedor/{UsuarioId}")]
-        public ActionResult<IEnumerable<Fornecedor>> GetFornecedorByEmpresaId(int UsuarioId)
+        [HttpGet("fornecedor/{EmpresaId}")]
+        public ActionResult<IEnumerable<Fornecedor>> GetFornecedorByEmpresaId(int EmpresaId)
         {
             try
             {
-                return _service.GetFornecedorByEmpresaId(UsuarioId);
+                return _service.GetFornecedorByEmpresaId(EmpresaId);
             }
             catch (Exception erro)
             {

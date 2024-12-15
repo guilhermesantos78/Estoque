@@ -13,6 +13,8 @@
         </div>
         <button type="submit" class="login__btn">Login</button>
       </form>
+      não ha um login?
+      <RouterLink to="FormCadastroUsuario">Cadastre-se</RouterLink>
     </div>
   </div>
 </template>

@@ -28,10 +28,6 @@
           <label for="produtoId">Produto ID :</label>
           <input type="text" id="produtoId" v-model="produtoId" required />
         </div>
-        <div class="form__group">
-          <label for="nomeProduto">Nome do Produto :</label>
-          <input type="text" id="nomeProduto" v-model="nomeProduto" required />
-        </div>
         <button type="submit" class="submit__button">Editar o Fornecedor</button>
       </form>
     </div>
@@ -59,8 +55,9 @@ export default {
     };
   },
   computed: {
+    // Acessando o usuario via Vuex
     usuario() {
-      return this.$store.getters.getUsuario; // Acessando o usuário do Vuex Store
+      return this.$store.getters.getUsuario; // Supondo que o getter 'getUsuario' retorna os dados do usuário
     }
   },
   methods: {
@@ -73,7 +70,7 @@ export default {
         endereco: this.endereco,
         cnpj: this.cnpj,
         produtoId: this.produtoId,
-        nomeProduto: this.nomeProduto
+        empresaId: this.usuario.id
       };
       const dataJson = JSON.stringify(data);
       const response = await fetch(`https://localhost:7248/Fornecedor/editar-fornecedor?EmpresaId=${this.usuario.id}`, {
@@ -82,9 +79,9 @@ export default {
         body: dataJson,
       });
       if (response.status === 200) {
-        this.message = 'Sucesso ao editar fornecedor.';
+        alert('Sucesso ao editar fornecedor.');
       } else {
-        this.message = 'Erro ao editar fornecedor.';
+        alert('Erro ao editar fornecedor.');
       }
     },
   },

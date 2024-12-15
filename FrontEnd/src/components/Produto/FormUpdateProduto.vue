@@ -28,10 +28,6 @@
           <label for="FornecedorId">Fornecedor Id :</label>
           <input type="text" id="FornecedorId" v-model="FornecedorId" required />
         </div>
-        <div class="form__group">
-          <label for="EmpresaId">Empresa Id :</label>
-          <input type="text" id="EmpresaId" v-model="EmpresaId" required />
-        </div>
         <button type="submit" class="submit__btn">Editar o Produto</button>
       </form>
     </div>
@@ -72,14 +68,21 @@ export default {
         Descricao: this.Descricao,
         QuantidadeEmEstoque: this.QuantidadeEmEstoque,
         FornecedorId: this.FornecedorId,
-        EmpresaId: this.EmpresaId
+        EmpresaId: this.usuario.id
       };
       const dataJson = JSON.stringify(data);
-      const req = await fetch(`https://localhost:7248/Produto/editar-produto?EmpresaId=${this.usuario.id}`, {
-        method: 'POST',
+      const response = await fetch(`https://localhost:7248/Produto/editar-produto?EmpresaId=${this.usuario.id}`, {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: dataJson,
       });
+
+      if(response.status === 200){
+        alert(`Sucesso ao editar o produto ${this.nome}`)
+      }
+      else{
+        alert('Erro ao editar o produto ')
+      }
     },
   },
 };

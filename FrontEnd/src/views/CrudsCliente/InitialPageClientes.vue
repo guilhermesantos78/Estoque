@@ -1,23 +1,18 @@
 <template>
   <div class="navBar">
-    <div class="menu__icon" @click="toggleMenu">
-      ☰
-    </div>
+    <div class="menu__icon" @click="toggleMenu">☰</div>
 
     <nav :class="{ 'sidebar': true, 'sidebar__open': isMenuOpen }">
       <RouterLink to="/InitialPageClientes" class="nav__link">Home</RouterLink>
-
       <div class="sidebar__item" @click="mostrarCarrinho">
         <button>Carrinho ({{ Carrinho.length }})</button>
       </div>
-
       <div v-if="!usuario">
-        <RouterLink to="FormLoginUsuario" class="nav__link">Log in</RouterLink>
+        <RouterLink to="/FormLoginUsuario" class="nav__link">Log in</RouterLink>
       </div>
       <div v-else>
-        <RouterLink to="UserPageClientes" class="nav__link">{{ usuario.username }}</RouterLink>
+        <RouterLink to="UserPage" class="nav__link">{{ usuario.username }}</RouterLink>
       </div>
-
       <RouterLink to="/" class="nav__link" @click="logout">Logout</RouterLink>
     </nav>
   </div>
@@ -50,12 +45,12 @@
           <span class="cart-item-name">{{ item.nome }} - {{ item.preco }}$</span>
           <div class="item-actions">
             <button @click="adicionarMais(item)">+</button>
-            <button @click="removerDoCarrinho(item)">Remover</button>
+            <button @click="removerDoCarrinho(item)">-</button>
           </div>
         </li>
       </ul>
       <div class="cart-total">
-        Total: {{ Carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0) }}$
+        Total: {{ totalCarrinho }}$
       </div>
       <button @click="fecharCarrinho" class="close-button">Fechar</button>
     </div>
@@ -64,15 +59,23 @@
 
 <script>
 export default {
-  name: 'InitalPageClientes',
+  name: 'InitialPageClientes',
   data() {
     return {
       Produtos: [],
       Carrinho: [],
       mensagem: '',
       mostrarCarrinhoModal: false,
-      isMenuOpen: false
+      isMenuOpen: false,
     };
+  },
+  computed: {
+    usuario() {
+      return this.$store.getters.getUsuario;
+    },
+    totalCarrinho() {
+      return this.Carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
+    },
   },
   methods: {
     toggleMenu() {
@@ -90,21 +93,31 @@ export default {
       }
     },
     adicionarAoCarrinho(produto) {
-      const produtoExistente = this.Carrinho.find(item => item.id === produto.id);
+      const produtoExistente = this.Carrinho.find((item) => item.id === produto.id);
       if (produtoExistente) produtoExistente.quantidade += 1;
       else this.Carrinho.push({ ...produto, quantidade: 1 });
-      this.mensagem = `${produto.nome} adicionado ao carrinho!`;
-      setTimeout(() => { this.mensagem = ''; }, 3000);
+      this.exibirMensagem(`${produto.nome} adicionado ao carrinho!`);
     },
     adicionarMais(produto) {
       produto.quantidade += 1;
-      this.mensagem = `Mais uma unidade de ${produto.nome} adicionada!`;
-      setTimeout(() => { this.mensagem = ''; }, 3000);
+      this.exibirMensagem(`Mais uma unidade de ${produto.nome} adicionada!`);
     },
     removerDoCarrinho(produto) {
-      this.Carrinho = this.Carrinho.filter(item => item.id !== produto.id);
-      this.mensagem = `${produto.nome} removido do carrinho.`;
-      setTimeout(() => { this.mensagem = ''; }, 3000);
+      const index = this.Carrinho.findIndex((item) => item.id === produto.id);
+      if (index !== -1) {
+        if (this.Carrinho[index].quantidade > 1) {
+          this.Carrinho[index].quantidade -= 1;
+        } else {
+          this.Carrinho.splice(index, 1);
+        }
+        this.exibirMensagem(`${produto.nome} removido do carrinho.`);
+      }
+    },
+    exibirMensagem(texto) {
+      this.mensagem = texto;
+      setTimeout(() => {
+        this.mensagem = '';
+      }, 3000);
     },
     mostrarCarrinho() {
       this.mostrarCarrinhoModal = true;
@@ -115,23 +128,19 @@ export default {
     handleClick() {
       this.$router.push({
         name: 'GestaoCompraClientes',
-        query: { produtos: JSON.stringify(this.Carrinho) }
+        query: { produtos: JSON.stringify(this.Carrinho) },
       });
     },
     logout() {
       this.$store.commit('setUsuario', null);
-    }
+    },
   },
   mounted() {
     this.carregarProdutos();
   },
-  computed: {
-    usuario() {
-      return this.$store.getters.getUsuario;
-    }
-  }
 };
 </script>
+
 
 <style scoped>
 .navBar {
@@ -173,7 +182,7 @@ export default {
 .sidebar__item button {
   padding: 10px 20px;
   cursor: pointer;
-  border:3px solid #ededed;
+  border: 3px solid #ededed;
   border-radius: 8px;
 }
 

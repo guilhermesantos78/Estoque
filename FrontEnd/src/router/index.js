@@ -57,6 +57,11 @@ const router = createRouter({
       component: () => import("@/components/Usuario/FormPostUsuario.vue"),
     },
     {
+      path: "/FormCadastroUsuario",
+      name: "FormCadastroUsuario",
+      component: () => import("@/components/Usuario/FormCadastroUsuario.vue"),
+    },
+    {
       path: "/FormLoginUsuario",
       name: "FormLoginUsuario",
       component: () => import("@/components/Usuario/FormLoginUsuario.vue"),
@@ -76,12 +81,6 @@ const router = createRouter({
       name: "FormGetProduto",
       component: () => import("@/components/Produto/FormGetProduto.vue"),
     },
-    // {
-    //   path: "/FormGetProdutoByEmpresaid",
-    //   name: "FormGetProdutoByEmpresaid",
-    //   component: () =>
-    //     import("@/components/Produto/FormGetProduto.vue"),
-    // },
     {
       path: "/FormPostProduto",
       name: "FormPostProduto",

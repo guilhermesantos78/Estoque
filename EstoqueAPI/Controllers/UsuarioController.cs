@@ -86,10 +86,6 @@ public class UsuarioController : ControllerBase
         try
         {
             var user = _service.BuscarPorId(usuario.Id);
-            if (user == null)
-            {
-                return NotFound("Usuário não encontrado.");
-            }
 
             if (user.EmpresaId == EmpresaId)
             {
@@ -157,14 +153,14 @@ public class UsuarioController : ControllerBase
     /// <summary>
     /// Endpoint para Buscar um produto pelo id da empresa
     /// </summary>
-    /// <param name="UsuarioId"></param>
+    /// <param name="EmpresaId"></param>
     /// <returns></returns>
-    [HttpGet("usuario/{UsuarioId}")]
-    public ActionResult<IEnumerable<Usuario>> GetUsuarioByEmpresaId(int UsuarioId)
+    [HttpGet("usuario/{EmpresaId}")]
+    public ActionResult<IEnumerable<Usuario>> GetUsuarioByEmpresaId(int EmpresaId)
     {
         try
         {
-            return _service.GetUsuarioByEmpresaId(UsuarioId);
+            return _service.GetUsuarioByEmpresaId(EmpresaId);
         }
         catch (Exception erro)
         {

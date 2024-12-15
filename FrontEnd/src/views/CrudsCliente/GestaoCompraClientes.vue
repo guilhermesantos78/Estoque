@@ -116,6 +116,9 @@ export default {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
+    async PostPedido() {
+
+    }
   },
   computed: {
     usuario() {
@@ -283,9 +286,12 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
+  border: none;
+  transition: .3s;
 }
 
 .back-button:hover {
   background-color: #0056b3;
+  transform: scale(1.1);
 }
 </style>

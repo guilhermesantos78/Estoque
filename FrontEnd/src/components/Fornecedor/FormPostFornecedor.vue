@@ -5,10 +5,6 @@
       <h1 class="form__title">Cadastrar Fornecedor</h1>
       <form @submit="CreateFornecedor" class="user__form">
         <div class="form__group">
-          <label for="id">Id :</label>
-          <input type="text" id="id" v-model="id" required />
-        </div>
-        <div class="form__group">
           <label for="nome">Nome :</label>
           <input type="text" id="nome" v-model="nome" required />
         </div>
@@ -28,10 +24,6 @@
           <label for="produtoId">Produto ID :</label>
           <input type="text" id="produtoId" v-model="produtoId" required />
         </div>
-        <div class="form__group">
-          <label for="nomeProduto">Nome do Produto :</label>
-          <input type="text" id="nomeProduto" v-model="nomeProduto" required />
-        </div>
         <button type="submit" class="submit__btn">Cadastrar o Fornecedor</button>
       </form>
     </div>
@@ -48,7 +40,6 @@ export default {
   },
   data() {
     return {
-      id: '',
       nome: '',
       contato: '',
       endereco: '',
@@ -57,17 +48,22 @@ export default {
       nomeProduto: ''
     };
   },
+  computed: {
+    // Acessando o usuario via Vuex
+    usuario() {
+      return this.$store.getters.getUsuario; // Supondo que o getter 'getUsuario' retorna os dados do usuário
+    }
+  },
   methods: {
     async CreateFornecedor(e) {
       e.preventDefault();
       const data = {
-        id: this.id,
+        id: null,
         nome: this.nome,
         contato: this.contato,
         endereco: this.endereco,
         cnpj: this.cnpj,
         produtoId: this.produtoId,
-        nomeProduto: this.nomeProduto,
         EmpresaId: this.usuario.id
       };
       const dataJson = JSON.stringify(data);
@@ -80,11 +76,11 @@ export default {
         });
 
         if (response.status === 200) {
-          alert('Sucesso ao adicionar o fornecedor!')
+          alert('Sucesso ao adicionar o fornecedor!');
+        } else {
+          alert('Erro ao adicionar o fornecedor!');
         }
-        else (
-          alert('Erro ao adicionar o fornecedor!')
-        )
+
       }
       catch (error) {
         console.log(error)

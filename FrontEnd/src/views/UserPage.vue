@@ -1,7 +1,21 @@
 <template>
+  <div class="navBar">
+    <div class="menu__icon" @click="toggleMenu">☰</div>
+
+    <nav :class="{ 'sidebar': true, 'sidebar__open': isMenuOpen }">
+      <RouterLink to="/InitialPageClientes" class="nav__link">Home</RouterLink>
+      <div v-if="!usuario">
+        <RouterLink to="/FormLoginUsuario" class="nav__link">Log in</RouterLink>
+      </div>
+      <div v-else>
+        <RouterLink to="/UserPage" class="nav__link">{{ usuario.username }}</RouterLink>
+      </div>
+      <RouterLink to="/" class="nav__link" @click="logout">Logout</RouterLink>
+    </nav>
+  </div>
+
   <div class="user-page">
-    <NavBar />
-    <div class="user-info">
+    <div class="user-info" v-if="usuario">
       <h1 class="greeting">Bem-vindo, <span class="username">{{ usuario.username }}</span>!</h1>
       <div class="user-details">
         <div class="detail-item">
@@ -18,33 +32,103 @@
         </div>
       </div>
     </div>
+    <div class="user-info" v-else>
+      <h1 class="greeting">Por favor, faça login para acessar sua página.</h1>
+    </div>
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue';
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: 'UserPage',
+  name: "UserPage",
+  data() {
+    return {
+      isMenuOpen: false,
+    };
+  },
   computed: {
+    ...mapGetters(["getUsuario", "getCarrinho"]),
     usuario() {
-      return this.$store.getters.getUsuario; // Acessando o usuário do Vuex Store
-    }
+      return this.getUsuario;
+    },
+    Carrinho() {
+      return this.getCarrinho || [];
+    },
   },
   methods: {
+    ...mapActions(["logoutUsuario"]),
     logout() {
-      // Implementação do logout (exemplo: limpar o estado do Vuex e redirecionar)
-      this.$store.dispatch('logout');
-      this.$router.push('/login');
+      this.logoutUsuario();
+      this.$router.push("/FormLoginUsuario");
+    },
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
     }
   },
-  components: {
-    NavBar
-  }
 };
 </script>
 
 <style scoped>
+.navBar {
+  display: flex;
+  justify-content: flex-end;
+  background-color: #ededed;
+  padding: 10px;
+}
+
+.menu__icon {
+  font-size: 30px;
+  cursor: pointer;
+  color: #333;
+  margin-right: 20px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #FFF;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  padding-top: 60px;
+  transition: transform 0.3s ease;
+  transform: translateX(-250px);
+}
+
+.sidebar__open {
+  transform: translateX(0);
+}
+
+.sidebar__item {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.sidebar__item button {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 3px solid #ededed;
+  border-radius: 8px;
+}
+
+.nav__link {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s;
+}
+
+.nav__link:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #007bff;
+}
+
 .user-page {
   font-family: "Funnel Display", sans-serif;
   background: linear-gradient(145deg, #f2f2f2, #d1d1d1);
@@ -52,7 +136,6 @@ export default {
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  min-height: 100vh;
 }
 
 .user-info {
@@ -60,12 +143,11 @@ export default {
   border-radius: 10px;
   padding: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  height: 100vh;
+  width: 90%;
+  max-width: 600px;
   text-align: center;
-  overflow: au;
+  overflow: auto;
   animation: fadeIn 1s ease-out;
-  padding: 40px 20px;
 }
 
 .greeting {
@@ -85,7 +167,6 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   margin: 20px 0;
-  padding: 10px 0;
 }
 
 .detail-item {
@@ -108,10 +189,9 @@ export default {
   }
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
   .user-info {
-    width: 90%;
+    width: 100%;
     padding: 20px;
   }
 

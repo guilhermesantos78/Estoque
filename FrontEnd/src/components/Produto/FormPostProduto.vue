@@ -1,38 +1,30 @@
 <template>
   <NavBar />
   <div class="Main__container">
-    <div class="form-container">
-      <h1 class="form-title">Cadastrar Produto</h1>
-      <form @submit="CreateUsuario" class="user-form">
-        <div class="form-group">
-          <label for="id">Id :</label>
-          <input type="text" id="id" v-model="id" required />
-        </div>
-        <div class="form-group">
+    <div class="form__container">
+      <h1 class="form__title">Cadastrar Produto</h1>
+      <form @submit="CreateUsuario" class="user__form">
+        <div class="form__group">
           <label for="nome">Nome :</label>
           <input type="text" id="nome" v-model="nome" required />
         </div>
-        <div class="form-group">
+        <div class="form__group">
           <label for="preco">Preço :</label>
           <input type="text" id="preco" v-model="preco" required />
         </div>
-        <div class="form-group">
+        <div class="form__group">
           <label for="Descricao">Descrição :</label>
           <input type="text" id="Descricao" v-model="Descricao" required />
         </div>
-        <div class="form-group">
+        <div class="form__group">
           <label for="QuantidadeEmEstoque">Quantidade em Estoque :</label>
           <input type="text" id="QuantidadeEmEstoque" v-model="QuantidadeEmEstoque" required />
         </div>
-        <div class="form-group">
+        <div class="form__group">
           <label for="FornecedorId">Fornecedor Id :</label>
           <input type="text" id="FornecedorId" v-model="FornecedorId" required />
         </div>
-        <div class="form-group">
-          <label for="EmpresaId">Empresa Id :</label>
-          <input type="text" id="EmpresaId" v-model="EmpresaId" required />
-        </div>
-        <button type="submit" class="submit-btn">Cadastrar o Produto</button>
+        <button type="submit" class="submit__btn">Cadastrar o Produto</button>
       </form>
     </div>
   </div>
@@ -48,13 +40,11 @@ export default {
   },
   data() {
     return {
-      id: '',
       nome: '',
       preco: '',
       Descricao: '',
       QuantidadeEmEstoque: '',
       FornecedorId: '',
-      EmpresaId: ''
     };
   },
   computed: {
@@ -66,7 +56,7 @@ export default {
     async CreateUsuario(e) {
       e.preventDefault();
       const data = {
-        id: this.id,
+        id: null,
         nome: this.nome,
         preco: this.preco,
         Descricao: this.Descricao,
@@ -84,14 +74,12 @@ export default {
         });
 
         if (response.status === 200) {
-          alert('Sucesso ao adicionar o Produto!')
+          alert('Sucesso ao adicionar o Produto!');
+        } else {
+          alert('Erro ao adicionar o produto.');
         }
-        else {
-          alert('Erro ao adicionar o produto')
-        }
-      }
-      catch (error) {
-        console.log(error)
+      } catch (error) {
+        console.log(error);
       }
     },
   },
@@ -100,13 +88,13 @@ export default {
 
 <style scoped>
 .Main__container {
-  font-family: "Funnel Display", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 140vh;
+  height: 80vh;
   width: 100%;
+  font-family: "Funnel Display", sans-serif;
 }
 
 .form__container {
@@ -114,9 +102,9 @@ export default {
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  height: 700px;
+  max-width: 600px;
   width: 100%;
+  margin-top: 30px;
 }
 
 .form__title {
@@ -143,8 +131,7 @@ export default {
   display: block;
 }
 
-.form__group input,
-.form__group select {
+.form__group input {
   width: 95%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -155,7 +142,7 @@ export default {
 
 .submit__btn {
   padding: 12px;
-  background-color: rgb(0, 43, 82);
+  background-color: #333;
   color: white;
   border: none;
   border-radius: 5px;
@@ -165,6 +152,6 @@ export default {
 }
 
 .submit__btn:hover {
-  background-color: #1A5276;
+  background-color: #000;
 }
 </style>

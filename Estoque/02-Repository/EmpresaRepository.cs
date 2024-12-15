@@ -59,7 +59,7 @@ namespace Estoque.Repository
             connection.Open();
 
             // Usando Dapper puro para realizar a consulta filtrada por EmpresaId
-            string query = "SELECT * FROM Empresas WHERE EmpresaId = @EmpresaId";
+            string query = "SELECT * FROM Empresas WHERE Id = @EmpresaId";
             List<Empresa> Empresas = connection.Query<Empresa>(query, new { EmpresaId = EmpresaId }).ToList();
 
             if (Empresas == null || !Empresas.Any())

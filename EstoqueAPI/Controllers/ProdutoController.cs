@@ -47,7 +47,7 @@ namespace EstoqueAPI.Controllers
         {
             try
             {
-                var produtos = _service.Listar();
+                List<ReadProdutoDTO> produtos = _service.Listar();
                 if (produtos == null || !produtos.Any())
                 {
                     return NotFound("Nenhum produto encontrado.");
@@ -160,14 +160,14 @@ namespace EstoqueAPI.Controllers
         /// <summary>
         /// Endpoint para Buscar um produto pelo id da empresa
         /// </summary>
-        /// <param name="UsuarioId"></param>
+        /// <param name="EmpresaId"></param>
         /// <returns></returns>
-        [HttpGet("cliente/{UsuarioId}")]
-        public ActionResult<IEnumerable<Produto>> GetProdutosByEmpresaId(int UsuarioId)
+        [HttpGet("cliente/{EmpresaId}")]
+        public ActionResult<IEnumerable<Produto>> GetProdutosByEmpresaId(int EmpresaId)
         {
             try
             {
-                return _service.GetProdutosByEmpresaId(UsuarioId);
+                return _service.GetProdutosByEmpresaId(EmpresaId);
             }
             catch (Exception erro)
             {

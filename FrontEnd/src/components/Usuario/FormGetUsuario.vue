@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     async listarUsuarios() {
-      const apiUrl = `https://localhost:7248/Usuario/cliente/${this.empresaId}`;
+      const apiUrl = `https://localhost:7248/Usuario/usuario/${this.empresaId}`;
       try {
         const response = await fetch(apiUrl, {
           method: 'GET',

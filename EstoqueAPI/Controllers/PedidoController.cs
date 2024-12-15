@@ -128,14 +128,14 @@ namespace EstoqueAPI.Controllers
         /// <summary>
         /// Endpoint para Buscar um produto pelo id da empresa
         /// </summary>
-        /// <param name="UsuarioId"></param>
+        /// <param name="EmpresaId"></param>
         /// <returns></returns>
-        [HttpGet("pedido/{UsuarioId}")]
-        public ActionResult<IEnumerable<Pedido>> GetProdutosByEmpresaId(int UsuarioId)
+        [HttpGet("pedido/{EmpresaId}")]
+        public ActionResult<IEnumerable<Pedido>> GetProdutosByEmpresaId(int EmpresaId)
         {
             try
             {
-                return _service.GetPedidosByEmpresaId(UsuarioId);
+                return _service.GetPedidosByEmpresaId(EmpresaId);
             }
             catch (Exception erro)
             {
