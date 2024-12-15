@@ -90,6 +90,30 @@ namespace Estoque.Repository.Data.Script
             }
         }
 
+        public static void InsertAdmin(Usuario usuario)
+        {
+            using (var connection = new SQLiteConnection(DataSource))
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    // Insere Usuario
+                    string insertUsuario = "INSERT INTO Usuarios (Nome, Username, TipoUsuario, Senha, Email, EmpresaId) VALUES (@Nome, @Username, @TipoUsuario, @Senha, @Email, @EmpresaId);";
+                    using (var command = new SQLiteCommand(insertUsuario, connection))
+                    {
+                        command.Parameters.AddWithValue("@Nome", usuario.Nome);
+                        command.Parameters.AddWithValue("@Username", usuario.Username);
+                        command.Parameters.AddWithValue("@TipoUsuario", usuario.TipoUsuario);
+                        command.Parameters.AddWithValue("@Senha", usuario.Senha);
+                        command.Parameters.AddWithValue("@Email", usuario.Email);
+                        command.Parameters.AddWithValue("@EmpresaId", usuario.EmpresaId);
+                        command.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
+                }
+            }
+        }
         public static void InsertEntities(Empresa empresa, Fornecedor fornecedor, Produto produto, Pedido pedido, Usuario usuario)
         {
             using (var connection = new SQLiteConnection(DataSource))
@@ -268,7 +292,7 @@ namespace Estoque.Repository.Data.Script
                 TipoUsuario = "Admin",
                 Senha = "Apple",
                 Email = "Apple.Brasil@gmail.com",
-                EmpresaId = 0
+                EmpresaId = 1
             };
 
             Usuario usuario2 = new Usuario
@@ -279,9 +303,20 @@ namespace Estoque.Repository.Data.Script
                 TipoUsuario = "Admin",
                 Senha = "Samsung",
                 Email = "Samsung.Brasil@gmail.com",
-                EmpresaId = 0
+                EmpresaId = 2
             };
 
+            Usuario Admin = new Usuario
+            {
+                Id = 2,
+                Nome = "Admin",
+                Username = "Admin",
+                TipoUsuario = "Admin",
+                Senha = "Admin",
+                Email = "Admin@gmail.com",
+                EmpresaId = 0
+            };
+            InsertAdmin(Admin);
             InsertEntities(empresa1, fornecedor1, produto1, pedido1, usuario1);
             InsertEntities(empresa2, fornecedor2, produto2, pedido2, usuario2);
         }
