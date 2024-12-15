@@ -1,4 +1,5 @@
 <template>
+<<<<<<< Updated upstream
   <div class="page-container">
     <NavBar />
     <button @click="mostrarCarrinho" class="cart-button">Carrinho ({{ Carrinho.length }})</button>
@@ -40,12 +41,36 @@
         Total: {{ Carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0) }}$
       </div>
       <button @click="fecharCarrinho" class="close-button">Fechar</button>
+=======
+  <div class="container__center">
+    <div class="header">
+      <h1>Bem Vindo ao gerenciamento da sua empresa</h1>
+      <h3>Use este site para gerenciar os parâmetros da sua empresa</h3>
+    </div>
+    <div class="content">
+      <h2>Gerencie seus produtos aqui</h2>
+      <p>Este é o lugar onde você pode adicionar, editar e remover produtos da sua loja. Utilize as opções abaixo para navegar e gerenciar seu inventário.</p>
+      <router-link to="/CrudProdutosCliente" class="nav-link button">Produtos</router-link>
+      <button @click="handleClick" class="primary-button">Clique aqui</button>
+    </div>
+    <div class="additional-section">
+      <h2>Atualizações Recentes</h2>
+      <p>Mantenha-se informado sobre as últimas atualizações e melhorias que fizemos em nossa plataforma para ajudá-lo a gerenciar sua empresa de maneira mais eficiente.</p>
+      <ul>
+        <li>Nova funcionalidade de relatórios</li>
+        <li>Integração com redes sociais</li>
+        <li>Melhoria na performance do sistema</li>
+      </ul>
+      <h2>Suporte ao Cliente</h2>
+      <p>Se precisar de assistência, nossa equipe de suporte está disponível 24/7. Entre em contato pelo nosso <a href="#" class="support-link">canal de suporte</a>.</p>
+>>>>>>> Stashed changes
     </div>
   </div>
 </template>
 
 <script>
 export default {
+<<<<<<< Updated upstream
   name: 'InitalPageClientes',
   data() {
     return {
@@ -92,11 +117,18 @@ export default {
     },
     handleClick() {
       this.$router.push({ name: 'GestaoCompraClientes', query: { produtos: JSON.stringify(this.Carrinho) } });
+=======
+  name: 'InitialPageClientes',
+  methods: {
+    handleClick() {
+      console.log('Botão clicado!');
+>>>>>>> Stashed changes
     }
   },
   mounted() {
     this.carregarProdutos();
   }
+<<<<<<< Updated upstream
 };
 </script>
 
@@ -118,10 +150,47 @@ export default {
 }
 
 .Tittle {
+=======
+}
+</script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+.container__center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+  color: #333;
+  font-family: 'Montserrat', sans-serif;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: 2.5em;
+  font-weight: 600;
+}
+
+.header h3 {
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.content {
+>>>>>>> Stashed changes
   text-align: center;
   margin-bottom: 20px;
 }
 
+<<<<<<< Updated upstream
 .product-list {
   list-style-type: none;
   padding: 0;
@@ -283,5 +352,81 @@ export default {
     top: 10px;
     right: 10px;
   }
+=======
+.content h2 {
+  margin-bottom: 10px;
+}
+
+.content p {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.button, .primary-button {
+  padding: 12px 25px;
+  background-color: #5c6bc0;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 1em;
+  margin: 10px 0;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover, .primary-button:hover {
+  background-color: #3949ab;
+  transform: translateY(-3px);
+}
+
+.primary-button {
+  background-color: #4caf50;
+}
+
+.primary-button:hover {
+  background-color: #388e3c;
+}
+
+.additional-section {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.additional-section h2 {
+  margin-bottom: 10px;
+}
+
+.additional-section p {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.additional-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.additional-section li {
+  font-size: 1em;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.support-link {
+  color: #5c6bc0;
+  text-decoration: none;
+}
+
+.support-link:hover {
+  text-decoration: underline;
+>>>>>>> Stashed changes
 }
 </style>

@@ -1,4 +1,5 @@
 <template>
+<<<<<<< Updated upstream
   <div class="main-container">
     <NavBar />
     <NavBarFornecedores />
@@ -13,6 +14,18 @@
         </li>
       </ul>
     </div>
+=======
+  <NavBar />
+  <NavBarFornecedores />
+  <div>
+    <h1>Lista de Fornecedores</h1>
+    <button @click="listarFornecedores">Carregar Fornecedores</button>
+    <ul>
+      <li v-for="fornecedor in Fornecedores" :key="fornecedor.id">
+        Id: {{ fornecedor.id }} - Nome: {{ fornecedor.nome }} - Contato: {{ fornecedor.contato }} - Endereço: {{ fornecedor.endereco }} - CNPJ: {{ fornecedor.cnpj }} - Produto ID: {{ fornecedor.produtoId }} - Nome do Produto: {{ fornecedor.nomeProduto }}
+      </li>
+    </ul>
+>>>>>>> Stashed changes
   </div>
 </template>
 
@@ -32,8 +45,13 @@ export default {
     };
   },
   methods: {
+<<<<<<< Updated upstream
     async listarFornecedor() {
       const apiUrl = 'https://localhost:7248/Fornecedor/visualizar-fornecedor';
+=======
+    async listarFornecedores() {
+      const apiUrl = 'https://localhost:7248/Fornecedor/VisualizarFornecedor';
+>>>>>>> Stashed changes
       try {
         const response = await fetch(apiUrl, {
           method: 'GET',
@@ -46,15 +64,14 @@ export default {
           throw new Error('Erro ao buscar os Fornecedores');
         }
 
-        const data = await response.json();
-        console.log(data);
-        this.Fornecedores = data; // Atribui os dados ao array 'Fornecedores'
+        this.Fornecedores = await response.json();
       } catch (error) {
         console.error('Erro:', error);
       }
     },
-  },
+  }
 };
+<<<<<<< Updated upstream
 </script>
 
 <style scoped>
@@ -138,3 +155,6 @@ export default {
   }
 }
 </style>
+=======
+</script>
+>>>>>>> Stashed changes

@@ -9,6 +9,27 @@ namespace Estoque.Repository.Data.Script
 {
     public static class DataBaseScript
     {
+<<<<<<< Updated upstream
+=======
+        private const string DataSource = "Data Source=estoque.db;";
+
+        public static void InitializeDatabase()
+        {
+            using (var connection = new SQLiteConnection(DataSource))
+            {
+                connection.Open();
+
+                string commandCREATE = CreateTables();
+
+                // Cria as tabelas
+                using (var command = new SQLiteCommand(commandCREATE, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+>>>>>>> Stashed changes
         public static string CreateTables()
         {
             string commandCREATE = @"
@@ -18,8 +39,12 @@ namespace Estoque.Repository.Data.Script
                     Preco REAL NOT NULL,
                     Descricao TEXT NOT NULL,
                     QuantidadeEmEstoque INTEGER NOT NULL,
+<<<<<<< Updated upstream
                     FornecedorId INTEGER,
                     EmpresaId INTEGER
+=======
+                    UsuarioId INTEGER NOT NULL
+>>>>>>> Stashed changes
                 );
 
                 CREATE TABLE IF NOT EXISTS Fornecedores (
@@ -57,8 +82,13 @@ namespace Estoque.Repository.Data.Script
                     QuantidadeSolicitada INTEGER NOT NULL,
                     TipoAlteracao TEXT NOT NULL,
                     NomeProduto TEXT NOT NULL,
+<<<<<<< Updated upstream
                     ProdutoId INTEGER,
                     EmpresaId INTEGER
+=======
+                    ProdutoId INTEGER NOT NULL,
+                    UsuarioId INTEGER NOT NULL
+>>>>>>> Stashed changes
                 );
 
                 CREATE TABLE IF NOT EXISTS HistoricoPedidos (
@@ -69,10 +99,15 @@ namespace Estoque.Repository.Data.Script
                     TipoAlteracao TEXT NOT NULL,
                     NomeProduto TEXT NOT NULL,
                     ProdutoId INTEGER,
+<<<<<<< Updated upstream
                     EmpresaId INTEGER
                 );";
 
             return commandCREATE;
+=======
+                    UsuarioId INTEGER NOT NULL
+                );";
+>>>>>>> Stashed changes
         }
     }
 }
