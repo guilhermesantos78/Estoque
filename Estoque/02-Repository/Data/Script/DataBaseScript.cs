@@ -73,7 +73,6 @@ namespace Estoque.Repository.Data.Script
 
             return commandCREATE;
         }
-
         public static void InitializeDatabase()
         {
             using (var connection = new SQLiteConnection(DataSource))
@@ -89,7 +88,6 @@ namespace Estoque.Repository.Data.Script
                 }
             }
         }
-
         public static void InsertAdmin(Usuario usuario)
         {
             using (var connection = new SQLiteConnection(DataSource))
@@ -320,7 +318,6 @@ namespace Estoque.Repository.Data.Script
             InsertEntities(empresa1, fornecedor1, produto1, pedido1, usuario1);
             InsertEntities(empresa2, fornecedor2, produto2, pedido2, usuario2);
         }
-
         public static void CheckAndInsertData()
         {
             using (var connection = new SQLiteConnection(DataSource))
@@ -353,7 +350,6 @@ namespace Estoque.Repository.Data.Script
                 }
             }
         }
-
         private static bool IsTableEmpty(SQLiteConnection connection, string tableName)
         {
             string query = $"SELECT COUNT(*) FROM {tableName}";
