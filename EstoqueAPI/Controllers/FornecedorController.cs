@@ -92,7 +92,7 @@ namespace EstoqueAPI.Controllers
             try
             {
                 int fornId = fornecedor.Id;
-                Fornecedor forn = BuscarFornecedorPorId(fornId).Value;
+                Fornecedor forn = _service.BuscarPorId(fornId);
 
                 if (forn.EmpresaId == EmpresaId)
                 {
@@ -113,7 +113,7 @@ namespace EstoqueAPI.Controllers
         {
             try
             {
-                Fornecedor fornecedor = BuscarFornecedorPorId(id).Value;
+                Fornecedor fornecedor = _service.BuscarPorId(id);
 
                 if (fornecedor.EmpresaId == EmpresaId)
                 {

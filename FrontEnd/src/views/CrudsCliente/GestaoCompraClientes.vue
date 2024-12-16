@@ -111,7 +111,7 @@ export default {
       this.$router.push('/InitialPageClientes'); // Certifique-se de que a rota está correta
     },
     formatPreco(valor) {
-      return valor.toFixed(2).replace('.', ',') + ' $'; // Formatação do preço
+      return valor.toFixed(2).replace('.', ',') + ' R$'; // Formatação do preço
     },
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;

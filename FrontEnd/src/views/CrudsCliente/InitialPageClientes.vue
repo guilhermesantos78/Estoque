@@ -42,7 +42,7 @@
       <h2>Carrinho</h2>
       <ul>
         <li v-for="item in Carrinho" :key="item.id" class="cart-item">
-          <span class="cart-item-name">{{ item.nome }} - {{ item.preco }}$</span>
+          <span class="cart-item-name">{{ item.nome }} - R${{ item.preco }} </span>
           <div class="item-actions">
             <button @click="adicionarMais(item)">+</button>
             <button @click="removerDoCarrinho(item)">-</button>
