@@ -50,19 +50,21 @@ export default {
 
       if (data.username === usuario.username) {
 
-        // Redireciona com base no tipo de usuário
-        if (usuario.tipoUsuario === "Cliente") {
-          alert('Sucesso ao logar!')
-          this.$store.dispatch('setUsuario', usuario);
-          this.$router.push('/InitialPageClientes'); // Redireciona para a rota para Clientes
+        if (req.status === 200) {
+          // Redireciona com base no tipo de usuário
+          if (usuario.tipoUsuario === "Cliente") {
+            alert('Sucesso ao logar!')
+            this.$store.dispatch('setUsuario', usuario);
+            this.$router.push('/InitialPageClientes'); // Redireciona para a rota para Clientes
 
-        } else if (usuario.tipoUsuario === "Admin") {
-          alert('Sucesso ao logar!')
-          this.$store.dispatch('setUsuario', usuario);
-          this.$router.push('/InitialPage'); // Redireciona para a rota para Administrador
+          } else if (usuario.tipoUsuario === "Admin") {
+            alert('Sucesso ao logar!')
+            this.$store.dispatch('setUsuario', usuario);
+            this.$router.push('/InitialPage'); // Redireciona para a rota para Administrador
 
-        } else {
-          alert('Tipo de usuário desconhecido!');
+          } else {
+            alert('Tipo de usuário desconhecido!');
+          }
         }
 
         this.username = '';

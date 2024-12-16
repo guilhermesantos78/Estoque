@@ -40,7 +40,7 @@
             <summary>
             Endpoint para Buscar um produto pelo id da empresa
             </summary>
-            <param name="UsuarioId"></param>
+            <param name="EmpresaId"></param>
             <returns></returns>
         </member>
         <member name="M:EstoqueAPI.Controllers.FornecedorController.AdicionarFornecedor(Estoque.Services.CreateFornecedorDTO)">
@@ -78,7 +78,7 @@
             <summary>
             Endpoint para Buscar um produto pelo id da empresa
             </summary>
-            <param name="UsuarioId"></param>
+            <param name="EmpresaId"></param>
             <returns></returns>
         </member>
         <member name="M:EstoqueAPI.Controllers.HistoricoPedidoController.VisualizarHistoricoPedidos(System.Int32)">
@@ -131,7 +131,7 @@
             <summary>
             Endpoint para Buscar um produto pelo id da empresa
             </summary>
-            <param name="UsuarioId"></param>
+            <param name="EmpresaId"></param>
             <returns></returns>
         </member>
         <member name="M:EstoqueAPI.Controllers.ProdutoController.AdicionarProduto(Estoque.Entidades.CreateProdutoDTO)">
@@ -176,7 +176,7 @@
             <summary>
             Endpoint para Buscar um produto pelo id da empresa
             </summary>
-            <param name="UsuarioId"></param>
+            <param name="EmpresaId"></param>
             <returns></returns>
         </member>
         <member name="M:API.Controllers.UsuarioController.AdicionarUsuario(Core.Entidades.Usuario)">
@@ -220,7 +220,7 @@
             <summary>
             Endpoint para Buscar um produto pelo id da empresa
             </summary>
-            <param name="UsuarioId"></param>
+            <param name="EmpresaId"></param>
             <returns></returns>
         </member>
     </members>

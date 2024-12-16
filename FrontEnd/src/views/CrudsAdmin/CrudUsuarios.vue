@@ -1,6 +1,5 @@
 <template>
   <NavBar />
-  <NavBarUsuarios />
   <div class="Tittle">
     <h1>Usuarios</h1>
   </div>
@@ -13,13 +12,11 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue'
-import NavBarUsuarios from '@/components/Usuario/NavBarUsuarios.vue'
 
 export default {
   name: 'CrudUsuarios',
   components: {
-    NavBar,
-    NavBarUsuarios
+    NavBar
   }
 }
 </script>

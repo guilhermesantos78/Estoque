@@ -1,6 +1,5 @@
 <template>
     <NavBar />
-    <NavBarProdutos />
     <div class="Tittle">
         <h1>Produtos</h1>
     </div>
@@ -13,13 +12,11 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue'
-import NavBarProdutos from '@/components/Produto/NavBarProdutos.vue';
 
 export default {
     name: 'CrudProdutos',
     components: {
-        NavBar,
-        NavBarProdutos
+        NavBar
     }
 }
 </script>
