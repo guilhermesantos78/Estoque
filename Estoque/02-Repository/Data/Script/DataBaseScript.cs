@@ -150,6 +150,21 @@ namespace Estoque.Repository.Data.Script
                             command.ExecuteNonQuery();
                         }
 
+                        // Insere Pedido
+                        string insertHistoricoPedido = "INSERT INTO HistoricoPedidos (DataPedido, DataEntrega, QuantidadeSolicitada, TipoAlteracao, NomeProduto, ProdutoId, EmpresaId) VALUES (@DataPedido, @DataEntrega, @QuantidadeSolicitada, @TipoAlteracao, @NomeProduto, @ProdutoId, @EmpresaId);";
+                        using (var command = new SQLiteCommand(insertHistoricoPedido, connection))
+                        {
+                            command.Parameters.AddWithValue("@DataPedido", pedido.DataPedido);
+                            command.Parameters.AddWithValue("@DataEntrega", pedido.DataEntrega);
+                            command.Parameters.AddWithValue("@QuantidadeSolicitada", pedido.QuantidadeSolicitada);
+                            command.Parameters.AddWithValue("@TipoAlteracao", pedido.TipoAlteracao);
+                            command.Parameters.AddWithValue("@NomeProduto", pedido.NomeProduto);
+                            command.Parameters.AddWithValue("@ProdutoId", produto.Id);
+                            command.Parameters.AddWithValue("@EmpresaId", empresaId);
+                            command.ExecuteNonQuery();
+                        }
+
+
                         // Insere Usuario
                         string insertUsuario = "INSERT INTO Usuarios (Nome, Username, TipoUsuario, Senha, Email, EmpresaId) VALUES (@Nome, @Username, @TipoUsuario, @Senha, @Email, @EmpresaId);";
                         using (var command = new SQLiteCommand(insertUsuario, connection))
